@@ -1,0 +1,1882 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لوحة التحكم | عالم ون بيس</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0A0D14;
+  --surface: #111520;
+  --surface2: #181E2E;
+  --surface3: #1F2840;
+  --border: #252D42;
+  --border2: #2E3A56;
+  --gold: #D4A843;
+  --gold2: #B8902C;
+  --gold-glow: rgba(212,168,67,0.12);
+  --red: #C0392B;
+  --green: #27AE60;
+  --blue: #2471A3;
+  --teal: #1ABC9C;
+  --orange: #E67E22;
+  --purple: #8E44AD;
+  --text: #E8DCC8;
+  --text2: #9A8E7A;
+  --text3: #5A5245;
+  --success: #2ECC71;
+  --warning: #F39C12;
+  --danger: #E74C3C;
+  --info: #3498DB;
+  --sidebar-w: 260px;
+  --font: 'IBM Plex Sans Arabic', sans-serif;
+  --font-d: 'Scheherazade New', serif;
+  --r: 8px;
+  --r2: 14px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; display: flex; direction: rtl; overflow-x: hidden; }
+
+/* ── SIDEBAR ── */
+.sidebar {
+  width: var(--sidebar-w);
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0; right: 0; bottom: 0;
+  z-index: 100;
+  transition: transform 0.3s ease;
+  overflow-y: auto;
+}
+
+.sidebar-brand {
+  padding: 20px 18px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-icon {
+  width: 40px; height: 40px;
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  box-shadow: 0 0 20px rgba(212,168,67,0.3);
+  flex-shrink: 0;
+}
+
+.brand-text { line-height: 1.2; }
+.brand-title { font-family: var(--font-d); font-size: 1rem; color: var(--gold); font-weight: 700; }
+.brand-sub { font-size: 0.65rem; color: var(--text3); }
+
+.sidebar-section { padding: 8px 0; }
+.sidebar-label {
+  font-size: 0.62rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.12em; color: var(--text3);
+  padding: 8px 18px 4px;
+}
+
+.nav-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 18px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-radius: 0;
+  font-size: 0.88rem;
+  color: var(--text2);
+  position: relative;
+  text-decoration: none;
+}
+
+.nav-item:hover { background: var(--surface2); color: var(--text); }
+.nav-item.active { background: var(--gold-glow); color: var(--gold); }
+.nav-item.active::before {
+  content: '';
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--gold);
+  border-radius: 3px 0 0 3px;
+}
+
+.nav-icon { font-size: 1rem; width: 20px; text-align: center; flex-shrink: 0; }
+.nav-badge {
+  margin-right: auto;
+  font-size: 0.65rem; font-weight: 700;
+  background: var(--red);
+  color: white;
+  padding: 2px 7px;
+  border-radius: 10px;
+}
+.nav-badge.green { background: var(--green); }
+
+.sidebar-divider { height: 1px; background: var(--border); margin: 8px 0; }
+
+.sidebar-footer {
+  padding: 14px 18px;
+  border-top: 1px solid var(--border);
+  margin-top: auto;
+}
+
+.user-card {
+  display: flex; align-items: center; gap: 10px;
+}
+.user-avatar {
+  width: 36px; height: 36px;
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 700; color: var(--bg);
+  flex-shrink: 0;
+}
+.user-info { flex: 1; }
+.user-name { font-size: 0.85rem; font-weight: 600; color: var(--text); }
+.user-role { font-size: 0.68rem; color: var(--text3); }
+.user-menu-btn {
+  background: none; border: none; color: var(--text3);
+  cursor: pointer; font-size: 1rem; padding: 4px;
+  transition: color 0.2s;
+}
+.user-menu-btn:hover { color: var(--text); }
+
+/* ── MAIN ── */
+.main {
+  margin-right: var(--sidebar-w);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ── TOPBAR ── */
+.topbar {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 28px;
+  height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.topbar-right { display: flex; align-items: center; gap: 10px; }
+.topbar-left { display: flex; align-items: center; gap: 16px; }
+
+.breadcrumb {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 0.82rem; color: var(--text2);
+}
+.breadcrumb span { color: var(--text3); }
+.breadcrumb .current { color: var(--text); font-weight: 600; }
+
+.topbar-search {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 7px 14px;
+  min-width: 220px;
+  transition: border-color 0.2s;
+}
+.topbar-search:focus-within { border-color: var(--gold2); }
+.topbar-search input {
+  background: none; border: none; outline: none;
+  font-family: var(--font); font-size: 0.82rem;
+  color: var(--text); width: 100%;
+  direction: rtl;
+}
+.topbar-search input::placeholder { color: var(--text3); }
+
+.icon-btn {
+  width: 36px; height: 36px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 1rem;
+  transition: all 0.2s; color: var(--text2);
+  position: relative;
+}
+.icon-btn:hover { border-color: var(--border2); color: var(--text); }
+.icon-btn .dot {
+  position: absolute; top: 6px; left: 6px;
+  width: 7px; height: 7px;
+  background: var(--red); border-radius: 50%;
+  border: 2px solid var(--surface);
+}
+
+.btn-new {
+  display: flex; align-items: center; gap: 7px;
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  color: var(--bg);
+  border: none; border-radius: var(--r);
+  padding: 9px 18px;
+  font-family: var(--font); font-weight: 700; font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 16px rgba(212,168,67,0.25);
+}
+.btn-new:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(212,168,67,0.35); }
+
+/* ── PAGE CONTENT ── */
+.page { padding: 28px; flex: 1; }
+.page.hidden { display: none; }
+
+/* ── STATS ROW ── */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r2);
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.stat-card:hover { border-color: var(--border2); }
+.stat-card::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 60px; height: 60px;
+  background: radial-gradient(circle at top right, var(--card-glow, rgba(212,168,67,0.06)), transparent 70%);
+}
+
+.stat-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 14px; }
+.stat-icon {
+  width: 42px; height: 42px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+  background: var(--icon-bg, rgba(212,168,67,0.1));
+}
+.stat-change {
+  font-size: 0.72rem; font-weight: 700;
+  padding: 4px 8px; border-radius: 6px;
+}
+.stat-change.up { background: rgba(46,204,113,0.1); color: var(--success); }
+.stat-change.down { background: rgba(231,76,60,0.1); color: var(--danger); }
+
+.stat-num {
+  font-family: var(--font-d);
+  font-size: 2rem; font-weight: 700;
+  color: var(--text);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.stat-label { font-size: 0.78rem; color: var(--text2); }
+
+/* ── PANEL ── */
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r2);
+  overflow: hidden;
+}
+
+.panel-head {
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.panel-title {
+  font-size: 0.95rem; font-weight: 700; color: var(--text);
+  display: flex; align-items: center; gap: 8px;
+}
+
+.panel-actions { display: flex; align-items: center; gap: 8px; }
+
+/* ── TABLE ── */
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+thead th {
+  text-align: right;
+  font-size: 0.72rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--text3);
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface2);
+  white-space: nowrap;
+}
+tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover { background: var(--surface2); }
+td {
+  padding: 14px 20px;
+  font-size: 0.85rem;
+  color: var(--text2);
+  vertical-align: middle;
+}
+
+.td-name { display: flex; align-items: center; gap: 10px; }
+.td-avatar {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+.td-name-text { font-size: 0.88rem; font-weight: 600; color: var(--text); }
+.td-name-sub { font-size: 0.72rem; color: var(--text3); }
+
+.badge {
+  display: inline-flex; align-items: center;
+  padding: 3px 10px; border-radius: 6px;
+  font-size: 0.7rem; font-weight: 700;
+}
+.badge-gold { background: rgba(212,168,67,0.15); color: var(--gold); border: 1px solid rgba(212,168,67,0.25); }
+.badge-red { background: rgba(192,57,43,0.15); color: #E74C3C; border: 1px solid rgba(192,57,43,0.25); }
+.badge-blue { background: rgba(36,113,163,0.15); color: #5DADE2; border: 1px solid rgba(36,113,163,0.25); }
+.badge-green { background: rgba(39,174,96,0.15); color: var(--success); border: 1px solid rgba(39,174,96,0.25); }
+.badge-purple { background: rgba(142,68,173,0.15); color: #BB8FCE; border: 1px solid rgba(142,68,173,0.25); }
+.badge-teal { background: rgba(26,188,156,0.15); color: var(--teal); border: 1px solid rgba(26,188,156,0.25); }
+.badge-orange { background: rgba(230,126,34,0.15); color: var(--orange); border: 1px solid rgba(230,126,34,0.25); }
+
+.row-actions { display: flex; align-items: center; gap: 6px; }
+.act-btn {
+  width: 30px; height: 30px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--surface2);
+  color: var(--text2);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.85rem;
+  transition: all 0.15s;
+}
+.act-btn:hover { border-color: var(--border2); color: var(--text); }
+.act-btn.edit:hover { border-color: rgba(52,152,219,0.5); color: var(--info); background: rgba(52,152,219,0.08); }
+.act-btn.del:hover { border-color: rgba(231,76,60,0.5); color: var(--danger); background: rgba(231,76,60,0.08); }
+.act-btn.view:hover { border-color: rgba(212,168,67,0.5); color: var(--gold); background: rgba(212,168,67,0.08); }
+
+/* ── FILTER BAR ── */
+.filter-bar {
+  display: flex; align-items: center; gap: 10px;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.filter-input {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 7px 12px;
+  flex: 1; min-width: 200px;
+}
+.filter-input input {
+  background: none; border: none; outline: none;
+  font-family: var(--font); font-size: 0.82rem;
+  color: var(--text); width: 100%; direction: rtl;
+}
+.filter-input input::placeholder { color: var(--text3); }
+
+.filter-select {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 8px 12px;
+  color: var(--text2);
+  font-family: var(--font); font-size: 0.82rem;
+  cursor: pointer; outline: none;
+  direction: rtl;
+}
+.filter-select:focus { border-color: var(--gold2); }
+
+/* ── MODAL ── */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(6px);
+  z-index: 1000;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.25s;
+}
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+
+.modal {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: 18px;
+  width: 95%;
+  max-width: 680px;
+  max-height: 90vh;
+  overflow-y: auto;
+  transform: scale(0.95) translateY(10px);
+  transition: transform 0.25s;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+}
+.modal-overlay.open .modal { transform: scale(1) translateY(0); }
+
+.modal-head {
+  padding: 22px 26px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.modal-title {
+  font-family: var(--font-d); font-size: 1.2rem;
+  color: var(--gold); font-weight: 700;
+  display: flex; align-items: center; gap: 10px;
+}
+.modal-close {
+  width: 34px; height: 34px;
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 8px; cursor: pointer;
+  color: var(--text2); font-size: 1rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s;
+}
+.modal-close:hover { border-color: var(--danger); color: var(--danger); }
+
+.modal-body { padding: 26px; }
+
+/* ── FORM ── */
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.form-grid.full { grid-template-columns: 1fr; }
+.form-group { display: flex; flex-direction: column; gap: 7px; }
+.form-group.span2 { grid-column: span 2; }
+
+.form-label {
+  font-size: 0.78rem; font-weight: 700;
+  color: var(--text2);
+  display: flex; align-items: center; gap: 6px;
+}
+.form-label .req { color: var(--red); }
+
+.form-input, .form-select, .form-textarea {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 10px 14px;
+  color: var(--text);
+  font-family: var(--font); font-size: 0.88rem;
+  outline: none;
+  direction: rtl;
+  transition: border-color 0.2s;
+  width: 100%;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--gold2);
+  box-shadow: 0 0 0 3px rgba(212,168,67,0.08);
+}
+.form-input::placeholder, .form-textarea::placeholder { color: var(--text3); }
+.form-textarea { resize: vertical; min-height: 100px; }
+.form-select option { background: var(--surface2); }
+
+.form-hint { font-size: 0.72rem; color: var(--text3); }
+
+/* Image Upload */
+.upload-area {
+  border: 2px dashed var(--border2);
+  border-radius: var(--r2);
+  padding: 32px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: var(--surface2);
+}
+.upload-area:hover {
+  border-color: var(--gold2);
+  background: var(--gold-glow);
+}
+.upload-icon { font-size: 2.5rem; margin-bottom: 10px; }
+.upload-text { font-size: 0.88rem; color: var(--text2); }
+.upload-text span { color: var(--gold); font-weight: 600; }
+.upload-hint { font-size: 0.72rem; color: var(--text3); margin-top: 6px; }
+
+/* Tags input */
+.tags-input {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 8px 10px;
+  cursor: text;
+}
+.tags-input:focus-within { border-color: var(--gold2); }
+.tag-item {
+  display: flex; align-items: center; gap: 5px;
+  background: rgba(212,168,67,0.12);
+  border: 1px solid rgba(212,168,67,0.25);
+  color: var(--gold);
+  padding: 3px 8px;
+  border-radius: 5px;
+  font-size: 0.75rem;
+}
+.tag-remove { cursor: pointer; opacity: 0.6; font-size: 0.7rem; }
+.tag-remove:hover { opacity: 1; }
+.tags-input input {
+  background: none; border: none; outline: none;
+  font-family: var(--font); font-size: 0.82rem;
+  color: var(--text); min-width: 100px; flex: 1;
+  direction: rtl;
+}
+
+/* Toggle */
+.toggle-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 16px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+}
+.toggle-label { font-size: 0.85rem; color: var(--text2); }
+.toggle {
+  position: relative;
+  width: 42px; height: 22px;
+}
+.toggle input { display: none; }
+.toggle-track {
+  position: absolute; inset: 0;
+  background: var(--border2);
+  border-radius: 11px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.toggle input:checked + .toggle-track { background: var(--gold); }
+.toggle-track::after {
+  content: '';
+  position: absolute;
+  top: 3px; right: 3px;
+  width: 16px; height: 16px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.2s;
+}
+.toggle input:checked + .toggle-track::after { transform: translateX(-20px); }
+
+/* Modal Footer */
+.modal-foot {
+  padding: 18px 26px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.btn { border-radius: var(--r); font-family: var(--font); font-weight: 600; font-size: 0.88rem; cursor: pointer; padding: 10px 22px; transition: all 0.2s; border: none; display: inline-flex; align-items: center; gap: 7px; }
+.btn-primary { background: linear-gradient(135deg, var(--gold), var(--gold2)); color: var(--bg); box-shadow: 0 4px 14px rgba(212,168,67,0.25); }
+.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(212,168,67,0.35); }
+.btn-ghost { background: var(--surface2); border: 1px solid var(--border); color: var(--text2); }
+.btn-ghost:hover { border-color: var(--border2); color: var(--text); }
+.btn-danger { background: rgba(231,76,60,0.1); border: 1px solid rgba(231,76,60,0.3); color: var(--danger); }
+.btn-danger:hover { background: rgba(231,76,60,0.2); }
+
+/* ── TABS ── */
+.tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--border); padding: 0 22px; }
+.tab-btn {
+  padding: 12px 16px;
+  font-size: 0.85rem; font-weight: 600;
+  color: var(--text2);
+  background: none; border: none;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+.tab-btn:hover:not(.active) { color: var(--text); }
+
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* ── GRID CARDS (for media) ── */
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+  padding: 20px;
+}
+.media-card {
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  background: var(--surface2);
+}
+.media-card:hover { border-color: var(--gold2); transform: scale(1.02); }
+.media-card .media-thumb {
+  height: 100px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 3rem;
+  background: linear-gradient(135deg, var(--surface2), var(--surface3));
+}
+.media-card .media-name {
+  padding: 8px;
+  font-size: 0.72rem;
+  color: var(--text2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.media-card .media-actions {
+  position: absolute; top: 6px; left: 6px;
+  display: flex; gap: 4px;
+  opacity: 0; transition: opacity 0.15s;
+}
+.media-card:hover .media-actions { opacity: 1; }
+.media-act {
+  width: 26px; height: 26px;
+  background: rgba(0,0,0,0.7);
+  border-radius: 5px;
+  border: none; cursor: pointer;
+  color: white; font-size: 0.75rem;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* ── TOAST ── */
+.toast-container {
+  position: fixed; bottom: 24px; left: 24px;
+  z-index: 9999;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.toast {
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  border-radius: var(--r2);
+  padding: 14px 18px;
+  display: flex; align-items: center; gap: 12px;
+  min-width: 280px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+  animation: slideIn 0.3s ease;
+}
+@keyframes slideIn {
+  from { transform: translateX(-100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+.toast-icon { font-size: 1.2rem; }
+.toast-msg { font-size: 0.85rem; color: var(--text); }
+.toast.success { border-right: 3px solid var(--success); }
+.toast.error { border-right: 3px solid var(--danger); }
+.toast.info { border-right: 3px solid var(--info); }
+
+/* ── DASHBOARD SPECIFIC ── */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+
+.activity-list { display: flex; flex-direction: column; }
+.activity-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 14px 22px;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.15s;
+}
+.activity-item:last-child { border-bottom: none; }
+.activity-item:hover { background: var(--surface2); }
+.activity-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+.activity-content { flex: 1; }
+.activity-text { font-size: 0.85rem; color: var(--text); }
+.activity-text strong { color: var(--gold); }
+.activity-time { font-size: 0.72rem; color: var(--text3); margin-top: 3px; }
+
+.quick-btn {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 18px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  cursor: pointer;
+  transition: all 0.2s;
+  width: 100%;
+  text-align: right;
+  font-family: var(--font);
+}
+.quick-btn:hover {
+  border-color: var(--border2);
+  background: var(--surface3);
+  transform: translateX(-2px);
+}
+.quick-btn-icon {
+  width: 38px; height: 38px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.quick-btn-text { font-size: 0.88rem; font-weight: 600; color: var(--text); }
+.quick-btn-sub { font-size: 0.72rem; color: var(--text3); margin-top: 2px; }
+
+/* ── SETTINGS ── */
+.settings-section { margin-bottom: 32px; }
+.settings-title {
+  font-size: 0.82rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--text3); margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.settings-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+.settings-row:last-child { border-bottom: none; }
+.settings-info { flex: 1; }
+.settings-label { font-size: 0.88rem; color: var(--text); font-weight: 500; }
+.settings-desc { font-size: 0.75rem; color: var(--text3); margin-top: 2px; }
+
+/* ── PROGRESS BAR ── */
+.progress { height: 6px; background: var(--surface2); border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; border-radius: 3px; transition: width 0.5s ease; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .sidebar { transform: translateX(100%); }
+  .sidebar.open { transform: translateX(0); }
+  .main { margin-right: 0; }
+  .stats-row { grid-template-columns: 1fr; }
+  .form-grid { grid-template-columns: 1fr; }
+  .form-group.span2 { grid-column: span 1; }
+}
+
+/* ── DELETE CONFIRM ── */
+.confirm-modal { max-width: 420px; }
+.confirm-icon { font-size: 3rem; text-align: center; display: block; margin-bottom: 12px; }
+.confirm-title { font-family: var(--font-d); font-size: 1.3rem; color: var(--text); text-align: center; margin-bottom: 8px; }
+.confirm-msg { font-size: 0.88rem; color: var(--text2); text-align: center; line-height: 1.6; }
+
+/* ── SEO SCORE ── */
+.seo-score {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; font-weight: 800;
+  border: 3px solid;
+}
+.seo-good { border-color: var(--success); color: var(--success); background: rgba(46,204,113,0.08); }
+.seo-ok { border-color: var(--warning); color: var(--warning); background: rgba(243,156,18,0.08); }
+.seo-bad { border-color: var(--danger); color: var(--danger); background: rgba(231,76,60,0.08); }
+
+/* pagination */
+.pagination { display: flex; align-items: center; gap: 6px; padding: 14px 20px; justify-content: flex-end; border-top: 1px solid var(--border); }
+.page-btn {
+  min-width: 32px; height: 32px;
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 6px; color: var(--text2);
+  cursor: pointer; font-size: 0.82rem; font-family: var(--font);
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s;
+}
+.page-btn:hover { border-color: var(--border2); color: var(--text); }
+.page-btn.active { background: var(--gold); border-color: var(--gold); color: var(--bg); font-weight: 700; }
+.page-info { font-size: 0.78rem; color: var(--text3); margin-left: 10px; }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-brand">
+    <div class="brand-icon">⚓</div>
+    <div class="brand-text">
+      <div class="brand-title">عالم ون بيس</div>
+      <div class="brand-sub">لوحة التحكم</div>
+    </div>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-label">الرئيسية</div>
+    <a class="nav-item active" onclick="showPage('dashboard', this)">
+      <span class="nav-icon">📊</span> لوحة المعلومات
+    </a>
+    <a class="nav-item" onclick="showPage('chars', this)">
+      <span class="nav-icon">👤</span> الشخصيات
+      <span class="nav-badge">٥٢٣</span>
+    </a>
+    <a class="nav-item" onclick="showPage('arcs', this)">
+      <span class="nav-icon">⚔️</span> الأركات
+    </a>
+    <a class="nav-item" onclick="showPage('islands', this)">
+      <span class="nav-icon">🏝️</span> الجزر والمناطق
+    </a>
+    <a class="nav-item" onclick="showPage('fruits', this)">
+      <span class="nav-icon">🍎</span> فواكه الشيطان
+      <span class="nav-badge green">جديد</span>
+    </a>
+  </div>
+
+  <div class="sidebar-divider"></div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-label">المحتوى</div>
+    <a class="nav-item" onclick="showPage('articles', this)">
+      <span class="nav-icon">📝</span> المقالات والنظريات
+    </a>
+    <a class="nav-item" onclick="showPage('manga', this)">
+      <span class="nav-icon">📖</span> فصول المانغا
+    </a>
+    <a class="nav-item" onclick="showPage('episodes', this)">
+      <span class="nav-icon">📺</span> حلقات الأنمي
+    </a>
+    <a class="nav-item" onclick="showPage('news', this)">
+      <span class="nav-icon">📢</span> الأخبار
+      <span class="nav-badge">٣</span>
+    </a>
+  </div>
+
+  <div class="sidebar-divider"></div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-label">الإدارة</div>
+    <a class="nav-item" onclick="showPage('media', this)">
+      <span class="nav-icon">🖼️</span> مكتبة الوسائط
+    </a>
+    <a class="nav-item" onclick="showPage('comments', this)">
+      <span class="nav-icon">💬</span> التعليقات
+      <span class="nav-badge">١٢</span>
+    </a>
+    <a class="nav-item" onclick="showPage('users', this)">
+      <span class="nav-icon">👥</span> المستخدمون
+    </a>
+    <a class="nav-item" onclick="showPage('settings', this)">
+      <span class="nav-icon">⚙️</span> الإعدادات
+    </a>
+  </div>
+
+  <div class="sidebar-footer">
+    <div class="user-card">
+      <div class="user-avatar">أ</div>
+      <div class="user-info">
+        <div class="user-name">المدير العام</div>
+        <div class="user-role">مدير الموقع</div>
+      </div>
+      <button class="user-menu-btn" onclick="showPage('settings', document.querySelector('[onclick*=settings]'))">⚙️</button>
+    </div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-right">
+      <button class="icon-btn" onclick="toggleSidebar()" style="display:none" id="menuBtn">☰</button>
+      <div class="breadcrumb">
+        <span>عالم ون بيس</span>
+        <span>›</span>
+        <span class="current" id="breadcrumbCurrent">لوحة المعلومات</span>
+      </div>
+    </div>
+    <div class="topbar-left">
+      <div class="topbar-search">
+        <span>🔍</span>
+        <input type="text" placeholder="بحث سريع...">
+      </div>
+      <button class="icon-btn" title="الإشعارات">
+        🔔
+        <div class="dot"></div>
+      </button>
+      <button class="icon-btn" title="عرض الموقع" onclick="showToast('سيُفتح الموقع في تبويب جديد', 'info')">🌐</button>
+      <button class="btn-new" onclick="openAddModal()">
+        ＋ إضافة محتوى
+      </button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       PAGE: DASHBOARD
+  ══════════════════════════════════════ -->
+  <div class="page" id="page-dashboard">
+    <div style="margin-bottom:24px;">
+      <h1 style="font-family:var(--font-d);font-size:1.6rem;color:var(--text);margin-bottom:4px;">مرحباً 👋 — لوحة المعلومات</h1>
+      <p style="color:var(--text2);font-size:0.88rem;">الخميس، ٢٣ أبريل ٢٠٢٥ — آخر زيارة: منذ ٣ ساعات</p>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-row">
+      <div class="stat-card" style="--card-glow:rgba(212,168,67,0.08);">
+        <div class="stat-top">
+          <div class="stat-icon" style="--icon-bg:rgba(212,168,67,0.1);">👤</div>
+          <div class="stat-change up">↑ ١٢%</div>
+        </div>
+        <div class="stat-num">٥٢٣</div>
+        <div class="stat-label">شخصية موثقة</div>
+      </div>
+      <div class="stat-card" style="--card-glow:rgba(192,57,43,0.08);">
+        <div class="stat-top">
+          <div class="stat-icon" style="--icon-bg:rgba(192,57,43,0.1);">⚔️</div>
+          <div class="stat-change up">↑ ٣%</div>
+        </div>
+        <div class="stat-num">٣٣</div>
+        <div class="stat-label">آرك مكتمل</div>
+      </div>
+      <div class="stat-card" style="--card-glow:rgba(155,89,182,0.08);">
+        <div class="stat-top">
+          <div class="stat-icon" style="--icon-bg:rgba(155,89,182,0.1);">🍎</div>
+          <div class="stat-change up">↑ ٥</div>
+        </div>
+        <div class="stat-num">٩٢</div>
+        <div class="stat-label">فاكهة الشيطان</div>
+      </div>
+      <div class="stat-card" style="--card-glow:rgba(26,188,156,0.08);">
+        <div class="stat-top">
+          <div class="stat-icon" style="--icon-bg:rgba(26,188,156,0.1);">👥</div>
+          <div class="stat-change up">↑ ٢٤%</div>
+        </div>
+        <div class="stat-num">٨,٤٢١</div>
+        <div class="stat-label">زائر هذا الشهر</div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:20px;">
+      <!-- Recent Activity -->
+      <div class="panel">
+        <div class="panel-head">
+          <div class="panel-title">📋 آخر التحديثات</div>
+          <button class="btn btn-ghost" style="padding:6px 14px;font-size:0.78rem;">عرض الكل</button>
+        </div>
+        <div class="activity-list">
+          <div class="activity-item">
+            <div class="activity-dot" style="background:var(--success)"></div>
+            <div class="activity-content">
+              <div class="activity-text">تم إضافة شخصية <strong>بونيكي</strong> بنجاح</div>
+              <div class="activity-time">منذ ٢٠ دقيقة</div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-dot" style="background:var(--info)"></div>
+            <div class="activity-content">
+              <div class="activity-text">تم تحديث معلومات آرك <strong>إيغهيد</strong></div>
+              <div class="activity-time">منذ ١ ساعة</div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-dot" style="background:var(--warning)"></div>
+            <div class="activity-content">
+              <div class="activity-text">تعليق جديد ينتظر المراجعة على مقال <strong>نظرية D</strong></div>
+              <div class="activity-time">منذ ٣ ساعات</div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-dot" style="background:var(--gold)"></div>
+            <div class="activity-content">
+              <div class="activity-text">تم نشر خبر <strong>الفصل ١١٣٠</strong></div>
+              <div class="activity-time">منذ ٥ ساعات</div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-dot" style="background:var(--purple)"></div>
+            <div class="activity-content">
+              <div class="activity-text">مستخدم جديد: <strong>قبعة_قش_٢٠٢٥</strong></div>
+              <div class="activity-time">منذ ٨ ساعات</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="panel">
+        <div class="panel-head">
+          <div class="panel-title">⚡ إجراءات سريعة</div>
+        </div>
+        <div style="padding:16px;display:flex;flex-direction:column;gap:10px;">
+          <button class="quick-btn" onclick="openCharModal()">
+            <div class="quick-btn-icon" style="background:rgba(192,57,43,0.1);">👤</div>
+            <div>
+              <div class="quick-btn-text">إضافة شخصية جديدة</div>
+              <div class="quick-btn-sub">شخصية، مكافأة، فاكهة، هاكي...</div>
+            </div>
+          </button>
+          <button class="quick-btn" onclick="openArcModal()">
+            <div class="quick-btn-icon" style="background:rgba(212,168,67,0.1);">⚔️</div>
+            <div>
+              <div class="quick-btn-text">إضافة آرك أو حدث</div>
+              <div class="quick-btn-sub">ترتيب، فصول، ملخص...</div>
+            </div>
+          </button>
+          <button class="quick-btn" onclick="openFruitModal()">
+            <div class="quick-btn-icon" style="background:rgba(155,89,182,0.1);">🍎</div>
+            <div>
+              <div class="quick-btn-text">إضافة فاكهة الشيطان</div>
+              <div class="quick-btn-sub">نوع، قدرات، المستخدم...</div>
+            </div>
+          </button>
+          <button class="quick-btn" onclick="showPage('articles', document.querySelector('[onclick*=articles]'))">
+            <div class="quick-btn-icon" style="background:rgba(26,188,156,0.1);">📝</div>
+            <div>
+              <div class="quick-btn-text">كتابة مقالة جديدة</div>
+              <div class="quick-btn-sub">نظرية، تحليل، مراجعة...</div>
+            </div>
+          </button>
+          <button class="quick-btn" onclick="showPage('media', document.querySelector('[onclick*=media]'))">
+            <div class="quick-btn-icon" style="background:rgba(52,152,219,0.1);">🖼️</div>
+            <div>
+              <div class="quick-btn-text">رفع صور وملفات</div>
+              <div class="quick-btn-sub">مكتبة الوسائط...</div>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content Overview -->
+    <div class="panel">
+      <div class="panel-head">
+        <div class="panel-title">📊 نظرة عامة على المحتوى</div>
+      </div>
+      <div style="padding:22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;">
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+            <span style="font-size:0.82rem;color:var(--text2);">👤 شخصيات</span>
+            <span style="font-size:0.82rem;color:var(--gold);font-weight:700;">٥٢٣</span>
+          </div>
+          <div class="progress"><div class="progress-fill" style="width:87%;background:var(--gold);"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+            <span style="font-size:0.82rem;color:var(--text2);">⚔️ أركات</span>
+            <span style="font-size:0.82rem;color:var(--red);font-weight:700;">٣٣</span>
+          </div>
+          <div class="progress"><div class="progress-fill" style="width:100%;background:var(--red);"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+            <span style="font-size:0.82rem;color:var(--text2);">🍎 فواكه</span>
+            <span style="font-size:0.82rem;color:var(--purple);font-weight:700;">٩٢</span>
+          </div>
+          <div class="progress"><div class="progress-fill" style="width:72%;background:#8E44AD;"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+            <span style="font-size:0.82rem;color:var(--text2);">📖 فصول</span>
+            <span style="font-size:0.82rem;color:var(--teal);font-weight:700;">١١٣٠</span>
+          </div>
+          <div class="progress"><div class="progress-fill" style="width:95%;background:var(--teal);"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+            <span style="font-size:0.82rem;color:var(--text2);">📝 مقالات</span>
+            <span style="font-size:0.82rem;color:var(--info);font-weight:700;">٢١٨</span>
+          </div>
+          <div class="progress"><div class="progress-fill" style="width:55%;background:var(--info);"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+            <span style="font-size:0.82rem;color:var(--text2);">🏝️ جزر</span>
+            <span style="font-size:0.82rem;color:var(--orange);font-weight:700;">١٠٤</span>
+          </div>
+          <div class="progress"><div class="progress-fill" style="width:65%;background:var(--orange);"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       PAGE: CHARACTERS
+  ══════════════════════════════════════ -->
+  <div class="page hidden" id="page-chars">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
+      <div>
+        <h1 style="font-family:var(--font-d);font-size:1.5rem;color:var(--text);">👤 إدارة الشخصيات</h1>
+        <p style="color:var(--text2);font-size:0.82rem;margin-top:4px;">٥٢٣ شخصية · آخر تحديث: اليوم</p>
+      </div>
+      <button class="btn btn-primary" onclick="openCharModal()">＋ إضافة شخصية</button>
+    </div>
+
+    <div class="panel">
+      <div class="filter-bar">
+        <div class="filter-input">
+          <span>🔍</span>
+          <input type="text" placeholder="ابحث باسم الشخصية...">
+        </div>
+        <select class="filter-select">
+          <option>جميع الانتماءات</option>
+          <option>قبعات القش</option>
+          <option>البحرية</option>
+          <option>اليونكو</option>
+          <option>الثوار</option>
+        </select>
+        <select class="filter-select">
+          <option>جميع الأنواع</option>
+          <option>مستخدم فاكهة</option>
+          <option>هاكي فقط</option>
+          <option>بدون قوى</option>
+        </select>
+        <select class="filter-select">
+          <option>الحالة: الكل</option>
+          <option>منشور</option>
+          <option>مسودة</option>
+        </select>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>الشخصية</th>
+              <th>الانتماء</th>
+              <th>الفاكهة / القوة</th>
+              <th>المكافأة</th>
+              <th>الحالة</th>
+              <th>آخر تعديل</th>
+              <th>إجراءات</th>
+            </tr>
+          </thead>
+          <tbody id="charsTable">
+            <tr>
+              <td><div class="td-name"><div class="td-avatar" style="background:linear-gradient(135deg,#8B1A1A,#C0392B)">🏴‍☠️</div><div><div class="td-name-text">مونكي دي لوفي</div><div class="td-name-sub">Monkey D. Luffy</div></div></div></td>
+              <td><span class="badge badge-red">قبعات القش</span></td>
+              <td><span class="badge badge-purple">هيتو هيتو - نيكا</span></td>
+              <td style="color:var(--gold);font-weight:700;">5,564,800,000</td>
+              <td><span class="badge badge-green">منشور</span></td>
+              <td style="color:var(--text3);">اليوم</td>
+              <td><div class="row-actions"><button class="act-btn view" title="معاينة">👁️</button><button class="act-btn edit" title="تعديل" onclick="openCharModal('edit','لوفي')">✏️</button><button class="act-btn del" title="حذف" onclick="openDeleteConfirm('لوفي')">🗑️</button></div></td>
+            </tr>
+            <tr>
+              <td><div class="td-name"><div class="td-avatar" style="background:linear-gradient(135deg,#1A5276,#2980B9)">⚔️</div><div><div class="td-name-text">رورونوا زورو</div><div class="td-name-sub">Roronoa Zoro</div></div></div></td>
+              <td><span class="badge badge-red">قبعات القش</span></td>
+              <td><span class="badge badge-blue">هاكي ملكي</span></td>
+              <td style="color:var(--gold);font-weight:700;">1,111,000,000</td>
+              <td><span class="badge badge-green">منشور</span></td>
+              <td style="color:var(--text3);">أمس</td>
+              <td><div class="row-actions"><button class="act-btn view">👁️</button><button class="act-btn edit" onclick="openCharModal('edit','زورو')">✏️</button><button class="act-btn del" onclick="openDeleteConfirm('زورو')">🗑️</button></div></td>
+            </tr>
+            <tr>
+              <td><div class="td-name"><div class="td-avatar" style="background:linear-gradient(135deg,#7B241C,#CD6155)">🍶</div><div><div class="td-name-text">شانكس</div><div class="td-name-sub">Shanks</div></div></div></td>
+              <td><span class="badge badge-gold">يونكو</span></td>
+              <td><span class="badge badge-gold">هاكي ملكي عالي</span></td>
+              <td style="color:var(--gold);font-weight:700;">4,048,900,000</td>
+              <td><span class="badge badge-green">منشور</span></td>
+              <td style="color:var(--text3);">منذ أسبوع</td>
+              <td><div class="row-actions"><button class="act-btn view">👁️</button><button class="act-btn edit" onclick="openCharModal('edit','شانكس')">✏️</button><button class="act-btn del" onclick="openDeleteConfirm('شانكس')">🗑️</button></div></td>
+            </tr>
+            <tr>
+              <td><div class="td-name"><div class="td-avatar" style="background:linear-gradient(135deg,#1C3A5E,#2471A3)">⚓</div><div><div class="td-name-text">ترافالغار لو</div><div class="td-name-sub">Trafalgar Law</div></div></div></td>
+              <td><span class="badge badge-teal">قلب</span></td>
+              <td><span class="badge badge-blue">أوبي أوبي</span></td>
+              <td style="color:var(--gold);font-weight:700;">3,000,000,000</td>
+              <td><span class="badge badge-orange">مسودة</span></td>
+              <td style="color:var(--text3);">منذ يومين</td>
+              <td><div class="row-actions"><button class="act-btn view">👁️</button><button class="act-btn edit" onclick="openCharModal('edit','لو')">✏️</button><button class="act-btn del" onclick="openDeleteConfirm('لو')">🗑️</button></div></td>
+            </tr>
+            <tr>
+              <td><div class="td-name"><div class="td-avatar" style="background:linear-gradient(135deg,#7D6608,#D4AC0D)">🗺️</div><div><div class="td-name-text">نامي</div><div class="td-name-sub">Nami</div></div></div></td>
+              <td><span class="badge badge-red">قبعات القش</span></td>
+              <td><span class="badge badge-teal">غير مستخدمة</span></td>
+              <td style="color:var(--gold);font-weight:700;">366,000,000</td>
+              <td><span class="badge badge-green">منشور</span></td>
+              <td style="color:var(--text3);">منذ ٣ أيام</td>
+              <td><div class="row-actions"><button class="act-btn view">👁️</button><button class="act-btn edit" onclick="openCharModal('edit','نامي')">✏️</button><button class="act-btn del" onclick="openDeleteConfirm('نامي')">🗑️</button></div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pagination">
+        <span class="page-info">١-٢٠ من ٥٢٣</span>
+        <button class="page-btn">›</button>
+        <button class="page-btn active">١</button>
+        <button class="page-btn">٢</button>
+        <button class="page-btn">٣</button>
+        <button class="page-btn">...</button>
+        <button class="page-btn">٢٦</button>
+        <button class="page-btn">‹</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       PAGE: FRUITS
+  ══════════════════════════════════════ -->
+  <div class="page hidden" id="page-fruits">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
+      <div>
+        <h1 style="font-family:var(--font-d);font-size:1.5rem;color:var(--text);">🍎 فواكه الشيطان</h1>
+        <p style="color:var(--text2);font-size:0.82rem;margin-top:4px;">٩٢ فاكهة موثقة · لوجيا ٢٢ · باراميسيا ٤٨ · زون ٢٢</p>
+      </div>
+      <button class="btn btn-primary" onclick="openFruitModal()">＋ إضافة فاكهة</button>
+    </div>
+    <div class="panel">
+      <div class="filter-bar">
+        <div class="filter-input"><span>🔍</span><input type="text" placeholder="ابحث باسم الفاكهة..."></div>
+        <select class="filter-select"><option>جميع الأنواع</option><option>لوجيا</option><option>باراميسيا</option><option>زون</option><option>زون خرافية</option></select>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>الفاكهة</th><th>النوع</th><th>المستخدم</th><th>الآرك الأول</th><th>الحالة</th><th>إجراءات</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><div class="td-name"><div class="td-avatar" style="background:linear-gradient(135deg,#4A235A,#8E44AD)">🐉</div><div><div class="td-name-text">هيتو هيتو - نيكا</div><div class="td-name-sub">Hito Hito no Mi Model: Nika</div></div></div></td>
+              <td><span class="badge badge-purple">زون خرافية</span></td>
+              <td>مونكي دي لوفي</td>
+              <td>إيست بلو</td>
+              <td><span class="badge badge-green">منشور</span></td>
+              <td><div class="row-actions"><button class="act-btn view">👁️</button><button class="act-btn edit" onclick="openFruitModal('edit')">✏️</button><button class="act-btn del" onclick="openDeleteConfirm('هيتو هيتو')">🗑️</button></div></td>
+            </tr>
+            <tr>
+              <td><div class="td-name"><div class="td-avatar" style="background:linear-gradient(135deg,#7D6608,#F1C40F)">⚡</div><div><div class="td-name-text">غورو غورو</div><div class="td-name-sub">Goro Goro no Mi</div></div></div></td>
+              <td><span class="badge badge-gold">لوجيا</span></td>
+              <td>إيني مانيما</td>
+              <td>سكاي بييا</td>
+              <td><span class="badge badge-green">منشور</span></td>
+              <td><div class="row-actions"><button class="act-btn view">👁️</button><button class="act-btn edit" onclick="openFruitModal('edit')">✏️</button><button class="act-btn del" onclick="openDeleteConfirm('غورو')">🗑️</button></div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       PAGE: MEDIA
+  ══════════════════════════════════════ -->
+  <div class="page hidden" id="page-media">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
+      <div>
+        <h1 style="font-family:var(--font-d);font-size:1.5rem;color:var(--text);">🖼️ مكتبة الوسائط</h1>
+        <p style="color:var(--text2);font-size:0.82rem;margin-top:4px;">٢٤٨ ملف · ١.٢ GB مستخدمة</p>
+      </div>
+      <button class="btn btn-primary" onclick="showToast('سيُفتح مربع رفع الصور','info')">＋ رفع ملفات</button>
+    </div>
+
+    <!-- Upload Area -->
+    <div class="upload-area" style="margin-bottom:20px;" onclick="showToast('اسحب الصور هنا أو انقر للاختيار','info')">
+      <div class="upload-icon">📤</div>
+      <div class="upload-text">اسحب الصور هنا أو <span>انقر للاختيار</span></div>
+      <div class="upload-hint">PNG, JPG, WEBP · حجم أقصى 5MB</div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head">
+        <div class="panel-title">📁 الملفات المرفوعة</div>
+        <div class="panel-actions">
+          <select class="filter-select"><option>جميع الملفات</option><option>صور الشخصيات</option><option>صور الجزر</option></select>
+        </div>
+      </div>
+      <div class="media-grid">
+        <div class="media-card"><div class="media-thumb">🏴‍☠️</div><div class="media-name">luffy-main.webp</div><div class="media-actions"><button class="media-act" onclick="showToast('تم نسخ الرابط','success')">📋</button><button class="media-act" onclick="showToast('تم الحذف','error')">🗑️</button></div></div>
+        <div class="media-card"><div class="media-thumb">⚔️</div><div class="media-name">zoro-battle.webp</div><div class="media-actions"><button class="media-act">📋</button><button class="media-act">🗑️</button></div></div>
+        <div class="media-card"><div class="media-thumb">🍶</div><div class="media-name">shanks-crew.jpg</div><div class="media-actions"><button class="media-act">📋</button><button class="media-act">🗑️</button></div></div>
+        <div class="media-card"><div class="media-thumb">🌊</div><div class="media-name">marineford.jpg</div><div class="media-actions"><button class="media-act">📋</button><button class="media-act">🗑️</button></div></div>
+        <div class="media-card"><div class="media-thumb">🏝️</div><div class="media-name">wano-island.png</div><div class="media-actions"><button class="media-act">📋</button><button class="media-act">🗑️</button></div></div>
+        <div class="media-card"><div class="media-thumb">🍎</div><div class="media-name">gomu-fruit.png</div><div class="media-actions"><button class="media-act">📋</button><button class="media-act">🗑️</button></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       PAGE: SETTINGS
+  ══════════════════════════════════════ -->
+  <div class="page hidden" id="page-settings">
+    <div style="margin-bottom:24px;">
+      <h1 style="font-family:var(--font-d);font-size:1.5rem;color:var(--text);">⚙️ إعدادات الموقع</h1>
+    </div>
+
+    <div class="grid-2">
+      <div>
+        <div class="panel" style="margin-bottom:20px;">
+          <div class="panel-head"><div class="panel-title">🌐 معلومات الموقع</div></div>
+          <div style="padding:22px;display:flex;flex-direction:column;gap:16px;">
+            <div class="form-group">
+              <label class="form-label">اسم الموقع</label>
+              <input class="form-input" value="عالم ون بيس">
+            </div>
+            <div class="form-group">
+              <label class="form-label">وصف الموقع (SEO)</label>
+              <textarea class="form-textarea" style="min-height:70px;">أكبر موسوعة عربية شاملة عن عالم ون بيس</textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">البريد الإلكتروني</label>
+              <input class="form-input" value="admin@onepiece-ar.com">
+            </div>
+            <button class="btn btn-primary" onclick="showToast('تم حفظ الإعدادات ✓','success')">💾 حفظ التغييرات</button>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head"><div class="panel-title">🔍 إعدادات SEO</div></div>
+          <div style="padding:22px;">
+            <div class="settings-section">
+              <div class="settings-row">
+                <div class="settings-info">
+                  <div class="settings-label">Google Analytics</div>
+                  <div class="settings-desc">تتبع الزوار والصفحات</div>
+                </div>
+                <label class="toggle"><input type="checkbox" checked><div class="toggle-track"></div></label>
+              </div>
+              <div class="settings-row">
+                <div class="settings-info">
+                  <div class="settings-label">خريطة الموقع (Sitemap)</div>
+                  <div class="settings-desc">تحديث تلقائي عند إضافة محتوى</div>
+                </div>
+                <label class="toggle"><input type="checkbox" checked><div class="toggle-track"></div></label>
+              </div>
+              <div class="settings-row">
+                <div class="settings-info">
+                  <div class="settings-label">Open Graph (مشاركة سوشيال)</div>
+                  <div class="settings-desc">صور وعناوين محسّنة للمشاركة</div>
+                </div>
+                <label class="toggle"><input type="checkbox" checked><div class="toggle-track"></div></label>
+              </div>
+              <div class="settings-row">
+                <div class="settings-info">
+                  <div class="settings-label">تحذير السبويلر</div>
+                  <div class="settings-desc">تنبيه قبل محتوى الحرق</div>
+                </div>
+                <label class="toggle"><input type="checkbox" checked><div class="toggle-track"></div></label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="panel" style="margin-bottom:20px;">
+          <div class="panel-head"><div class="panel-title">🎨 المظهر والتصميم</div></div>
+          <div style="padding:22px;display:flex;flex-direction:column;gap:16px;">
+            <div class="settings-row">
+              <div class="settings-info">
+                <div class="settings-label">الوضع الداكن (افتراضي)</div>
+              </div>
+              <label class="toggle"><input type="checkbox" checked><div class="toggle-track"></div></label>
+            </div>
+            <div class="settings-row">
+              <div class="settings-info">
+                <div class="settings-label">شريط الأخبار المتحرك</div>
+              </div>
+              <label class="toggle"><input type="checkbox" checked><div class="toggle-track"></div></label>
+            </div>
+            <div class="form-group">
+              <label class="form-label">لون التمييز الرئيسي</label>
+              <div style="display:flex;gap:8px;align-items:center;">
+                <input type="color" value="#D4A843" style="width:44px;height:36px;border:1px solid var(--border);border-radius:var(--r);background:var(--surface2);cursor:pointer;">
+                <input class="form-input" value="#D4A843" style="flex:1;">
+              </div>
+            </div>
+            <button class="btn btn-primary" onclick="showToast('تم حفظ المظهر ✓','success')">💾 حفظ</button>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head"><div class="panel-title">🔒 الأمان</div></div>
+          <div style="padding:22px;display:flex;flex-direction:column;gap:14px;">
+            <div class="settings-row">
+              <div class="settings-info">
+                <div class="settings-label">التحقق بخطوتين (2FA)</div>
+                <div class="settings-desc">أمان إضافي لحسابك</div>
+              </div>
+              <label class="toggle"><input type="checkbox"><div class="toggle-track"></div></label>
+            </div>
+            <div class="settings-row">
+              <div class="settings-info">
+                <div class="settings-label">تسجيل الدخول التلقائي</div>
+              </div>
+              <label class="toggle"><input type="checkbox" checked><div class="toggle-track"></div></label>
+            </div>
+            <div class="form-group">
+              <label class="form-label">تغيير كلمة المرور</label>
+              <input class="form-input" type="password" placeholder="كلمة المرور الجديدة">
+            </div>
+            <button class="btn btn-danger" onclick="showToast('تم تحديث كلمة المرور','success')">🔒 تحديث</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Placeholder pages -->
+  <div class="page hidden" id="page-arcs"><div style="padding:40px;text-align:center;color:var(--text2)"><div style="font-size:4rem;margin-bottom:16px;">⚔️</div><h2 style="font-family:var(--font-d);color:var(--text);margin-bottom:8px;">إدارة الأركات</h2><p>صفحة إدارة الأركات والأحداث</p><br><button class="btn btn-primary" onclick="openArcModal()">＋ إضافة آرك جديد</button></div></div>
+  <div class="page hidden" id="page-islands"><div style="padding:40px;text-align:center;color:var(--text2)"><div style="font-size:4rem;margin-bottom:16px;">🏝️</div><h2 style="font-family:var(--font-d);color:var(--text);margin-bottom:8px;">الجزر والمناطق</h2><p>إدارة الجزر ومناطق عالم ون بيس</p></div></div>
+  <div class="page hidden" id="page-articles"><div style="padding:40px;text-align:center;color:var(--text2)"><div style="font-size:4rem;margin-bottom:16px;">📝</div><h2 style="font-family:var(--font-d);color:var(--text);margin-bottom:8px;">المقالات والنظريات</h2><p>كتابة وإدارة المقالات والنظريات</p><br><button class="btn btn-primary">＋ مقالة جديدة</button></div></div>
+  <div class="page hidden" id="page-manga"><div style="padding:40px;text-align:center;color:var(--text2)"><div style="font-size:4rem;margin-bottom:16px;">📖</div><h2 style="font-family:var(--font-d);color:var(--text);margin-bottom:8px;">فصول المانغا</h2><p>١١٣٠+ فصل موثق</p></div></div>
+  <div class="page hidden" id="page-episodes"><div style="padding:40px;text-align:center;color:var(--text2)"><div style="font-size:4rem;margin-bottom:16px;">📺</div><h2 style="font-family:var(--font-d);color:var(--text);margin-bottom:8px;">حلقات الأنمي</h2><p>١١٢٠+ حلقة موثقة</p></div></div>
+  <div class="page hidden" id="page-news"><div style="padding:40px;text-align:center;color:var(--text2)"><div style="font-size:4rem;margin-bottom:16px;">📢</div><h2 style="font-family:var(--font-d);color:var(--text);margin-bottom:8px;">الأخبار</h2><p>٣ أخبار تنتظر النشر</p><br><button class="btn btn-primary">＋ خبر جديد</button></div></div>
+  <div class="page hidden" id="page-comments"><div style="padding:40px;text-align:center;color:var(--text2)"><div style="font-size:4rem;margin-bottom:16px;">💬</div><h2 style="font-family:var(--font-d);color:var(--text);margin-bottom:8px;">التعليقات</h2><p>١٢ تعليق ينتظر المراجعة</p></div></div>
+  <div class="page hidden" id="page-users"><div style="padding:40px;text-align:center;color:var(--text2)"><div style="font-size:4rem;margin-bottom:16px;">👥</div><h2 style="font-family:var(--font-d);color:var(--text);margin-bottom:8px;">المستخدمون</h2><p>٨,٤٢١ مستخدم مسجل</p></div></div>
+
+</main>
+
+<!-- ══════════════════════════════════════
+     MODAL: ADD CHARACTER
+══════════════════════════════════════ -->
+<div class="modal-overlay" id="charModal">
+  <div class="modal">
+    <div class="modal-head">
+      <div class="modal-title">👤 <span id="charModalTitle">إضافة شخصية جديدة</span></div>
+      <button class="modal-close" onclick="closeModal('charModal')">✕</button>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab(this,'tab-basic')">المعلومات الأساسية</button>
+      <button class="tab-btn" onclick="switchTab(this,'tab-powers')">القدرات</button>
+      <button class="tab-btn" onclick="switchTab(this,'tab-relations')">العلاقات</button>
+      <button class="tab-btn" onclick="switchTab(this,'tab-seo')">SEO</button>
+    </div>
+
+    <div class="modal-body">
+      <!-- Tab: Basic -->
+      <div class="tab-content active" id="tab-basic">
+        <div class="form-grid" style="margin-bottom:18px;">
+          <div class="form-group">
+            <label class="form-label">الاسم بالعربية <span class="req">*</span></label>
+            <input class="form-input" placeholder="مثال: مونكي دي لوفي">
+          </div>
+          <div class="form-group">
+            <label class="form-label">الاسم بالإنجليزية</label>
+            <input class="form-input" placeholder="Monkey D. Luffy" dir="ltr">
+          </div>
+          <div class="form-group">
+            <label class="form-label">الاسم بالياباني</label>
+            <input class="form-input" placeholder="モンキー・D・ルフィ" dir="ltr">
+          </div>
+          <div class="form-group">
+            <label class="form-label">اللقب</label>
+            <input class="form-input" placeholder="قبعة القش">
+          </div>
+          <div class="form-group">
+            <label class="form-label">الانتماء <span class="req">*</span></label>
+            <select class="form-select">
+              <option>اختر الانتماء...</option>
+              <option>قبعات القش</option>
+              <option>البحرية</option>
+              <option>اليونكو</option>
+              <option>الثوار</option>
+              <option>CP0</option>
+              <option>السوبر نوفا</option>
+              <option>مستقل</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">الحالة</label>
+            <select class="form-select">
+              <option>حي</option>
+              <option>متوفى</option>
+              <option>مجهول</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">المكافأة (بيلي)</label>
+            <input class="form-input" type="number" placeholder="5564800000" dir="ltr">
+          </div>
+          <div class="form-group">
+            <label class="form-label">أول ظهور (فصل)</label>
+            <input class="form-input" type="number" placeholder="1" dir="ltr">
+          </div>
+          <div class="form-group span2">
+            <label class="form-label">نبذة مختصرة <span class="req">*</span></label>
+            <textarea class="form-textarea" placeholder="اكتب نبذة مختصرة عن الشخصية..."></textarea>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom:18px;">
+          <label class="form-label">صورة الشخصية</label>
+          <div class="upload-area" onclick="showToast('اختر صورة الشخصية','info')">
+            <div class="upload-icon">🖼️</div>
+            <div class="upload-text">اسحب الصورة أو <span>انقر للاختيار</span></div>
+            <div class="upload-hint">PNG, JPG, WEBP · يُفضل 400×400px</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">الوسوم</label>
+          <div class="tags-input" id="tagsInput" onclick="this.querySelector('input').focus()">
+            <span class="tag-item">قبعات القش <span class="tag-remove" onclick="removeTag(this)">✕</span></span>
+            <span class="tag-item">يونكو <span class="tag-remove" onclick="removeTag(this)">✕</span></span>
+            <input type="text" placeholder="أضف وسمًا..." onkeydown="addTag(event, this)">
+          </div>
+          <div class="form-hint">اضغط Enter لإضافة وسم جديد</div>
+        </div>
+      </div>
+
+      <!-- Tab: Powers -->
+      <div class="tab-content" id="tab-powers">
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">فاكهة الشيطان</label>
+            <select class="form-select">
+              <option>لا يمتلك فاكهة</option>
+              <option selected>هيتو هيتو - نيكا</option>
+              <option>غورو غورو</option>
+              <option>أوبي أوبي</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">نوع الفاكهة</label>
+            <select class="form-select">
+              <option>—</option>
+              <option>لوجيا</option>
+              <option>باراميسيا</option>
+              <option>زون</option>
+              <option selected>زون خرافية</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">مستوى الهاكي - الملاحظة</label>
+            <select class="form-select">
+              <option>لا يمتلك</option>
+              <option>أساسي</option>
+              <option>متقدم</option>
+              <option selected>متقدم جداً</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">مستوى الهاكي - التسليح</label>
+            <select class="form-select">
+              <option>لا يمتلك</option>
+              <option>أساسي</option>
+              <option selected>متقدم (Ryuo)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">هاكي الملك</label>
+            <select class="form-select">
+              <option>لا يمتلك</option>
+              <option>أساسي</option>
+              <option selected>متقدم (تدمير)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">التحولات والأشكال</label>
+            <input class="form-input" placeholder="Gear 2, Gear 3, Gear 4, Gear 5" dir="ltr">
+          </div>
+          <div class="form-group span2">
+            <label class="form-label">وصف القدرات</label>
+            <textarea class="form-textarea" placeholder="اشرح قدرات الشخصية بالتفصيل..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab: Relations -->
+      <div class="tab-content" id="tab-relations">
+        <div class="form-grid full">
+          <div class="form-group">
+            <label class="form-label">الحلفاء الرئيسيون</label>
+            <input class="form-input" placeholder="زورو، نامي، أوسوب، سانجي...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">الأعداء الرئيسيون</label>
+            <input class="form-input" placeholder="كايدو، بيغ مام، دوفلامينغو...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">الأركات الظاهر فيها</label>
+            <input class="form-input" placeholder="إيست بلو، ألاباستا، إينيس لوبي...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">اقتباس مشهور</label>
+            <textarea class="form-textarea" style="min-height:70px;" placeholder="سأصبح ملك البحار!"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab: SEO -->
+      <div class="tab-content" id="tab-seo">
+        <div style="display:flex;align-items:center;gap:16px;padding:16px;background:var(--surface2);border-radius:var(--r);border:1px solid var(--border);margin-bottom:20px;">
+          <div class="seo-score seo-good">٨٥</div>
+          <div>
+            <div style="font-weight:700;color:var(--text);">تقييم SEO ممتاز</div>
+            <div style="font-size:0.78rem;color:var(--text2);">أكمل الحقول أدناه لتحسين الظهور في Google</div>
+          </div>
+        </div>
+        <div class="form-grid full">
+          <div class="form-group">
+            <label class="form-label">عنوان الصفحة (Title Tag)</label>
+            <input class="form-input" value="مونكي دي لوفي | موسوعة عالم ون بيس">
+            <div class="form-hint">الطول المثالي: ٥٠-٦٠ حرف</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">الوصف التعريفي (Meta Description)</label>
+            <textarea class="form-textarea" style="min-height:70px;">كل ما تريد معرفته عن مونكي دي لوفي — كابتن قبعات القش، مستخدم فاكهة نيكا، ومرشح الملك البحري القادم.</textarea>
+            <div class="form-hint">الطول المثالي: ١٥٠-١٦٠ حرف</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">الرابط المختصر (Slug)</label>
+            <input class="form-input" value="monkey-d-luffy" dir="ltr">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-foot">
+      <button class="btn btn-primary" onclick="saveChar()">✓ حفظ ونشر</button>
+      <button class="btn btn-ghost" onclick="showToast('تم الحفظ كمسودة','info')">💾 مسودة</button>
+      <button class="btn btn-ghost" onclick="closeModal('charModal')">إلغاء</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: ADD FRUIT -->
+<div class="modal-overlay" id="fruitModal">
+  <div class="modal">
+    <div class="modal-head">
+      <div class="modal-title">🍎 إضافة فاكهة شيطان</div>
+      <button class="modal-close" onclick="closeModal('fruitModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">الاسم بالعربية <span class="req">*</span></label>
+          <input class="form-input" placeholder="فاكهة غورو غورو">
+        </div>
+        <div class="form-group">
+          <label class="form-label">الاسم باليابانية</label>
+          <input class="form-input" placeholder="Goro Goro no Mi" dir="ltr">
+        </div>
+        <div class="form-group">
+          <label class="form-label">النوع <span class="req">*</span></label>
+          <select class="form-select">
+            <option>اختر النوع...</option>
+            <option>لوجيا</option>
+            <option>باراميسيا</option>
+            <option>زون</option>
+            <option>زون خرافية</option>
+            <option>زون باطن</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">المستخدم الحالي</label>
+          <input class="form-input" placeholder="اسم الشخصية">
+        </div>
+        <div class="form-group span2">
+          <label class="form-label">وصف القدرات <span class="req">*</span></label>
+          <textarea class="form-textarea" placeholder="اشرح قدرات الفاكهة..."></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">نقاط القوة</label>
+          <textarea class="form-textarea" style="min-height:70px;" placeholder="ما يجعلها قوية..."></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">نقاط الضعف</label>
+          <textarea class="form-textarea" style="min-height:70px;" placeholder="مياه البحر، الـ Seastone..."></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-primary" onclick="showToast('تمت إضافة الفاكهة ✓','success');closeModal('fruitModal')">✓ حفظ</button>
+      <button class="btn btn-ghost" onclick="closeModal('fruitModal')">إلغاء</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: ADD ARC -->
+<div class="modal-overlay" id="arcModal">
+  <div class="modal">
+    <div class="modal-head">
+      <div class="modal-title">⚔️ إضافة آرك جديد</div>
+      <button class="modal-close" onclick="closeModal('arcModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">اسم الآرك <span class="req">*</span></label>
+          <input class="form-input" placeholder="مثال: وانو">
+        </div>
+        <div class="form-group">
+          <label class="form-label">رقم الآرك</label>
+          <input class="form-input" type="number" placeholder="33" dir="ltr">
+        </div>
+        <div class="form-group">
+          <label class="form-label">الفصل الأول</label>
+          <input class="form-input" type="number" placeholder="909" dir="ltr">
+        </div>
+        <div class="form-group">
+          <label class="form-label">الفصل الأخير</label>
+          <input class="form-input" type="number" placeholder="1057 أو مستمر" dir="ltr">
+        </div>
+        <div class="form-group">
+          <label class="form-label">الحالة</label>
+          <select class="form-select"><option>مكتمل</option><option>جارٍ</option><option>متوقف</option></select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">التصنيف</label>
+          <select class="form-select"><option>رئيسي</option><option>فرعي</option><option>حكاية</option></select>
+        </div>
+        <div class="form-group span2">
+          <label class="form-label">الملخص <span class="req">*</span></label>
+          <textarea class="form-textarea" style="min-height:120px;" placeholder="اكتب ملخص الآرك..."></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-primary" onclick="showToast('تمت إضافة الآرك ✓','success');closeModal('arcModal')">✓ حفظ</button>
+      <button class="btn btn-ghost" onclick="closeModal('arcModal')">إلغاء</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: ADD (Generic) -->
+<div class="modal-overlay" id="addModal">
+  <div class="modal" style="max-width:420px;">
+    <div class="modal-head">
+      <div class="modal-title">＋ إضافة محتوى جديد</div>
+      <button class="modal-close" onclick="closeModal('addModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <p style="color:var(--text2);margin-bottom:20px;font-size:0.88rem;">اختر نوع المحتوى الذي تريد إضافته:</p>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <button class="quick-btn" onclick="closeModal('addModal');openCharModal()"><div class="quick-btn-icon" style="background:rgba(192,57,43,0.1);">👤</div><div><div class="quick-btn-text">شخصية</div></div></button>
+        <button class="quick-btn" onclick="closeModal('addModal');openArcModal()"><div class="quick-btn-icon" style="background:rgba(212,168,67,0.1);">⚔️</div><div><div class="quick-btn-text">آرك / حدث</div></div></button>
+        <button class="quick-btn" onclick="closeModal('addModal');openFruitModal()"><div class="quick-btn-icon" style="background:rgba(155,89,182,0.1);">🍎</div><div><div class="quick-btn-text">فاكهة الشيطان</div></div></button>
+        <button class="quick-btn" onclick="closeModal('addModal')"><div class="quick-btn-icon" style="background:rgba(26,188,156,0.1);">🏝️</div><div><div class="quick-btn-text">جزيرة / منطقة</div></div></button>
+        <button class="quick-btn" onclick="closeModal('addModal')"><div class="quick-btn-icon" style="background:rgba(52,152,219,0.1);">📝</div><div><div class="quick-btn-text">مقالة / نظرية</div></div></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: DELETE CONFIRM -->
+<div class="modal-overlay" id="deleteModal">
+  <div class="modal confirm-modal">
+    <div class="modal-body" style="padding:36px;text-align:center;">
+      <span class="confirm-icon">🗑️</span>
+      <div class="confirm-title">تأكيد الحذف</div>
+      <p class="confirm-msg">هل أنت متأكد من حذف <strong id="deleteTarget" style="color:var(--gold)">هذا العنصر</strong>؟<br>لا يمكن التراجع عن هذه العملية.</p>
+    </div>
+    <div class="modal-foot" style="justify-content:center;gap:12px;">
+      <button class="btn btn-danger" onclick="confirmDelete()">🗑️ نعم، احذف</button>
+      <button class="btn btn-ghost" onclick="closeModal('deleteModal')">إلغاء</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST CONTAINER -->
+<div class="toast-container" id="toastContainer"></div>
+
+<script>
+// ══ NAVIGATION ══
+const pages = {};
+function showPage(id, el) {
+  document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  const p = document.getElementById('page-' + id);
+  if (p) p.classList.remove('hidden');
+  if (el) el.classList.add('active');
+  const labels = {
+    dashboard:'لوحة المعلومات', chars:'الشخصيات', arcs:'الأركات',
+    islands:'الجزر والمناطق', fruits:'فواكه الشيطان', articles:'المقالات',
+    manga:'المانغا', episodes:'الأنمي', news:'الأخبار',
+    media:'مكتبة الوسائط', comments:'التعليقات', users:'المستخدمون',
+    settings:'الإعدادات'
+  };
+  document.getElementById('breadcrumbCurrent').textContent = labels[id] || id;
+}
+
+// ══ MODALS ══
+function openModal(id) {
+  document.getElementById(id).classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(id) {
+  document.getElementById(id).classList.remove('open');
+  document.body.style.overflow = '';
+}
+function openCharModal(mode, name) {
+  document.getElementById('charModalTitle').textContent = mode === 'edit' ? `تعديل: ${name}` : 'إضافة شخصية جديدة';
+  openModal('charModal');
+}
+function openFruitModal(mode) { openModal('fruitModal'); }
+function openArcModal() { openModal('arcModal'); }
+function openAddModal() { openModal('addModal'); }
+
+let deleteTargetName = '';
+function openDeleteConfirm(name) {
+  deleteTargetName = name;
+  document.getElementById('deleteTarget').textContent = name;
+  openModal('deleteModal');
+}
+function confirmDelete() {
+  closeModal('deleteModal');
+  showToast(`تم حذف "${deleteTargetName}" بنجاح`, 'error');
+}
+
+// Close on overlay click
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+  overlay.addEventListener('click', e => {
+    if (e.target === overlay) closeModal(overlay.id);
+  });
+});
+
+// Escape key
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') document.querySelectorAll('.modal-overlay.open').forEach(m => closeModal(m.id));
+});
+
+// ══ TABS ══
+function switchTab(btn, tabId) {
+  const modal = btn.closest('.modal');
+  modal.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  modal.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(tabId).classList.add('active');
+}
+
+// ══ TAGS ══
+function addTag(e, input) {
+  if (e.key === 'Enter' && input.value.trim()) {
+    e.preventDefault();
+    const container = input.parentElement;
+    const tag = document.createElement('span');
+    tag.className = 'tag-item';
+    tag.innerHTML = `${input.value.trim()} <span class="tag-remove" onclick="removeTag(this)">✕</span>`;
+    container.insertBefore(tag, input);
+    input.value = '';
+  }
+}
+function removeTag(el) { el.parentElement.remove(); }
+
+// ══ SAVE ══
+function saveChar() {
+  closeModal('charModal');
+  showToast('تمت إضافة الشخصية بنجاح ✓', 'success');
+}
+
+// ══ TOAST ══
+function showToast(msg, type = 'info') {
+  const icons = { success:'✅', error:'❌', info:'ℹ️', warning:'⚠️' };
+  const toast = document.createElement('div');
+  toast.className = `toast ${type}`;
+  toast.innerHTML = `<span class="toast-icon">${icons[type]||'ℹ️'}</span><span class="toast-msg">${msg}</span>`;
+  const container = document.getElementById('toastContainer');
+  container.appendChild(toast);
+  setTimeout(() => toast.style.opacity = '0', 3000);
+  setTimeout(() => toast.remove(), 3400);
+}
+
+// ══ SIDEBAR TOGGLE (mobile) ══
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+}
+
+// Init
+showToast('مرحباً! لوحة التحكم جاهزة 🏴‍☠️', 'success');
+</script>
+</body>
+</html>
