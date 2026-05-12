@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="قائمة شخصيات ون بيس | موسوعة عالم ون بيس العربية الشاملة">
+<title>الشخصيات | عالم ون بيس</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #070B14; --bg2: #0D1421; --bg3: #141E30; --bg4: #1C2A40;
+  --border: #243050; --border2: #2E3A56;
+  --gold: #D4A843; --gold2: #B8902C; --gold3: #8A6B1E;
+  --gold-glow: rgba(212,168,67,0.12);
+  --red: #C0392B; --teal: #1ABC9C;
+  --text: #EDE3D0; --text2: #A09080; --text3: #605850;
+  --font: 'IBM Plex Sans Arabic', sans-serif;
+  --font-d: 'Scheherazade New', serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); direction: rtl; overflow-x: hidden; line-height: 1.7; }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--gold3); border-radius: 3px; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; width: 100%;
+  background: rgba(7,11,20,0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(212,168,67,0.12);
+  z-index: 1000;
+}
+.nav-wrap {
+  max-width: 1400px; margin: 0 auto; padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between; height: 68px;
+}
+.nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.logo-icon {
+  width: 44px; height: 44px;
+  background: linear-gradient(135deg, var(--gold), var(--gold3));
+  border-radius: 11px; display: flex; align-items: center; justify-content: center;
+  font-size: 22px; box-shadow: 0 0 20px rgba(212,168,67,0.25);
+}
+.logo-text { font-family: var(--font-d); font-size: 1.35rem; color: var(--gold); font-weight: 700; line-height: 1.1; }
+.logo-sub { font-size: 0.62rem; color: var(--text3); }
+.nav-back {
+  display: flex; align-items: center; gap: 8px;
+  color: var(--text2); text-decoration: none; font-size: 0.88rem;
+  padding: 8px 14px; border-radius: 8px; border: 1px solid var(--border);
+  transition: all 0.2s;
+}
+.nav-back:hover { border-color: var(--gold2); color: var(--gold); }
+
+/* PAGE HEADER */
+.page-header {
+  padding: 120px 24px 48px;
+  max-width: 1400px; margin: 0 auto;
+}
+.breadcrumb {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.78rem; color: var(--text3); margin-bottom: 20px;
+}
+.breadcrumb a { color: var(--gold); text-decoration: none; }
+.page-title {
+  font-family: var(--font-d);
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--text); font-weight: 700; margin-bottom: 8px;
+}
+.page-title span { color: var(--gold); }
+.page-desc { color: var(--text2); font-size: 0.95rem; max-width: 500px; }
+
+/* STATS BAR */
+.stats-bar {
+  display: flex; gap: 24px; flex-wrap: wrap;
+  margin-top: 24px; padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.stat-item { text-align: center; }
+.stat-n { font-family: var(--font-d); font-size: 1.5rem; color: var(--gold); font-weight: 700; display: block; }
+.stat-l { font-size: 0.72rem; color: var(--text3); }
+
+/* FILTERS */
+.filters-section {
+  max-width: 1400px; margin: 0 auto; padding: 0 24px 32px;
+}
+.search-row {
+  display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap;
+}
+.search-box {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 10px; padding: 10px 16px;
+  flex: 1; min-width: 250px; transition: border-color 0.2s;
+}
+.search-box:focus-within { border-color: var(--gold2); }
+.search-box input {
+  background: none; border: none; outline: none;
+  font-family: var(--font); font-size: 0.9rem;
+  color: var(--text); width: 100%; direction: rtl;
+}
+.search-box input::placeholder { color: var(--text3); }
+.filter-select {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 10px; padding: 10px 14px;
+  color: var(--text2); font-family: var(--font); font-size: 0.85rem;
+  cursor: pointer; outline: none; direction: rtl;
+  transition: border-color 0.2s;
+}
+.filter-select:focus { border-color: var(--gold2); }
+
+/* TABS */
+.tabs-row {
+  display: flex; gap: 8px; flex-wrap: wrap;
+}
+.tab {
+  padding: 7px 16px; border-radius: 100px;
+  border: 1px solid var(--border); background: transparent;
+  color: var(--text2); font-family: var(--font); font-size: 0.82rem;
+  cursor: pointer; transition: all 0.2s; white-space: nowrap;
+}
+.tab.active, .tab:hover {
+  background: var(--gold); border-color: var(--gold);
+  color: var(--bg); font-weight: 700;
+}
+
+/* GRID */
+.chars-section {
+  max-width: 1400px; margin: 0 auto; padding: 0 24px 80px;
+}
+.results-info {
+  font-size: 0.82rem; color: var(--text3);
+  margin-bottom: 20px;
+}
+.results-info span { color: var(--gold); font-weight: 600; }
+
+.chars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 18px;
+}
+
+/* CHARACTER CARD */
+.char-card {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 16px; overflow: hidden;
+  text-decoration: none; display: block;
+  transition: all 0.3s; cursor: pointer;
+  position: relative;
+}
+.char-card:hover {
+  border-color: var(--gold2);
+  transform: translateY(-5px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+}
+.char-card.coming-soon { opacity: 0.6; cursor: default; }
+.char-card.coming-soon:hover { transform: none; border-color: var(--border); box-shadow: none; }
+
+.card-img {
+  height: 160px; display: flex; align-items: center;
+  justify-content: center; font-size: 4.5rem;
+  position: relative; overflow: hidden;
+}
+.card-img::after {
+  content: ''; position: absolute; bottom: 0; right: 0; left: 0;
+  height: 50px; background: linear-gradient(to top, var(--bg3), transparent);
+}
+
+.coming-badge {
+  position: absolute; top: 10px; right: 10px;
+  background: rgba(0,0,0,0.6); color: var(--text3);
+  font-size: 0.62rem; font-weight: 700;
+  padding: 3px 8px; border-radius: 5px;
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+
+.card-body { padding: 14px 16px; }
+.card-name { font-family: var(--font-d); font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+.card-role { font-size: 0.72rem; color: var(--text3); margin-bottom: 10px; }
+.card-tags { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 10px; }
+.ctag {
+  font-size: 0.62rem; font-weight: 600;
+  padding: 3px 7px; border-radius: 4px;
+}
+.ctag-red { background: rgba(192,57,43,0.15); color: #E74C3C; border: 1px solid rgba(192,57,43,0.25); }
+.ctag-gold { background: rgba(212,168,67,0.12); color: var(--gold); border: 1px solid rgba(212,168,67,0.2); }
+.ctag-teal { background: rgba(26,188,156,0.12); color: var(--teal); border: 1px solid rgba(26,188,156,0.2); }
+.ctag-blue { background: rgba(52,152,219,0.12); color: #5DADE2; border: 1px solid rgba(52,152,219,0.2); }
+.ctag-purple { background: rgba(155,89,182,0.12); color: #BB8FCE; border: 1px solid rgba(155,89,182,0.2); }
+
+.bounty-row {
+  display: flex; align-items: center;
+  padding-top: 10px; border-top: 1px solid var(--border);
+  font-size: 0.72rem;
+}
+.bounty-label { color: var(--text3); }
+.bounty-val { color: var(--gold); font-weight: 700; font-size: 0.78rem; margin-right: auto; }
+
+/* NO RESULTS */
+.no-results {
+  text-align: center; padding: 60px 20px;
+  color: var(--text3); font-size: 1rem;
+  display: none; grid-column: 1/-1;
+}
+.no-results.show { display: block; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .chars-grid { grid-template-columns: repeat(2, 1fr); }
+  .stats-bar { gap: 16px; }
+}
+@media (max-width: 480px) {
+  .chars-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-wrap">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-icon">⚓</div>
+      <div>
+        <div class="logo-text">عالم ون بيس</div>
+        <div class="logo-sub">الموسوعة العربية الشاملة</div>
+      </div>
+    </a>
+    <a href="index.html" class="nav-back">← الصفحة الرئيسية</a>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="breadcrumb">
+    <a href="index.html">الرئيسية</a>
+    <span>›</span>
+    <span>الشخصيات</span>
+  </div>
+  <h1 class="page-title">قائمة <span>الشخصيات</span></h1>
+  <p class="page-desc">تصفح جميع شخصيات عالم ون بيس مع معلومات تفصيلية محدّثة باستمرار</p>
+
+  <div class="stats-bar">
+    <div class="stat-item"><span class="stat-n" id="totalCount">٦</span><div class="stat-l">شخصية موثقة</div></div>
+    <div class="stat-item"><span class="stat-n">١</span><div class="stat-l">صفحة مكتملة</div></div>
+    <div class="stat-item"><span class="stat-n">قريباً</span><div class="stat-l">المزيد يُضاف</div></div>
+  </div>
+</div>
+
+<!-- FILTERS -->
+<div class="filters-section">
+  <div class="search-row">
+    <div class="search-box">
+      <span>🔍</span>
+      <input type="text" id="searchInput" placeholder="ابحث باسم الشخصية..." oninput="filterChars()">
+    </div>
+    <select class="filter-select" id="groupFilter" onchange="filterChars()">
+      <option value="all">جميع الانتماءات</option>
+      <option value="pirate-king">ملك القراصنة</option>
+      <option value="strawhat">قبعات القش</option>
+      <option value="yonko">اليونكو</option>
+      <option value="marine">البحرية</option>
+      <option value="revolutionary">الثوار</option>
+      <option value="supernova">السوبر نوفا</option>
+    </select>
+    <select class="filter-select" id="statusFilter" onchange="filterChars()">
+      <option value="all">الحالة: الكل</option>
+      <option value="alive">حي</option>
+      <option value="dead">متوفى</option>
+    </select>
+  </div>
+  <div class="tabs-row">
+    <button class="tab active" onclick="setTab('all',this)">الكل</button>
+    <button class="tab" onclick="setTab('pirate-king',this)">ملك القراصنة</button>
+    <button class="tab" onclick="setTab('strawhat',this)">قبعات القش</button>
+    <button class="tab" onclick="setTab('yonko',this)">اليونكو</button>
+    <button class="tab" onclick="setTab('marine',this)">البحرية</button>
+    <button class="tab" onclick="setTab('supernova',this)">السوبر نوفا</button>
+  </div>
+</div>
+
+<!-- CHARACTERS GRID -->
+<div class="chars-section">
+  <div class="results-info">عرض <span id="showingCount">٦</span> شخصية</div>
+  <div class="chars-grid" id="charsGrid">
+
+    <!-- روجر - صفحة مكتملة -->
+    <a href="roger.html" class="char-card" data-group="pirate-king" data-status="dead" data-name="غول دي روجر روجر ملك القراصنة Gold Roger">
+      <div class="card-img" style="background:linear-gradient(135deg,#3D0000,#8B1A1A)">☠️</div>
+      <div class="card-body">
+        <div class="card-name">غول دي روجر</div>
+        <div class="card-role">ملك القراصنة</div>
+        <div class="card-tags">
+          <span class="ctag ctag-gold">👑 ملك القراصنة</span>
+          <span class="ctag ctag-red">متوفى</span>
+        </div>
+        <div class="bounty-row">
+          <span class="bounty-label">المكافأة</span>
+          <span class="bounty-val">5,564,800,000 ب</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- لوفي - قريباً -->
+    <div class="char-card coming-soon" data-group="strawhat yonko" data-status="alive" data-name="مونكي دي لوفي لوفي Luffy">
+      <div class="card-img" style="background:linear-gradient(135deg,#4A0E0E,#8B1A1A)">🏴‍☠️</div>
+      <div class="coming-badge">قريباً</div>
+      <div class="card-body">
+        <div class="card-name">مونكي دي لوفي</div>
+        <div class="card-role">كابتن قبعات القش • يونكو</div>
+        <div class="card-tags">
+          <span class="ctag ctag-red">قبعات القش</span>
+          <span class="ctag ctag-purple">لوجيا خرافية</span>
+        </div>
+        <div class="bounty-row">
+          <span class="bounty-label">المكافأة</span>
+          <span class="bounty-val">5,564,800,000 ب</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- زورو - قريباً -->
+    <div class="char-card coming-soon" data-group="strawhat" data-status="alive" data-name="رورونوا زورو زورو Zoro">
+      <div class="card-img" style="background:linear-gradient(135deg,#0D2B4A,#1A5276)">⚔️</div>
+      <div class="coming-badge">قريباً</div>
+      <div class="card-body">
+        <div class="card-name">رورونوا زورو</div>
+        <div class="card-role">المقاتل الأول — قبعات القش</div>
+        <div class="card-tags">
+          <span class="ctag ctag-red">قبعات القش</span>
+          <span class="ctag ctag-teal">هاكي</span>
+        </div>
+        <div class="bounty-row">
+          <span class="bounty-label">المكافأة</span>
+          <span class="bounty-val">1,111,000,000 ب</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- شانكس - قريباً -->
+    <div class="char-card coming-soon" data-group="yonko" data-status="alive" data-name="شانكس ذو الشعر الأحمر Shanks">
+      <div class="card-img" style="background:linear-gradient(135deg,#4A1818,#8B2222)">🍶</div>
+      <div class="coming-badge">قريباً</div>
+      <div class="card-body">
+        <div class="card-name">شانكس</div>
+        <div class="card-role">يونكو — أحمر الشعر</div>
+        <div class="card-tags">
+          <span class="ctag ctag-gold">يونكو</span>
+          <span class="ctag ctag-gold">هاكي ملكي</span>
+        </div>
+        <div class="bounty-row">
+          <span class="bounty-label">المكافأة</span>
+          <span class="bounty-val">4,048,900,000 ب</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- غارب - قريباً -->
+    <div class="char-card coming-soon" data-group="marine" data-status="alive" data-name="مونكي دي غارب غارب Garp">
+      <div class="card-img" style="background:linear-gradient(135deg,#1C3A5E,#2471A3)">⚓</div>
+      <div class="coming-badge">قريباً</div>
+      <div class="card-body">
+        <div class="card-name">مونكي دي غارب</div>
+        <div class="card-role">بطل البحرية</div>
+        <div class="card-tags">
+          <span class="ctag ctag-blue">البحرية</span>
+          <span class="ctag ctag-gold">أسطوري</span>
+        </div>
+        <div class="bounty-row">
+          <span class="bounty-label">الرتبة</span>
+          <span class="bounty-val">Vice Admiral</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- وايتبيرد - قريباً -->
+    <div class="char-card coming-soon" data-group="yonko" data-status="dead" data-name="إدوارد نيوغيت وايتبيرد Whitebeard">
+      <div class="card-img" style="background:linear-gradient(135deg,#0D2B4A,#1A6B8A)">🌊</div>
+      <div class="coming-badge">قريباً</div>
+      <div class="card-body">
+        <div class="card-name">إدوارد نيوغيت</div>
+        <div class="card-role">وايتبيرد — أقوى رجل في العالم</div>
+        <div class="card-tags">
+          <span class="ctag ctag-blue">يونكو سابق</span>
+          <span class="ctag ctag-red">متوفى</span>
+        </div>
+        <div class="bounty-row">
+          <span class="bounty-label">المكافأة</span>
+          <span class="bounty-val">5,046,000,000 ب</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- No results -->
+    <div class="no-results" id="noResults">
+      🔍 لا توجد نتائج لبحثك — جرب كلمة أخرى
+    </div>
+
+  </div>
+</div>
+
+<script>
+const chars = document.querySelectorAll('.char-card:not(.no-results)');
+let currentTab = 'all';
+
+function setTab(group, btn) {
+  currentTab = group;
+  document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('groupFilter').value = group;
+  filterChars();
+}
+
+function filterChars() {
+  const search = document.getElementById('searchInput').value.toLowerCase().trim();
+  const group = document.getElementById('groupFilter').value;
+  const status = document.getElementById('statusFilter').value;
+  currentTab = group;
+
+  let count = 0;
+  chars.forEach(card => {
+    const name = (card.dataset.name || '').toLowerCase();
+    const cardGroup = card.dataset.group || '';
+    const cardStatus = card.dataset.status || '';
+
+    const matchSearch = !search || name.includes(search);
+    const matchGroup = group === 'all' || cardGroup.includes(group);
+    const matchStatus = status === 'all' || cardStatus === status;
+
+    if (matchSearch && matchGroup && matchStatus) {
+      card.style.display = 'block';
+      card.style.animation = 'fadeIn 0.3s ease';
+      count++;
+    } else {
+      card.style.display = 'none';
+    }
+  });
+
+  document.getElementById('showingCount').textContent = count;
+  document.getElementById('noResults').classList.toggle('show', count === 0);
+}
+
+// Scroll animation
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.08 });
+
+chars.forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(16px)';
+  el.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+  obs.observe(el);
+});
+</script>
+</body>
+</html>
