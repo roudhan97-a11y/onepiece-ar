@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="غول دي روجر - ملك القراصنة | موسوعة عالم ون بيس العربية الشاملة">
+<title>غول دي روجر | عالم ون بيس</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #070B14;
+  --bg2: #0D1421;
+  --bg3: #141E30;
+  --bg4: #1C2A40;
+  --border: #243050;
+  --border2: #2E3A56;
+  --gold: #D4A843;
+  --gold2: #B8902C;
+  --gold3: #8A6B1E;
+  --gold-glow: rgba(212,168,67,0.12);
+  --red: #C0392B;
+  --teal: #1ABC9C;
+  --text: #EDE3D0;
+  --text2: #A09080;
+  --text3: #605850;
+  --font: 'IBM Plex Sans Arabic', sans-serif;
+  --font-d: 'Scheherazade New', serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); direction: rtl; overflow-x: hidden; line-height: 1.7; }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--gold3); border-radius: 3px; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; width: 100%;
+  background: rgba(7,11,20,0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(212,168,67,0.12);
+  z-index: 1000;
+}
+.nav-wrap {
+  max-width: 1400px; margin: 0 auto;
+  padding: 0 24px;
+  display: flex; align-items: center;
+  justify-content: space-between;
+  height: 68px;
+}
+.nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.logo-icon {
+  width: 44px; height: 44px;
+  background: linear-gradient(135deg, var(--gold), var(--gold3));
+  border-radius: 11px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  box-shadow: 0 0 20px rgba(212,168,67,0.25);
+}
+.logo-text { font-family: var(--font-d); font-size: 1.35rem; color: var(--gold); font-weight: 700; line-height: 1.1; }
+.logo-sub { font-size: 0.62rem; color: var(--text3); }
+.nav-back {
+  display: flex; align-items: center; gap: 8px;
+  color: var(--text2); text-decoration: none; font-size: 0.88rem;
+  padding: 8px 14px; border-radius: 8px; border: 1px solid var(--border);
+  transition: all 0.2s;
+}
+.nav-back:hover { border-color: var(--gold2); color: var(--gold); }
+
+/* HERO */
+.char-hero {
+  min-height: 50vh;
+  display: flex; align-items: flex-end;
+  position: relative; overflow: hidden;
+  padding-top: 68px;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, #0A1020 0%, var(--bg) 100%);
+}
+.hero-bg::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(192,57,43,0.08) 0%, transparent 60%);
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, var(--bg) 0%, transparent 50%);
+}
+.hero-content {
+  position: relative; z-index: 2;
+  max-width: 1400px; margin: 0 auto;
+  padding: 60px 24px 40px;
+  width: 100%;
+}
+.breadcrumb {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.78rem; color: var(--text3);
+  margin-bottom: 24px;
+}
+.breadcrumb a { color: var(--gold); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+
+.char-header { display: flex; align-items: flex-end; gap: 32px; flex-wrap: wrap; }
+.char-avatar-big {
+  width: 120px; height: 120px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #3D0000, #8B1A1A);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 64px;
+  box-shadow: 0 0 40px rgba(192,57,43,0.3);
+  border: 2px solid rgba(212,168,67,0.2);
+  flex-shrink: 0;
+}
+.char-title-block { flex: 1; }
+.char-status {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(192,57,43,0.15);
+  border: 1px solid rgba(192,57,43,0.3);
+  color: #E74C3C; padding: 4px 12px;
+  border-radius: 100px; font-size: 0.75rem; font-weight: 700;
+  margin-bottom: 10px;
+}
+.char-name-ar {
+  font-family: var(--font-d);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  color: var(--gold); font-weight: 700;
+  text-shadow: 0 0 40px rgba(212,168,67,0.2);
+  line-height: 1.1; margin-bottom: 4px;
+}
+.char-name-en { font-size: 1rem; color: var(--text3); margin-bottom: 12px; }
+.char-tags { display: flex; gap: 7px; flex-wrap: wrap; }
+.tag {
+  padding: 5px 12px; border-radius: 6px;
+  font-size: 0.72rem; font-weight: 700;
+}
+.tag-red { background: rgba(192,57,43,0.18); color: #E74C3C; border: 1px solid rgba(192,57,43,0.3); }
+.tag-gold { background: rgba(212,168,67,0.12); color: var(--gold); border: 1px solid rgba(212,168,67,0.25); }
+.tag-teal { background: rgba(26,188,156,0.12); color: var(--teal); border: 1px solid rgba(26,188,156,0.25); }
+
+/* QUICK STATS */
+.quick-stats {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr));
+  gap: 12px; margin: 32px 0;
+}
+.qs {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 12px; padding: 16px; text-align: center;
+}
+.qs-v { font-family: var(--font-d); font-size: 1.2rem; font-weight: 700; color: var(--gold); }
+.qs-k { font-size: 0.72rem; color: var(--text3); margin-top: 3px; }
+
+/* MAIN LAYOUT */
+.main-layout {
+  max-width: 1400px; margin: 0 auto;
+  padding: 0 24px 80px;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 28px;
+}
+
+/* SECTIONS */
+.section {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 16px; overflow: hidden;
+  margin-bottom: 20px;
+}
+.section-head {
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 10px;
+}
+.section-icon { font-size: 1.2rem; }
+.section-title { font-family: var(--font-d); font-size: 1.1rem; color: var(--text); font-weight: 700; }
+.section-body { padding: 24px; }
+
+/* INFO GRID */
+.info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.info-item { }
+.info-label { font-size: 0.72rem; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+.info-value { font-size: 0.92rem; color: var(--text); font-weight: 500; }
+.info-value.gold { color: var(--gold); }
+
+/* BOUNTY TIMELINE */
+.bounty-timeline { display: flex; flex-direction: column; gap: 12px; }
+.bt-item {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 16px;
+  background: var(--bg2); border-radius: 10px;
+  border: 1px solid var(--border);
+}
+.bt-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--gold); flex-shrink: 0;
+}
+.bt-amount { font-family: var(--font-d); font-size: 1.1rem; color: var(--gold); font-weight: 700; flex: 1; }
+.bt-context { font-size: 0.78rem; color: var(--text3); }
+.bt-chapter { font-size: 0.72rem; color: var(--text3); margin-right: auto; background: var(--bg3); padding: 3px 8px; border-radius: 5px; }
+
+/* ABILITIES */
+.abilities-list { display: flex; flex-direction: column; gap: 14px; }
+.ability-item {
+  padding: 16px; background: var(--bg2);
+  border-radius: 10px; border: 1px solid var(--border);
+  border-right: 3px solid var(--gold2);
+}
+.ability-name { font-weight: 700; color: var(--text); margin-bottom: 6px; font-size: 0.92rem; }
+.ability-desc { font-size: 0.84rem; color: var(--text2); line-height: 1.7; }
+
+/* BATTLES */
+.battles-list { display: flex; flex-direction: column; gap: 10px; }
+.battle-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 16px; background: var(--bg2);
+  border-radius: 10px; border: 1px solid var(--border);
+  cursor: pointer; transition: border-color 0.2s;
+}
+.battle-item:hover { border-color: var(--border2); }
+.battle-icon { font-size: 1.2rem; flex-shrink: 0; }
+.battle-info { flex: 1; }
+.battle-name { font-size: 0.88rem; font-weight: 600; color: var(--text); }
+.battle-meta { font-size: 0.72rem; color: var(--text3); margin-top: 2px; }
+.battle-result {
+  font-size: 0.7rem; font-weight: 700;
+  padding: 3px 10px; border-radius: 5px;
+}
+.result-win { background: rgba(26,188,156,0.15); color: var(--teal); border: 1px solid rgba(26,188,156,0.25); }
+.result-draw { background: rgba(212,168,67,0.12); color: var(--gold); border: 1px solid rgba(212,168,67,0.25); }
+.result-loss { background: rgba(192,57,43,0.12); color: #E74C3C; border: 1px solid rgba(192,57,43,0.25); }
+
+/* SBS */
+.sbs-list { display: flex; flex-direction: column; gap: 14px; }
+.sbs-item {
+  padding: 16px; background: var(--bg2);
+  border-radius: 10px; border: 1px solid var(--border);
+  position: relative; overflow: hidden;
+}
+.sbs-item::before {
+  content: 'SBS';
+  position: absolute; top: 12px; left: 14px;
+  font-size: 0.6rem; font-weight: 900;
+  color: var(--gold3); letter-spacing: 0.1em;
+  opacity: 0.5;
+}
+.sbs-vol {
+  font-size: 0.7rem; font-weight: 700;
+  color: var(--gold); margin-bottom: 8px;
+  text-transform: uppercase; letter-spacing: 0.08em;
+}
+.sbs-q { font-size: 0.82rem; color: var(--text2); margin-bottom: 8px; font-style: italic; }
+.sbs-a { font-size: 0.88rem; color: var(--text); line-height: 1.7; }
+.sbs-a strong { color: var(--gold); }
+
+/* UPDATE BOX */
+.update-box {
+  background: rgba(212,168,67,0.06);
+  border: 1px solid rgba(212,168,67,0.2);
+  border-radius: 10px; padding: 14px 16px;
+  display: flex; align-items: flex-start; gap: 10px;
+  margin-top: 16px;
+}
+.update-icon { font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
+.update-text { font-size: 0.8rem; color: var(--text2); line-height: 1.6; }
+.update-text strong { color: var(--gold); }
+
+/* SIDEBAR */
+.sidebar { }
+.side-card {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 16px; overflow: hidden;
+  margin-bottom: 20px;
+}
+.side-head {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.82rem; font-weight: 700;
+  color: var(--text2); text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.side-body { padding: 16px; }
+
+.side-info-row {
+  display: flex; justify-content: space-between;
+  align-items: center; padding: 9px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.84rem;
+}
+.side-info-row:last-child { border-bottom: none; }
+.sir-label { color: var(--text3); }
+.sir-val { color: var(--text); font-weight: 500; text-align: left; }
+.sir-val.gold { color: var(--gold); }
+
+.related-char {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 0; border-bottom: 1px solid var(--border);
+  text-decoration: none; transition: all 0.2s; cursor: pointer;
+}
+.related-char:last-child { border-bottom: none; }
+.related-char:hover .rc-name { color: var(--gold); }
+.rc-av {
+  width: 38px; height: 38px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; flex-shrink: 0;
+}
+.rc-name { font-size: 0.85rem; font-weight: 600; color: var(--text); margin-bottom: 2px; transition: color 0.2s; }
+.rc-role { font-size: 0.7rem; color: var(--text3); }
+.rc-relation { font-size: 0.7rem; color: var(--gold); margin-right: auto; }
+
+/* LAST UPDATE */
+.last-update-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(26,188,156,0.08);
+  border: 1px solid rgba(26,188,156,0.2);
+  color: var(--teal); padding: 6px 14px;
+  border-radius: 8px; font-size: 0.75rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .main-layout { grid-template-columns: 1fr; }
+  .sidebar { order: -1; }
+  .quick-stats { grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 768px) {
+  .char-header { flex-direction: column; align-items: flex-start; }
+  .info-grid { grid-template-columns: 1fr; }
+  .char-avatar-big { width: 90px; height: 90px; font-size: 46px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-wrap">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-icon">⚓</div>
+      <div>
+        <div class="logo-text">عالم ون بيس</div>
+        <div class="logo-sub">الموسوعة العربية الشاملة</div>
+      </div>
+    </a>
+    <a href="characters.html" class="nav-back">← العودة للشخصيات</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="char-hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="breadcrumb">
+      <a href="index.html">الرئيسية</a>
+      <span>›</span>
+      <a href="characters.html">الشخصيات</a>
+      <span>›</span>
+      <span>غول دي روجر</span>
+    </div>
+
+    <div class="char-header">
+      <div class="char-avatar-big">☠️</div>
+      <div class="char-title-block">
+        <div class="char-status">● متوفى — أُعدم في لوغ تاون</div>
+        <h1 class="char-name-ar">غول دي روجر</h1>
+        <div class="char-name-en">Gol D. Roger · ゴール・D・ロジャー · روجر الملك</div>
+        <div class="char-tags">
+          <span class="tag tag-gold">👑 ملك القراصنة</span>
+          <span class="tag tag-red">🏴‍☠️ قراصنة روجر</span>
+          <span class="tag tag-teal">🌊 Pirate King</span>
+          <span class="tag tag-gold">D · حامل الإرادة</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="quick-stats">
+      <div class="qs">
+        <div class="qs-v">5,564,800,000</div>
+        <div class="qs-k">🏆 آخر مكافأة معروفة (بيلي)</div>
+      </div>
+      <div class="qs">
+        <div class="qs-v">٥٣ سنة</div>
+        <div class="qs-k">📅 العمر عند الإعدام</div>
+      </div>
+      <div class="qs">
+        <div class="qs-v">فصل ١</div>
+        <div class="qs-k">📖 أول ذكر له</div>
+      </div>
+      <div class="qs">
+        <div class="qs-v">فصل ٩٦٦</div>
+        <div class="qs-k">📖 أول ظهور كامل</div>
+      </div>
+      <div class="qs">
+        <div class="qs-v">١٨٧ سم</div>
+        <div class="qs-k">📏 الطول</div>
+      </div>
+      <div class="qs">
+        <div class="qs-v">٢٧ سنة قبل القصة</div>
+        <div class="qs-k">💀 تاريخ الإعدام</div>
+      </div>
+    </div>
+
+    <div class="last-update-badge">
+      ✅ آخر تحديث: الفصل 1130 — لا جديد عن روجر
+    </div>
+  </div>
+</section>
+
+<!-- MAIN -->
+<div class="main-layout">
+
+  <!-- RIGHT CONTENT -->
+  <div>
+
+    <!-- المعلومات الأساسية -->
+    <div class="section">
+      <div class="section-head">
+        <span class="section-icon">📋</span>
+        <span class="section-title">المعلومات الأساسية</span>
+      </div>
+      <div class="section-body">
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-label">الاسم الكامل</div>
+            <div class="info-value">غول دي روجر</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">الاسم الأصلي</div>
+            <div class="info-value">Gold Roger (اسمه الحقيقي)</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">الانتماء</div>
+            <div class="info-value gold">قراصنة روجر — كابتن</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">الحالة</div>
+            <div class="info-value" style="color:#E74C3C">متوفى — أُعدم طوعاً</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">مكان الميلاد</div>
+            <div class="info-value">لوغ تاون — إيست بلو</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">تاريخ الإعدام</div>
+            <div class="info-value">لوغ تاون — قبل ٢٧ سنة من القصة</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">السفينة</div>
+            <div class="info-value gold">Oro Jackson</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">أهم الرفقاء</div>
+            <div class="info-value">سيلفر رايلي، سكوبر كامبل، كروكوس</div>
+          </div>
+        </div>
+
+        <div style="margin-top:20px;padding:16px;background:var(--bg2);border-radius:10px;border:1px solid var(--border);border-right:3px solid var(--gold2);">
+          <p style="font-size:0.9rem;color:var(--text2);line-height:1.8;">
+            غول دي روجر — المعروف بـ "روجر ملك القراصنة" — هو الشخص الوحيد في تاريخ عالم ون بيس الذي أتمّ رحلة الغراند لاين بالكامل ووصل إلى الجزيرة النهائية <strong style="color:var(--gold)">Laugh Tale</strong>، ليصبح ملكاً للقراصنة. سلّم نفسه للبحرية وهو مريض بمرض عضال، وطلب الإعدام علناً في لوغ تاون — فكانت كلماته الأخيرة هي الشرارة التي أشعلت عصر القرصنة الكبير.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- القدرات -->
+    <div class="section">
+      <div class="section-head">
+        <span class="section-icon">⚡</span>
+        <span class="section-title">القدرات والقوى</span>
+      </div>
+      <div class="section-body">
+        <div class="abilities-list">
+          <div class="ability-item">
+            <div class="ability-name">⚡ هاكي الملك — Conqueror's Haki (أعلى مستوى)</div>
+            <div class="ability-desc">يمتلك روجر هاكي الملك بمستوى أسطوري — قادر على إسقاط مئات الأشخاص بمجرد إطلاق إرادته. يُقال إن هاكيه كان من أقوى ما شهده العالم. استخدمه في معارك متعددة بما فيها مواجهاته مع وايتبيرد.</div>
+          </div>
+          <div class="ability-item">
+            <div class="ability-name">🛡️ هاكي التسليح — Armament Haki</div>
+            <div class="ability-desc">إتقان تام لهاكي التسليح — يُغلّف سيفه بالهاكي ليضاعف قوة ضرباته. قادر على إلحاق أضرار جسيمة بأي خصم بغض النظر عن قوته أو قدراته.</div>
+          </div>
+          <div class="ability-item">
+            <div class="ability-name">👁️ هاكي الملاحظة — Observation Haki</div>
+            <div class="ability-desc">قدرة استشعارية عالية تتيح له قراءة حركات الخصم والتنبؤ بالهجمات. مستواه في هذا النوع غير معروف بالتفصيل لكنه مُشار إليه بشكل ضمني.</div>
+          </div>
+          <div class="ability-item">
+            <div class="ability-name">🎵 قراءة Poneglyph — قدرة نادرة جداً</div>
+            <div class="ability-desc">القدرة على قراءة النقوش القديمة (Poneglyph) بشكل طبيعي دون تعلّم — هذه القدرة النادرة جداً هي التي مكّنته من الوصول إلى Laugh Tale واكتشاف الـ One Piece الحقيقي. تقاسم هذا السر مع سيلفر رايلي وبعض رفاقه.</div>
+          </div>
+          <div class="ability-item">
+            <div class="ability-name">⚔️ مهارة السيف — مستوى أسطوري</div>
+            <div class="ability-desc">مقاتل من الطراز الأول بالسيف، وصل لمستوى تعادل فيه مع وايتبيرد في معارك متعددة. لا يُعرف النمط الدقيق لأسلوبه القتالي لكن قوته الجسدية والهاكي يجعلانه لا يُهزم.</div>
+          </div>
+        </div>
+
+        <div class="update-box">
+          <span class="update-icon">📌</span>
+          <div class="update-text">
+            <strong>ملاحظة:</strong> روجر لا يمتلك فاكهة شيطان — قوته الكاملة مبنية على الهاكي والمهارة الجسدية البحتة. هذا ما يجعله أكثر إثارة للدهشة.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- تطور المكافأة -->
+    <div class="section">
+      <div class="section-head">
+        <span class="section-icon">💰</span>
+        <span class="section-title">تطور المكافأة عبر الزمن</span>
+      </div>
+      <div class="section-body">
+        <div class="bounty-timeline">
+          <div class="bt-item">
+            <div class="bt-dot"></div>
+            <div class="bt-amount">غير معروفة</div>
+            <div class="bt-context">بداية مسيرته كقرصان</div>
+            <div class="bt-chapter">ما قبل الفصل ٩٦٦</div>
+          </div>
+          <div class="bt-item">
+            <div class="bt-dot"></div>
+            <div class="bt-amount">1,500,000,000+</div>
+            <div class="bt-context">خلال صعوده في الغراند لاين</div>
+            <div class="bt-chapter">تقديري</div>
+          </div>
+          <div class="bt-item" style="border-color:rgba(212,168,67,0.3)">
+            <div class="bt-dot" style="background:var(--gold);width:14px;height:14px"></div>
+            <div class="bt-amount" style="font-size:1.3rem">5,564,800,000</div>
+            <div class="bt-context">أعلى مكافأة — ملك القراصنة</div>
+            <div class="bt-chapter">الفصل ٩٦٦</div>
+          </div>
+        </div>
+
+        <div class="update-box">
+          <span class="update-icon">⚠️</span>
+          <div class="update-text">
+            المكافأة الكاملة لروجر لم تُكشف رسمياً بعد — الرقم المذكور مُستنبط من المؤشرات. سيُحدَّث هذا القسم فور صدور معلومات رسمية.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- أهم المعارك -->
+    <div class="section">
+      <div class="section-head">
+        <span class="section-icon">⚔️</span>
+        <span class="section-title">أهم المعارك</span>
+      </div>
+      <div class="section-body">
+        <div class="battles-list">
+          <div class="battle-item">
+            <div class="battle-icon">🌊</div>
+            <div class="battle-info">
+              <div class="battle-name">روجر vs وايتبيرد (إدوارد نيوغيت)</div>
+              <div class="battle-meta">معركة متكررة • الغراند لاين • فصل ٩٦٦</div>
+            </div>
+            <div class="battle-result result-draw">تعادل أسطوري</div>
+          </div>
+          <div class="battle-item">
+            <div class="battle-icon">🏛️</div>
+            <div class="battle-info">
+              <div class="battle-name">روجر vs البحرية (سنتسوكي)</div>
+              <div class="battle-meta">معركة كبرى • قبل إعدامه</div>
+            </div>
+            <div class="battle-result result-win">انتصار</div>
+          </div>
+          <div class="battle-item">
+            <div class="battle-icon">👊</div>
+            <div class="battle-info">
+              <div class="battle-name">روجر vs Rock D. Xebec (معركة God Valley)</div>
+              <div class="battle-meta">تحالف مع Garp • God Valley • ٣٨ سنة قبل القصة</div>
+            </div>
+            <div class="battle-result result-win">انتصار مشترك</div>
+          </div>
+          <div class="battle-item">
+            <div class="battle-icon">💀</div>
+            <div class="battle-info">
+              <div class="battle-name">إعدام روجر في لوغ تاون</div>
+              <div class="battle-meta">اختار الموت طوعاً • ٢٧ سنة قبل القصة • فصل ١</div>
+            </div>
+            <div class="battle-result result-loss">إعدام طوعي</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- معلومات SBS -->
+    <div class="section">
+      <div class="section-head">
+        <span class="section-icon">📬</span>
+        <span class="section-title">معلومات SBS — من Oda مباشرة</span>
+      </div>
+      <div class="section-body">
+        <div class="sbs-list">
+          <div class="sbs-item">
+            <div class="sbs-vol">SBS المجلد ٩٦ — ٢٠٢١</div>
+            <div class="sbs-q">سؤال: ما هو الطعام المفضل لروجر؟</div>
+            <div class="sbs-a">أجاب Oda: <strong>تفاح التوباز</strong> — نفس التفاحة التي كان لوفي يأكلها وهو صغير. Oda أشار ضمنياً إلى أن هناك رابطاً روحياً بين الاثنين.</div>
+          </div>
+          <div class="sbs-item">
+            <div class="sbs-vol">SBS المجلد ٩٠ — ٢٠١٨</div>
+            <div class="sbs-q">سؤال: هل روجر كان يمتلك فاكهة شيطان؟</div>
+            <div class="sbs-a">أكد Oda رسمياً: <strong>لا</strong> — روجر لا يمتلك أي فاكهة شيطان. قوته الكاملة مبنية على الهاكي والموهبة الطبيعية. وهذا جعله أقوى شخص في عصره بدون فاكهة.</div>
+          </div>
+          <div class="sbs-item">
+            <div class="sbs-vol">SBS المجلد ١٠٠ — ٢٠٢١</div>
+            <div class="sbs-q">سؤال: من هو الشخص الذي احترمه روجر أكثر من غيره؟</div>
+            <div class="sbs-a">أجاب Oda: <strong>وايتبيرد (إدوارد نيوغيت)</strong> — روجر رأى فيه النظير الحقيقي الوحيد. وصفه بـ"الشخص الوحيد الذي كان يستحق لقب ملك القراصنة بقدر ما أستحقه أنا".</div>
+          </div>
+          <div class="sbs-item">
+            <div class="sbs-vol">SBS المجلد ٩٦ — ٢٠٢١</div>
+            <div class="sbs-q">سؤال: لماذا اختار روجر الإعدام بدل الموت من مرضه؟</div>
+            <div class="sbs-a">أوضح Oda: أراد روجر <strong>إشعال جيل جديد</strong> — مات ضاحكاً لأنه أراد أن تكون آخر لحظاته ملهِمة وليست مأساوية. أراد أن يجعل الناس يحلمون بالبحث عن الـ One Piece.</div>
+          </div>
+        </div>
+
+        <div class="update-box">
+          <span class="update-icon">📌</span>
+          <div class="update-text">
+            <strong>ملاحظة التحرير:</strong> يتم تحديث هذا القسم بكل معلومة SBS جديدة تخص روجر فور نشر المجلدات الرسمية. آخر مراجعة: الفصل 1130.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+
+    <!-- معلومات سريعة -->
+    <div class="side-card">
+      <div class="side-head">معلومات الشخصية</div>
+      <div class="side-body">
+        <div class="side-info-row">
+          <span class="sir-label">الاسم</span>
+          <span class="sir-val">غول دي روجر</span>
+        </div>
+        <div class="side-info-row">
+          <span class="sir-label">اللقب</span>
+          <span class="sir-val gold">ملك القراصنة</span>
+        </div>
+        <div class="side-info-row">
+          <span class="sir-label">الجنس</span>
+          <span class="sir-val">ذكر</span>
+        </div>
+        <div class="side-info-row">
+          <span class="sir-label">العمر</span>
+          <span class="sir-val">٥٣ سنة (عند الإعدام)</span>
+        </div>
+        <div class="side-info-row">
+          <span class="sir-label">الطول</span>
+          <span class="sir-val">١٨٧ سم</span>
+        </div>
+        <div class="side-info-row">
+          <span class="sir-label">الوزن</span>
+          <span class="sir-val">غير محدد</span>
+        </div>
+        <div class="side-info-row">
+          <span class="sir-label">مكان الميلاد</span>
+          <span class="sir-val">لوغ تاون</span>
+        </div>
+        <div class="side-info-row">
+          <span class="sir-label">فاكهة الشيطان</span>
+          <span class="sir-val" style="color:#E74C3C">لا يمتلك ✗</span>
+        </div>
+        <div class="side-info-row">
+          <span class="sir-label">هاكي الملك</span>
+          <span class="sir-val gold">✓ أسطوري</span>
+        </div>
+        <div class="side-info-row">
+          <span class="sir-label">الابن</span>
+          <span class="sir-val">بورتغاس دي إيس</span>
+        </div>
+        <div class="side-info-row">
+          <span class="sir-label">أول ظهور</span>
+          <span class="sir-val">فصل ١ (ذكر) / فصل ٩٦٦ (ظهور)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- شخصيات مرتبطة -->
+    <div class="side-card">
+      <div class="side-head">شخصيات مرتبطة</div>
+      <div class="side-body">
+        <a href="#" class="related-char">
+          <div class="rc-av" style="background:linear-gradient(135deg,#1A3A5C,#2E6DA4)">⚔️</div>
+          <div>
+            <div class="rc-name">سيلفر رايلي</div>
+            <div class="rc-role">النائب الأول</div>
+          </div>
+          <div class="rc-relation">رفيق عمر</div>
+        </a>
+        <a href="#" class="related-char">
+          <div class="rc-av" style="background:linear-gradient(135deg,#2D1B00,#8B5E00)">🔥</div>
+          <div>
+            <div class="rc-name">بورتغاس دي إيس</div>
+            <div class="rc-role">ابنه البيولوجي</div>
+          </div>
+          <div class="rc-relation">ابن</div>
+        </a>
+        <a href="#" class="related-char">
+          <div class="rc-av" style="background:linear-gradient(135deg,#1C3A5E,#2471A3)">⚓</div>
+          <div>
+            <div class="rc-name">مونكي دي غارب</div>
+            <div class="rc-role">عدوه اللدود / صديقه</div>
+          </div>
+          <div class="rc-relation">غريم / صديق</div>
+        </a>
+        <a href="#" class="related-char">
+          <div class="rc-av" style="background:linear-gradient(135deg,#0D2B4A,#1A6B8A)">🌊</div>
+          <div>
+            <div class="rc-name">إدوارد نيوغيت</div>
+            <div class="rc-role">وايتبيرد — ندّه الأول</div>
+          </div>
+          <div class="rc-relation">ند / صديق</div>
+        </a>
+        <a href="#" class="related-char">
+          <div class="rc-av" style="background:linear-gradient(135deg,#4A0E0E,#8B1A1A)">🏴‍☠️</div>
+          <div>
+            <div class="rc-name">مونكي دي لوفي</div>
+            <div class="rc-role">وريث إرادته</div>
+          </div>
+          <div class="rc-relation">وريث</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- الآرك الأول -->
+    <div class="side-card">
+      <div class="side-head">الظهور في القصة</div>
+      <div class="side-body">
+        <div class="side-info-row">
+          <span class="sir-label">أول ذكر</span>
+          <span class="sir-val">الفصل ١</span>
+        </div>
+        <div class="side-info-row">
+          <span class="sir-label">أول ظهور</span>
+          <span class="sir-val">الفصل ٩٦٦</span>
+        </div>
+        <div class="side-info-row">
+          <span class="sir-label">آرك الظهور</span>
+          <span class="sir-val gold">وانو (فلاش باك)</span>
+        </div>
+        <div class="side-info-row">
+          <span class="sir-label">آخر ظهور</span>
+          <span class="sir-val">الفصل ٩٦٨</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// Scroll animation
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.section, .side-card').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(16px)';
+  el.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+  obs.observe(el);
+});
+</script>
+</body>
+</html>
