@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>قصص الأغلفة | عالم ون بيس</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070B14;--bg2:#0D1421;--bg3:#141E30;--bg4:#1C2A40;--border:#243050;--border2:#2E3A56;--gold:#D4A843;--gold2:#B8902C;--gold3:#8A6B1E;--gold-glow:rgba(212,168,67,0.12);--red:#C0392B;--teal:#1ABC9C;--text:#EDE3D0;--text2:#A09080;--text3:#605850;--font:'IBM Plex Sans Arabic',sans-serif;--font-d:'Scheherazade New',serif;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);direction:rtl;overflow-x:hidden;line-height:1.7;}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--gold3);border-radius:3px;}
+nav{position:fixed;top:0;width:100%;background:rgba(7,11,20,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(212,168,67,0.12);z-index:1000;}
+.nav-wrap{max-width:1400px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:68px;}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.logo-icon{width:44px;height:44px;background:linear-gradient(135deg,var(--gold),var(--gold3));border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 0 20px rgba(212,168,67,0.25);}
+.logo-text{font-family:var(--font-d);font-size:1.35rem;color:var(--gold);font-weight:700;line-height:1.1;}
+.logo-sub{font-size:0.62rem;color:var(--text3);}
+.nav-back{display:flex;align-items:center;gap:8px;color:var(--text2);text-decoration:none;font-size:0.88rem;padding:8px 14px;border-radius:8px;border:1px solid var(--border);transition:all 0.2s;}
+.nav-back:hover{border-color:var(--gold2);color:var(--gold);}
+
+.page-header{padding:110px 24px 40px;max-width:1400px;margin:0 auto;}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:0.78rem;color:var(--text3);margin-bottom:20px;}
+.breadcrumb a{color:var(--gold);text-decoration:none;}
+.page-title{font-family:var(--font-d);font-size:clamp(2rem,4vw,3rem);color:var(--text);font-weight:700;margin-bottom:8px;}
+.page-title span{color:var(--gold);}
+.page-desc{color:var(--text2);font-size:0.95rem;max-width:600px;line-height:1.8;margin-bottom:16px;}
+.info-box{background:var(--bg3);border:1px solid var(--border);border-right:3px solid var(--gold2);border-radius:12px;padding:14px 18px;font-size:0.86rem;color:var(--text2);line-height:1.8;margin-bottom:28px;}
+.info-box strong{color:var(--gold);}
+
+.filters{max-width:1400px;margin:0 auto;padding:0 24px 24px;}
+.search-row{display:flex;gap:12px;margin-bottom:14px;flex-wrap:wrap;}
+.search-box{display:flex;align-items:center;gap:10px;background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:10px 16px;flex:1;min-width:250px;transition:border-color 0.2s;}
+.search-box:focus-within{border-color:var(--gold2);}
+.search-box input{background:none;border:none;outline:none;font-family:var(--font);font-size:0.9rem;color:var(--text);width:100%;direction:rtl;}
+.search-box input::placeholder{color:var(--text3);}
+.filter-select{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:10px 14px;color:var(--text2);font-family:var(--font);font-size:0.85rem;cursor:pointer;outline:none;direction:rtl;}
+
+.main{max-width:1400px;margin:0 auto;padding:0 24px 80px;}
+.results-info{font-size:0.82rem;color:var(--text3);margin-bottom:20px;}
+.results-info span{color:var(--gold);font-weight:600;}
+
+.covers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px;}
+
+.cover-card{background:var(--bg3);border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:all 0.3s;}
+.cover-card:hover{border-color:var(--gold2);transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,0.4);}
+.cover-hero{height:140px;display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative;overflow:hidden;}
+.cover-hero::after{content:'';position:absolute;bottom:0;right:0;left:0;height:50px;background:linear-gradient(to top,var(--bg3),transparent);}
+.cover-status-badge{position:absolute;top:12px;right:12px;font-size:0.65rem;font-weight:700;padding:3px 10px;border-radius:5px;}
+.status-done{background:rgba(26,188,156,0.2);color:var(--teal);border:1px solid rgba(26,188,156,0.3);}
+.status-ongoing{background:rgba(212,168,67,0.15);color:var(--gold);border:1px solid rgba(212,168,67,0.25);}
+
+.cover-body{padding:20px;}
+.cover-title{font-family:var(--font-d);font-size:1.15rem;font-weight:700;color:var(--text);margin-bottom:4px;}
+.cover-title-en{font-size:0.72rem;color:var(--text3);margin-bottom:10px;}
+.cover-chapters{display:inline-flex;align-items:center;gap:6px;background:rgba(212,168,67,0.08);border:1px solid rgba(212,168,67,0.15);color:var(--gold);font-size:0.72rem;font-weight:600;padding:4px 10px;border-radius:6px;margin-bottom:12px;}
+.cover-desc{font-size:0.86rem;color:var(--text2);line-height:1.7;margin-bottom:14px;}
+.cover-tags{display:flex;gap:6px;flex-wrap:wrap;}
+.ctag{font-size:0.65rem;font-weight:600;padding:3px 8px;border-radius:4px;background:var(--bg2);color:var(--text3);border:1px solid var(--border);}
+
+.no-results{text-align:center;padding:60px 20px;color:var(--text3);display:none;}
+.no-results.show{display:block;}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-wrap">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-icon">⚓</div>
+      <div><div class="logo-text">عالم ون بيس</div><div class="logo-sub">الموسوعة العربية الشاملة</div></div>
+    </a>
+    <a href="manga.html" class="nav-back">← المانغا</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="breadcrumb">
+    <a href="index.html">الرئيسية</a><span>›</span>
+    <a href="manga.html">المانغا</a><span>›</span>
+    <span>قصص الأغلفة</span>
+  </div>
+  <h1 class="page-title">🎨 قصص <span>الأغلفة</span></h1>
+  <p class="page-desc">القصص المخفية في أغلفة مانغا ون بيس — محتوى حصري لا يظهر في الحلقات ويُروي أحداثاً جانبية مثيرة للاهتمام.</p>
+  <div class="info-box">
+    <strong>ما هي قصص الأغلفة؟</strong> — في كل فصل من المانغا، يرسم Oda صورة الغلاف التي تحكي قصة مستقلة على مدى فصول متعاقبة. هذه القصص تُعطي معلومات إضافية عن شخصيات لم تظهر في القصة الرئيسية.
+  </div>
+</div>
+
+<div class="filters">
+  <div class="search-row">
+    <div class="search-box">
+      <span>🔍</span>
+      <input type="text" id="searchInput" placeholder="ابحث باسم القصة أو الشخصية..." oninput="render()">
+    </div>
+    <select class="filter-select" id="statusFilter" onchange="render()">
+      <option value="all">الكل</option>
+      <option value="مكتملة">مكتملة</option>
+      <option value="جارية">جارية</option>
+    </select>
+  </div>
+</div>
+
+<div class="main">
+  <div class="results-info">عرض <span id="countSpan">٠</span> قصة</div>
+  <div class="covers-grid" id="grid"></div>
+  <div class="no-results" id="noResults">🔍 لا توجد نتائج</div>
+</div>
+
+<script src="manga-data.js"></script>
+<script>
+function render() {
+  const s = document.getElementById('searchInput').value.toLowerCase();
+  const st = document.getElementById('statusFilter').value;
+  const grid = document.getElementById('grid');
+  const nr = document.getElementById('noResults');
+  grid.innerHTML = '';
+
+  const filtered = COVER_STORIES.filter(c => {
+    const ms = !s || c.title.toLowerCase().includes(s) || c.tags.some(t => t.toLowerCase().includes(s));
+    const mst = st === 'all' || c.status === st;
+    return ms && mst;
+  });
+
+  document.getElementById('countSpan').textContent = filtered.length;
+  nr.classList.toggle('show', filtered.length === 0);
+
+  filtered.forEach((c, i) => {
+    const el = document.createElement('div');
+    el.className = 'cover-card';
+    el.style.cssText = `opacity:0;transform:translateY(16px);transition:opacity 0.4s ease ${i*0.08}s,transform 0.4s ease ${i*0.08}s`;
+    const isDone = c.status === 'مكتملة';
+    el.innerHTML = `
+      <div class="cover-hero" style="background:${c.bgColor}">
+        ${c.emoji}
+        <div class="cover-status-badge ${isDone ? 'status-done' : 'status-ongoing'}">
+          ${isDone ? '✅ مكتملة' : '🔄 جارية'}
+        </div>
+      </div>
+      <div class="cover-body">
+        <div class="cover-title">${c.title}</div>
+        <div class="cover-title-en">${c.titleEn}</div>
+        <div class="cover-chapters">📖 الفصول ${c.chapters}</div>
+        <div class="cover-desc">${c.description}</div>
+        <div class="cover-tags">${c.tags.map(t=>`<span class="ctag">${t}</span>`).join('')}</div>
+      </div>`;
+    grid.appendChild(el);
+    setTimeout(() => { el.style.opacity='1'; el.style.transform='translateY(0)'; }, 50 + i*80);
+  });
+}
+render();
+</script>
+</body>
+</html>

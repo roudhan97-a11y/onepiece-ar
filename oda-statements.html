@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تصريحات Oda | عالم ون بيس</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070B14;--bg2:#0D1421;--bg3:#141E30;--bg4:#1C2A40;--border:#243050;--border2:#2E3A56;--gold:#D4A843;--gold2:#B8902C;--gold3:#8A6B1E;--gold-glow:rgba(212,168,67,0.12);--red:#C0392B;--teal:#1ABC9C;--text:#EDE3D0;--text2:#A09080;--text3:#605850;--font:'IBM Plex Sans Arabic',sans-serif;--font-d:'Scheherazade New',serif;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);direction:rtl;overflow-x:hidden;line-height:1.7;}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--gold3);border-radius:3px;}
+nav{position:fixed;top:0;width:100%;background:rgba(7,11,20,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(212,168,67,0.12);z-index:1000;}
+.nav-wrap{max-width:1400px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:68px;}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.logo-icon{width:44px;height:44px;background:linear-gradient(135deg,var(--gold),var(--gold3));border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 0 20px rgba(212,168,67,0.25);}
+.logo-text{font-family:var(--font-d);font-size:1.35rem;color:var(--gold);font-weight:700;line-height:1.1;}
+.logo-sub{font-size:0.62rem;color:var(--text3);}
+.nav-back{display:flex;align-items:center;gap:8px;color:var(--text2);text-decoration:none;font-size:0.88rem;padding:8px 14px;border-radius:8px;border:1px solid var(--border);transition:all 0.2s;}
+.nav-back:hover{border-color:var(--gold2);color:var(--gold);}
+
+.page-header{padding:110px 24px 40px;max-width:1400px;margin:0 auto;}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:0.78rem;color:var(--text3);margin-bottom:20px;}
+.breadcrumb a{color:var(--gold);text-decoration:none;}
+.page-title{font-family:var(--font-d);font-size:clamp(2rem,4vw,3rem);color:var(--text);font-weight:700;margin-bottom:8px;}
+.page-title span{color:var(--gold);}
+.page-desc{color:var(--text2);font-size:0.95rem;max-width:600px;line-height:1.8;margin-bottom:20px;}
+
+/* ODA PROFILE */
+.oda-profile{background:var(--bg3);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:32px;display:flex;align-items:center;gap:20px;}
+.oda-avatar{width:72px;height:72px;border-radius:16px;background:linear-gradient(135deg,#2D1B00,#8B5500);display:flex;align-items:center;justify-content:center;font-size:36px;flex-shrink:0;box-shadow:0 0 20px rgba(212,168,67,0.15);}
+.oda-name{font-family:var(--font-d);font-size:1.3rem;color:var(--gold);font-weight:700;margin-bottom:4px;}
+.oda-title{font-size:0.82rem;color:var(--text3);margin-bottom:8px;}
+.oda-stats{display:flex;gap:16px;flex-wrap:wrap;}
+.oda-stat{font-size:0.75rem;color:var(--text2);background:var(--bg2);border:1px solid var(--border);padding:4px 12px;border-radius:6px;}
+.oda-stat span{color:var(--gold);font-weight:700;}
+
+.filters{max-width:1400px;margin:0 auto;padding:0 24px 24px;}
+.search-row{display:flex;gap:12px;margin-bottom:14px;flex-wrap:wrap;}
+.search-box{display:flex;align-items:center;gap:10px;background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:10px 16px;flex:1;min-width:250px;transition:border-color 0.2s;}
+.search-box:focus-within{border-color:var(--gold2);}
+.search-box input{background:none;border:none;outline:none;font-family:var(--font);font-size:0.9rem;color:var(--text);width:100%;direction:rtl;}
+.search-box input::placeholder{color:var(--text3);}
+.filter-select{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:10px 14px;color:var(--text2);font-family:var(--font);font-size:0.85rem;cursor:pointer;outline:none;direction:rtl;}
+.tabs-row{display:flex;gap:8px;flex-wrap:wrap;}
+.tab{padding:7px 14px;border-radius:100px;border:1px solid var(--border);background:transparent;color:var(--text2);font-family:var(--font);font-size:0.8rem;cursor:pointer;transition:all 0.2s;white-space:nowrap;}
+.tab.active,.tab:hover{background:var(--gold);border-color:var(--gold);color:var(--bg);font-weight:700;}
+
+.main{max-width:1400px;margin:0 auto;padding:0 24px 80px;}
+.results-info{font-size:0.82rem;color:var(--text3);margin-bottom:20px;}
+.results-info span{color:var(--gold);font-weight:600;}
+
+.statements-list{display:flex;flex-direction:column;gap:16px;}
+.stmt-card{background:var(--bg3);border:1px solid var(--border);border-radius:16px;padding:22px;transition:border-color 0.2s;position:relative;overflow:hidden;}
+.stmt-card:hover{border-color:var(--gold2);}
+.stmt-card::before{content:'';position:absolute;top:0;right:0;width:60px;height:60px;background:radial-gradient(circle at top right,var(--cat-glow,rgba(212,168,67,0.05)),transparent 70%);}
+
+.stmt-header{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px;}
+.stmt-source{font-size:0.72rem;font-weight:700;padding:4px 12px;border-radius:6px;flex-shrink:0;}
+.source-interview{background:rgba(52,152,219,0.12);color:#5DADE2;border:1px solid rgba(52,152,219,0.2);}
+.source-magazine{background:rgba(155,89,182,0.12);color:#BB8FCE;border:1px solid rgba(155,89,182,0.2);}
+.source-event{background:rgba(26,188,156,0.12);color:var(--teal);border:1px solid rgba(26,188,156,0.2);}
+.source-jumpfesta{background:rgba(230,126,34,0.12);color:#E67E22;border:1px solid rgba(230,126,34,0.2);}
+.source-other{background:rgba(212,168,67,0.1);color:var(--gold);border:1px solid rgba(212,168,67,0.2);}
+
+.stmt-date{font-size:0.72rem;color:var(--text3);margin-right:auto;}
+.stmt-topic{font-size:0.72rem;font-weight:700;color:var(--text3);background:var(--bg2);padding:3px 10px;border-radius:5px;}
+
+.stmt-content{font-size:0.92rem;color:var(--text);line-height:1.8;border-right:3px solid var(--gold2);padding-right:14px;margin-bottom:12px;}
+.stmt-content strong{color:var(--gold);}
+
+.stmt-footer{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.stmt-tag{font-size:0.65rem;font-weight:600;padding:3px 8px;border-radius:4px;background:var(--bg2);color:var(--text3);border:1px solid var(--border);}
+.stmt-important{background:rgba(192,57,43,0.1);color:#E74C3C;border:1px solid rgba(192,57,43,0.2);}
+
+.no-results{text-align:center;padding:60px 20px;color:var(--text3);display:none;}
+.no-results.show{display:block;}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-wrap">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-icon">⚓</div>
+      <div><div class="logo-text">عالم ون بيس</div><div class="logo-sub">الموسوعة العربية الشاملة</div></div>
+    </a>
+    <a href="manga.html" class="nav-back">← المانغا</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="breadcrumb">
+    <a href="index.html">الرئيسية</a><span>›</span>
+    <a href="manga.html">المانغا</a><span>›</span>
+    <span>تصريحات Oda</span>
+  </div>
+  <h1 class="page-title">✏️ تصريحات <span>Oda</span></h1>
+  <p class="page-desc">تصريحات ومقابلات Eiichiro Oda خارج نطاق المانغا — مقابلات، Jump Festa، وأسرار كشفها المؤلف مباشرة.</p>
+
+  <!-- Oda Profile -->
+  <div class="oda-profile">
+    <div class="oda-avatar">✏️</div>
+    <div>
+      <div class="oda-name">Eiichiro Oda</div>
+      <div class="oda-title">مؤلف ورسام ون بيس منذ 1997</div>
+      <div class="oda-stats">
+        <div class="oda-stat">المانغا منذ <span>1997</span></div>
+        <div class="oda-stat">أكثر من <span>500 مليون</span> نسخة مباعة</div>
+        <div class="oda-stat">آخر تصريح: <span>2025</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="filters">
+  <div class="search-row">
+    <div class="search-box">
+      <span>🔍</span>
+      <input type="text" id="searchInput" placeholder="ابحث في التصريحات..." oninput="render()">
+    </div>
+    <select class="filter-select" id="sourceFilter" onchange="render()">
+      <option value="all">جميع المصادر</option>
+      <option value="interview">مقابلة</option>
+      <option value="magazine">مجلة</option>
+      <option value="jumpfesta">Jump Festa</option>
+      <option value="event">حدث</option>
+    </select>
+    <select class="filter-select" id="topicFilter" onchange="render()">
+      <option value="all">جميع المواضيع</option>
+      <option value="القصة">القصة</option>
+      <option value="الشخصيات">الشخصيات</option>
+      <option value="النهاية">النهاية</option>
+      <option value="عام">عام</option>
+    </select>
+  </div>
+  <div class="tabs-row">
+    <button class="tab active" onclick="setTab('all',this)">الكل</button>
+    <button class="tab" onclick="setTab('interview',this)">مقابلات</button>
+    <button class="tab" onclick="setTab('jumpfesta',this)">Jump Festa</button>
+    <button class="tab" onclick="setTab('magazine',this)">مجلات</button>
+  </div>
+</div>
+
+<div class="main">
+  <div class="results-info">عرض <span id="countSpan">٠</span> تصريح</div>
+  <div class="statements-list" id="container"></div>
+  <div class="no-results" id="noResults">🔍 لا توجد نتائج</div>
+</div>
+
+<script>
+// بيانات تصريحات Oda
+const ODA_STATEMENTS = [
+  {
+    id: 1,
+    source: "interview",
+    sourceLabel: "مقابلة",
+    date: "2022",
+    topic: "النهاية",
+    important: true,
+    content: "ون بيس على وشك نهايته — أتوقع أن تنتهي القصة في غضون <strong>3-4 سنوات</strong> من الآن. لقد رسمت النهاية في ذهني منذ البداية.",
+    tags: ["النهاية", "مستقبل القصة"]
+  },
+  {
+    id: 2,
+    source: "jumpfesta",
+    sourceLabel: "Jump Festa",
+    date: "2023",
+    topic: "القصة",
+    important: true,
+    content: "آرك إيغهيد هو <strong>أهم آرك في تاريخ ون بيس</strong> — كل الأسرار التي انتظرتم الكشف عنها ستبدأ بالظهور هنا.",
+    tags: ["إيغهيد", "الأسرار"]
+  },
+  {
+    id: 3,
+    source: "magazine",
+    sourceLabel: "Weekly Shonen Jump",
+    date: "2021",
+    topic: "الشخصيات",
+    important: false,
+    content: "الشخصية التي استمتعت برسمها أكثر من غيرها هي <strong>ووبنونة بيغ مام</strong> — شخصية معقدة جداً من الداخل.",
+    tags: ["بيغ مام", "يونكو"]
+  },
+  {
+    id: 4,
+    source: "interview",
+    sourceLabel: "مقابلة",
+    date: "2020",
+    topic: "القصة",
+    important: true,
+    content: "<strong>One Piece موجود فعلاً</strong> — ليس مجرد حلم أو فكرة. هو شيء حقيقي في عالم القصة وستعرفون ما هو في النهاية.",
+    tags: ["One Piece", "أسرار"]
+  },
+  {
+    id: 5,
+    source: "event",
+    sourceLabel: "حدث",
+    date: "2019",
+    topic: "عام",
+    important: false,
+    content: "كنت أفكر في إنهاء ون بيس عند الفصل 1000، لكن القصة لا تزال لديها الكثير لتقوله. <strong>الآرك النهائي سيكون الأكبر</strong>.",
+    tags: ["الفصل 1000", "النهاية"]
+  },
+  {
+    id: 6,
+    source: "magazine",
+    sourceLabel: "Shonen Jump+",
+    date: "2024",
+    topic: "الشخصيات",
+    important: true,
+    content: "شخصية <strong>إيم (Im)</strong> كانت في تصميمي منذ البداية — وظهوره الكامل سيغير كل ما تعتقد أنك تعرفه عن عالم ون بيس.",
+    tags: ["إيم", "الحكومة العالمية"]
+  }
+];
+
+let currentSource = 'all';
+
+function setTab(source, btn) {
+  currentSource = source;
+  document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('sourceFilter').value = source;
+  render();
+}
+
+function render() {
+  const s = document.getElementById('searchInput').value.toLowerCase();
+  const source = document.getElementById('sourceFilter').value;
+  const topic = document.getElementById('topicFilter').value;
+  currentSource = source;
+
+  const filtered = ODA_STATEMENTS.filter(st => {
+    const ms = !s || st.content.toLowerCase().includes(s) || st.tags.some(t => t.toLowerCase().includes(s));
+    const msrc = source === 'all' || st.source === source;
+    const mt = topic === 'all' || st.topic === topic;
+    return ms && msrc && mt;
+  });
+
+  const container = document.getElementById('container');
+  const nr = document.getElementById('noResults');
+  container.innerHTML = '';
+  document.getElementById('countSpan').textContent = filtered.length;
+  nr.classList.toggle('show', filtered.length === 0);
+
+  const sourceClasses = {
+    interview: 'source-interview',
+    magazine: 'source-magazine',
+    event: 'source-event',
+    jumpfesta: 'source-jumpfesta',
+    other: 'source-other'
+  };
+
+  filtered.forEach((st, i) => {
+    const el = document.createElement('div');
+    el.className = 'stmt-card';
+    el.style.cssText = `opacity:0;transform:translateY(12px);transition:opacity 0.4s ease ${i*0.06}s,transform 0.4s ease ${i*0.06}s`;
+    el.innerHTML = `
+      <div class="stmt-header">
+        <div class="stmt-source ${sourceClasses[st.source] || 'source-other'}">${st.sourceLabel}</div>
+        <div class="stmt-topic">${st.topic}</div>
+        <div class="stmt-date">${st.date}</div>
+      </div>
+      <div class="stmt-content">${st.content}</div>
+      <div class="stmt-footer">
+        ${st.important ? '<span class="stmt-tag stmt-important">⚠️ مهم</span>' : ''}
+        ${st.tags.map(t => `<span class="stmt-tag">${t}</span>`).join('')}
+      </div>`;
+    container.appendChild(el);
+    setTimeout(() => { el.style.opacity='1'; el.style.transform='translateY(0)'; }, 50 + i*60);
+  });
+}
+
+render();
+</script>
+</body>
+</html>
