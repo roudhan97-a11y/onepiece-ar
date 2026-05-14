@@ -294,20 +294,3 @@ const FRUIT_TYPES = [
   { id: "zoan", name: "زون", color: "#2ECC71" },
   { id: "mythical", name: "زون خرافية", color: "#9B59B6" }
 ];
-
-,{
-  id: "test-test",
-  name: "تجربة",
-  nameEn: "test no me",
-  nameJp: "يابانية",
-  type: "zoan", // logia / paramecia / zoan / mythical
-  typeLabel: "زون",
-  emoji: "🍎",
-  ability: "القدرة على الاكل",
-  currentOwner: "الصاحب الحالي",
-  prevOwner: null, // أو "اسم السابق"
-  arc: "اسم الآرك",
-  awakened: false, // true لو مُصحَّية
-  rare: false,     // true لو نادرة
-  notes: null      // أو "ملاحظة مهمة"
-}
