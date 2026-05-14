@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>فواكه الشيطان | عالم ون بيس</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070B14;--bg2:#0D1421;--bg3:#141E30;--bg4:#1C2A40;--border:#243050;--border2:#2E3A56;--gold:#D4A843;--gold2:#B8902C;--gold3:#8A6B1E;--gold-glow:rgba(212,168,67,0.12);--red:#C0392B;--teal:#1ABC9C;--text:#EDE3D0;--text2:#A09080;--text3:#605850;--font:'IBM Plex Sans Arabic',sans-serif;--font-d:'Scheherazade New',serif;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);direction:rtl;overflow-x:hidden;line-height:1.7;}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--gold3);border-radius:3px;}
+nav{position:fixed;top:0;width:100%;background:rgba(7,11,20,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(212,168,67,0.12);z-index:1000;}
+.nav-wrap{max-width:1400px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:68px;}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.logo-icon{width:44px;height:44px;background:linear-gradient(135deg,var(--gold),var(--gold3));border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 0 20px rgba(212,168,67,0.25);}
+.logo-text{font-family:var(--font-d);font-size:1.35rem;color:var(--gold);font-weight:700;line-height:1.1;}
+.logo-sub{font-size:0.62rem;color:var(--text3);}
+.nav-back{display:flex;align-items:center;gap:8px;color:var(--text2);text-decoration:none;font-size:0.88rem;padding:8px 14px;border-radius:8px;border:1px solid var(--border);transition:all 0.2s;}
+.nav-back:hover{border-color:var(--gold2);color:var(--gold);}
+
+.page-hero{min-height:36vh;display:flex;align-items:flex-end;position:relative;overflow:hidden;padding-top:68px;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(155,89,182,0.06) 0%,transparent 60%),linear-gradient(180deg,#080C18 0%,var(--bg) 100%);}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,var(--bg) 0%,transparent 60%);}
+.hero-content{position:relative;z-index:2;max-width:1400px;margin:0 auto;padding:60px 24px 40px;width:100%;}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:0.78rem;color:var(--text3);margin-bottom:20px;}
+.breadcrumb a{color:var(--gold);text-decoration:none;}
+.page-title{font-family:var(--font-d);font-size:clamp(2rem,4vw,3rem);color:var(--text);font-weight:700;margin-bottom:8px;}
+.page-title span{color:var(--gold);}
+.page-desc{color:var(--text2);font-size:0.95rem;max-width:600px;line-height:1.8;}
+.stats-bar{display:flex;gap:20px;flex-wrap:wrap;margin-top:20px;padding-top:20px;border-top:1px solid var(--border);}
+.stat-n{font-family:var(--font-d);font-size:1.5rem;color:var(--gold);font-weight:700;display:block;}
+.stat-l{font-size:0.72rem;color:var(--text3);}
+
+/* TYPE CARDS */
+.types-section{max-width:1400px;margin:0 auto;padding:32px 24px 0;}
+.types-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:28px;}
+.type-card{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:14px 16px;cursor:pointer;transition:all 0.2s;text-align:center;}
+.type-card.active,.type-card:hover{transform:translateY(-2px);}
+.type-emoji{font-size:1.6rem;margin-bottom:6px;}
+.type-name{font-size:0.82rem;font-weight:700;margin-bottom:3px;}
+.type-count{font-size:0.68rem;color:var(--text3);}
+
+/* FILTERS */
+.filters{max-width:1400px;margin:0 auto;padding:0 24px 24px;}
+.filter-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;}
+.search-box{display:flex;align-items:center;gap:10px;background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:10px 16px;flex:1;min-width:240px;transition:border-color 0.2s;}
+.search-box:focus-within{border-color:var(--gold2);}
+.search-box input{background:none;border:none;outline:none;font-family:var(--font);font-size:0.9rem;color:var(--text);width:100%;direction:rtl;}
+.search-box input::placeholder{color:var(--text3);}
+.filter-select{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:10px 14px;color:var(--text2);font-family:var(--font);font-size:0.85rem;cursor:pointer;outline:none;direction:rtl;}
+
+/* MAIN */
+.main{max-width:1400px;margin:0 auto;padding:0 24px 80px;}
+.results-info{font-size:0.82rem;color:var(--text3);margin-bottom:18px;}
+.results-info span{color:var(--gold);font-weight:600;}
+.fruits-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;}
+
+/* FRUIT CARD */
+.fruit-card{background:var(--bg3);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all 0.3s;position:relative;}
+.fruit-card:hover{transform:translateY(-4px);box-shadow:0 14px 38px rgba(0,0,0,0.4);}
+
+.fruit-top{padding:20px 18px 14px;text-align:center;position:relative;}
+.fruit-type-badge{position:absolute;top:12px;right:12px;font-size:0.62rem;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;padding:3px 9px;border-radius:4px;}
+.rare-badge{position:absolute;top:12px;left:12px;font-size:0.6rem;font-weight:700;color:var(--gold);background:rgba(212,168,67,0.1);border:1px solid rgba(212,168,67,0.25);padding:2px 7px;border-radius:4px;}
+.awakened-badge{position:absolute;top:34px;left:12px;font-size:0.6rem;font-weight:700;color:var(--teal);background:rgba(26,188,156,0.1);border:1px solid rgba(26,188,156,0.25);padding:2px 7px;border-radius:4px;}
+
+.fruit-emoji{font-size:3.5rem;display:block;margin:8px 0 12px;}
+.fruit-name{font-family:var(--font-d);font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:3px;}
+.fruit-name-en{font-size:0.7rem;color:var(--text3);margin-bottom:10px;}
+.fruit-ability{font-size:0.83rem;color:var(--text2);line-height:1.65;}
+
+.fruit-bottom{padding:12px 18px;background:var(--bg2);border-top:1px solid var(--border);}
+.owner-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;}
+.owner-label{font-size:0.65rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;}
+.owner-name{font-size:0.82rem;font-weight:600;color:var(--text);}
+.prev-owner{font-size:0.72rem;color:var(--text3);margin-top:2px;}
+.prev-owner span{color:var(--text2);}
+.arc-tag{font-size:0.65rem;color:var(--gold);background:rgba(212,168,67,0.08);border:1px solid rgba(212,168,67,0.15);padding:2px 8px;border-radius:4px;margin-top:6px;display:inline-block;}
+
+.fruit-notes{padding:10px 18px;border-top:1px solid var(--border);font-size:0.78rem;color:var(--text3);font-style:italic;line-height:1.6;}
+
+.type-logia{background:rgba(241,196,15,0.12);color:#F1C40F;border:1px solid rgba(241,196,15,0.25);}
+.type-paramecia{background:rgba(52,152,219,0.12);color:#3498DB;border:1px solid rgba(52,152,219,0.25);}
+.type-special-paramecia{background:rgba(93,173,226,0.12);color:#5DADE2;border:1px solid rgba(93,173,226,0.25);}
+.type-zoan{background:rgba(46,204,113,0.12);color:#2ECC71;border:1px solid rgba(46,204,113,0.25);}
+.type-mythical{background:rgba(155,89,182,0.12);color:#9B59B6;border:1px solid rgba(155,89,182,0.25);}
+
+.no-results{text-align:center;padding:60px 20px;color:var(--text3);display:none;}
+.no-results.show{display:block;}
+
+@media(max-width:768px){.fruits-grid{grid-template-columns:1fr;}.types-grid{grid-template-columns:repeat(3,1fr);}}.
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-wrap">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-icon">⚓</div>
+      <div><div class="logo-text">عالم ون بيس</div><div class="logo-sub">الموسوعة العربية الشاملة</div></div>
+    </a>
+    <a href="index.html" class="nav-back">← الرئيسية</a>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="breadcrumb">
+      <a href="index.html">الرئيسية</a><span>›</span><span>فواكه الشيطان</span>
+    </div>
+    <h1 class="page-title">🍎 فواكه <span>الشيطان</span></h1>
+    <p class="page-desc">قاعدة بيانات كاملة لفواكه الشيطان — مع أصحابها الحاليين والسابقين وقدراتها</p>
+    <div class="stats-bar">
+      <div><span class="stat-n" id="totalFruits">٠</span><div class="stat-l">فاكهة موثقة</div></div>
+      <div><span class="stat-n" id="awakenedCount">٠</span><div class="stat-l">فاكهة مُصحَّية</div></div>
+      <div><span class="stat-n" id="rareCount">٠</span><div class="stat-l">فاكهة نادرة</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TYPE CARDS -->
+<div class="types-section">
+  <div class="types-grid" id="typesGrid"></div>
+</div>
+
+<!-- FILTERS -->
+<div class="filters">
+  <div class="filter-row">
+    <div class="search-box">
+      <span>🔍</span>
+      <input type="text" id="searchInput" placeholder="ابحث باسم الفاكهة أو صاحبها..." oninput="render()">
+    </div>
+    <select class="filter-select" id="awakenedFilter" onchange="render()">
+      <option value="all">الكل</option>
+      <option value="true">مُصحَّية فقط</option>
+      <option value="false">غير مُصحَّية</option>
+    </select>
+    <select class="filter-select" id="rareFilter" onchange="render()">
+      <option value="all">الكل</option>
+      <option value="true">نادرة فقط</option>
+    </select>
+  </div>
+</div>
+
+<div class="main">
+  <div class="results-info">عرض <span id="countSpan">٠</span> فاكهة</div>
+  <div class="fruits-grid" id="fruitsGrid"></div>
+  <div class="no-results" id="noResults">🔍 لا توجد نتائج</div>
+</div>
+
+<script src="fruits-data.js"></script>
+<script>
+let activeType = 'all';
+
+// إحصاءات
+document.getElementById('totalFruits').textContent = DEVIL_FRUITS.length;
+document.getElementById('awakenedCount').textContent = DEVIL_FRUITS.filter(f=>f.awakened).length;
+document.getElementById('rareCount').textContent = DEVIL_FRUITS.filter(f=>f.rare).length;
+
+// بناء بطاقات الأنواع
+const typesGrid = document.getElementById('typesGrid');
+const typeEmojis = {logia:'⚡',paramecia:'💠','special-paramecia':'🌀',zoan:'🐉',mythical:'🌟'};
+
+// الكل أولاً
+const allCard = document.createElement('div');
+allCard.className = 'type-card active';
+allCard.style.cssText = `border-color:var(--gold);background:rgba(212,168,67,0.06)`;
+allCard.innerHTML = `<div class="type-emoji">🍎</div><div class="type-name" style="color:var(--gold)">الكل</div><div class="type-count">${DEVIL_FRUITS.length} فاكهة</div>`;
+allCard.onclick = () => setType('all', allCard, '#D4A843');
+typesGrid.appendChild(allCard);
+
+FRUIT_TYPES.forEach(t => {
+  const count = DEVIL_FRUITS.filter(f=>f.type===t.id).length;
+  const card = document.createElement('div');
+  card.className = 'type-card';
+  card.style.cssText = `border-color:${t.color}33`;
+  card.innerHTML = `<div class="type-emoji">${typeEmojis[t.id]||'🍎'}</div><div class="type-name" style="color:${t.color}">${t.name}</div><div class="type-count">${count} فاكهة</div>`;
+  card.onclick = () => setType(t.id, card, t.color);
+  typesGrid.appendChild(card);
+});
+
+function setType(type, card, color) {
+  activeType = type;
+  document.querySelectorAll('.type-card').forEach(c => {
+    c.classList.remove('active');
+    c.style.background = 'var(--bg3)';
+  });
+  card.classList.add('active');
+  card.style.background = color + '11';
+  render();
+}
+
+const typeClass = {logia:'type-logia',paramecia:'type-paramecia','special-paramecia':'type-special-paramecia',zoan:'type-zoan',mythical:'type-mythical'};
+
+function render() {
+  const s = document.getElementById('searchInput').value.toLowerCase();
+  const awk = document.getElementById('awakenedFilter').value;
+  const rare = document.getElementById('rareFilter').value;
+  const grid = document.getElementById('fruitsGrid');
+  const nr = document.getElementById('noResults');
+  grid.innerHTML = '';
+
+  const filtered = DEVIL_FRUITS.filter(f => {
+    const ms = !s || f.name.toLowerCase().includes(s) || f.nameEn.toLowerCase().includes(s) || f.currentOwner.toLowerCase().includes(s) || (f.prevOwner&&f.prevOwner.toLowerCase().includes(s));
+    const mt = activeType==='all' || f.type===activeType;
+    const ma = awk==='all' || String(f.awakened)===awk;
+    const mr = rare==='all' || String(f.rare)===rare;
+    return ms&&mt&&ma&&mr;
+  });
+
+  document.getElementById('countSpan').textContent = filtered.length;
+  nr.classList.toggle('show', filtered.length===0);
+
+  filtered.forEach((f,i) => {
+    const card = document.createElement('div');
+    card.className = 'fruit-card';
+    card.style.cssText = `opacity:0;transform:translateY(14px);transition:opacity 0.4s ease ${i*0.05}s,transform 0.4s ease ${i*0.05}s,border-color 0.3s,transform 0.3s,box-shadow 0.3s`;
+
+    const typeColor = FRUIT_TYPES.find(t=>t.id===f.type)?.color || '#D4A843';
+    card.style.setProperty('--hover-color', typeColor);
+
+    card.innerHTML = `
+      <div class="fruit-top">
+        <span class="fruit-type-badge ${typeClass[f.type]||''}">${f.typeLabel}</span>
+        ${f.rare?'<span class="rare-badge">⭐ نادرة</span>':''}
+        ${f.awakened?'<span class="awakened-badge">✨ مُصحَّية</span>':''}
+        <span class="fruit-emoji">${f.emoji}</span>
+        <div class="fruit-name">${f.name}</div>
+        <div class="fruit-name-en">${f.nameEn}</div>
+        <div class="fruit-ability">${f.ability}</div>
+      </div>
+      <div class="fruit-bottom">
+        <div class="owner-row">
+          <span class="owner-label">الصاحب الحالي</span>
+          <span class="owner-name">${f.currentOwner}</span>
+        </div>
+        ${f.prevOwner?`<div class="prev-owner">سابقاً: <span>${f.prevOwner}</span></div>`:''}
+        <span class="arc-tag">📖 ${f.arc}</span>
+      </div>
+      ${f.notes?`<div class="fruit-notes">💡 ${f.notes}</div>`:''}`;
+
+    card.addEventListener('mouseenter', () => { card.style.borderColor = typeColor + '66'; });
+    card.addEventListener('mouseleave', () => { card.style.borderColor = ''; });
+
+    grid.appendChild(card);
+    setTimeout(()=>{card.style.opacity='1';card.style.transform='translateY(0)';}, 50+i*50);
+  });
+}
+
+render();
+</script>
+</body>
+</html>
