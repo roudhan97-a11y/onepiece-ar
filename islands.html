@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="دليل شامل لجميع جزر ون بيس - من إيست بلو حتى الباف">
+  <title>الجزر والبحار | عالم ون بيس</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================
+       CSS VARIABLES & RESET
+    ============================================ */
+    :root {
+      --navy-deep: #070B14;
+      --navy-dark: #0D1421;
+      --navy-mid: #141E30;
+      --navy-light: #1C2A40;
+      --navy-border: #243050;
+
+      --gold-bright: #D4A843;
+      --gold-mid: #B8922E;
+      --gold-dark: #8A6B1E;
+      --gold-glow: rgba(212, 168, 67, 0.15);
+
+      --red-pirate: #C0392B;
+      --red-dark: #922B21;
+      --red-glow: rgba(192, 57, 43, 0.2);
+
+      --teal-sea: #1ABC9C;
+      --teal-dark: #148F77;
+
+      --white-warm: #F0E6D3;
+      --white-soft: #C8BBA8;
+      --white-dim: #8A8070;
+
+      --text-primary: #EDE3D0;
+      --text-secondary: #A09080;
+      --text-muted: #605850;
+
+      --font-display: 'Scheherazade New', serif;
+      --font-body: 'IBM Plex Sans Arabic', sans-serif;
+
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --radius-xl: 30px;
+
+      --shadow-gold: 0 0 30px rgba(212, 168, 67, 0.25);
+      --shadow-card: 0 8px 32px rgba(0,0,0,0.4);
+      --shadow-deep: 0 20px 60px rgba(0,0,0,0.6);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background-color: var(--navy-deep);
+      color: var(--text-primary);
+      line-height: 1.7;
+      overflow-x: hidden;
+      direction: rtl;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: 
+        radial-gradient(ellipse at 20% 50%, rgba(212,168,67,0.04) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(26,188,156,0.04) 0%, transparent 50%),
+        radial-gradient(ellipse at 60% 80%, rgba(192,57,43,0.04) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--navy-dark); }
+    ::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 3px; }
+
+    /* ============================================
+       NAVIGATION
+    ============================================ */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(7, 11, 20, 0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(212, 168, 67, 0.15);
+      transition: all 0.3s ease;
+    }
+
+    .nav-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .nav-logo-icon {
+      width: 42px;
+      height: 42px;
+      background: linear-gradient(135deg, var(--gold-bright), var(--gold-dark));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      box-shadow: 0 0 20px rgba(212,168,67,0.3);
+    }
+
+    .nav-logo-text {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--gold-bright);
+      line-height: 1.1;
+    }
+
+    .nav-logo-sub {
+      font-size: 0.65rem;
+      color: var(--text-secondary);
+      font-family: var(--font-body);
+      letter-spacing: 0.05em;
+      margin-top: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      font-weight: 500;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--gold-bright);
+      background: rgba(212, 168, 67, 0.08);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-back {
+      background: var(--navy-light);
+      border: 1px solid var(--navy-border);
+      color: var(--text-secondary);
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-back:hover {
+      border-color: var(--gold-mid);
+      color: var(--text-primary);
+    }
+
+    /* ============================================
+       HERO SECTION
+    ============================================ */
+    .hero {
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 70px;
+      background: linear-gradient(180deg, var(--navy-deep) 0%, #0A1628 40%, #061020 100%);
+    }
+
+    .hero-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: 
+        repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(26, 188, 156, 0.015) 60px, rgba(26, 188, 156, 0.015) 61px),
+        repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(212, 168, 67, 0.015) 60px, rgba(212, 168, 67, 0.015) 61px);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 60px 24px;
+      text-align: center;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 4vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      animation: fadeInDown 0.6s ease both;
+    }
+
+    .hero-title .gold { color: var(--gold-bright); text-shadow: 0 0 40px rgba(212,168,67,0.3); }
+    .hero-title .white { color: var(--white-warm); }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      max-width: 600px;
+      margin: 0 auto 40px;
+      animation: fadeInDown 0.6s 0.1s ease both;
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      animation: fadeInDown 0.6s 0.2s ease both;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--gold-bright);
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* ============================================
+       SECTION COMMONS
+    ============================================ */
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 80px 0;
+    }
+
+    .section-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--gold-bright);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 14px;
+    }
+
+    .section-eyebrow::before, .section-eyebrow::after {
+      content: '';
+      width: 30px;
+      height: 1px;
+      background: var(--gold-dark);
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      color: var(--white-warm);
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .section-desc {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      max-width: 550px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* ============================================
+       FILTER TABS
+    ============================================ */
+    .filter-tabs {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 50px;
+      flex-wrap: wrap;
+      animation: fadeInDown 0.6s ease both;
+    }
+
+    .filter-btn {
+      padding: 8px 20px;
+      border-radius: 100px;
+      border: 1px solid var(--navy-border);
+      background: transparent;
+      color: var(--text-secondary);
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-weight: 500;
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--gold-bright);
+      border-color: var(--gold-bright);
+      color: var(--navy-deep);
+      font-weight: 700;
+    }
+
+    /* ============================================
+       SEA SECTION
+    ============================================ */
+    .sea-section {
+      margin-bottom: 80px;
+      animation: fadeIn 0.5s ease both;
+    }
+
+    .sea-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 40px;
+      padding: 20px;
+      background: var(--navy-mid);
+      border: 1px solid var(--navy-border);
+      border-radius: var(--radius-lg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sea-header::before {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 100px;
+      background: radial-gradient(circle at right, var(--sea-color, rgba(212,168,67,0.08)), transparent);
+    }
+
+    .sea-icon {
+      font-size: 2.5rem;
+      flex-shrink: 0;
+      z-index: 1;
+    }
+
+    .sea-info {
+      flex: 1;
+      z-index: 1;
+    }
+
+    .sea-name {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--white-warm);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .sea-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .sea-count {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* ============================================
+       ISLANDS GRID
+    ============================================ */
+    .islands-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      margin-bottom: 60px;
+    }
+
+    .island-card {
+      background: var(--navy-mid);
+      border: 1px solid var(--navy-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: block;
+      position: relative;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .island-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--card-color, var(--gold-bright));
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
+      z-index: 1;
+    }
+
+    .island-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .island-card:hover {
+      border-color: var(--card-color, var(--gold-mid));
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-card);
+      background: var(--navy-light);
+    }
+
+    .island-header {
+      padding: 20px;
+      background: linear-gradient(135deg, rgba(20, 30, 48, 0.8), rgba(28, 42, 64, 0.8));
+      border-bottom: 1px solid var(--navy-border);
+      position: relative;
+    }
+
+    .island-emoji {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .island-name {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      color: var(--white-warm);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .island-nameEn {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-family: 'Courier New', monospace;
+    }
+
+    .island-type {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--card-color, var(--gold-bright));
+      margin-top: 8px;
+      padding: 3px 8px;
+      background: rgba(212, 168, 67, 0.1);
+      border-radius: 4px;
+    }
+
+    .island-body {
+      padding: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .island-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 16px;
+      flex: 1;
+    }
+
+    .island-events {
+      border-top: 1px solid var(--navy-border);
+      padding-top: 12px;
+      margin-top: auto;
+    }
+
+    .island-event-title {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .island-event-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .island-event {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      padding-right: 10px;
+      border-right: 2px solid var(--card-color, var(--gold-bright));
+      padding-right: 10px;
+      position: relative;
+    }
+
+    .island-event::before {
+      content: '★';
+      color: var(--card-color, var(--gold-bright));
+      margin-right: 6px;
+      font-size: 0.7rem;
+    }
+
+    /* ============================================
+       EMPTY STATE
+    ============================================ */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-secondary);
+    }
+
+    .empty-state-icon {
+      font-size: 3rem;
+      margin-bottom: 16px;
+    }
+
+    .empty-state-text {
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+    }
+
+    /* ============================================
+       SEARCH BOX
+    ============================================ */
+    .search-section {
+      padding: 60px 0;
+      background: var(--navy-mid);
+      margin-bottom: 40px;
+      border: 1px solid var(--navy-border);
+      border-radius: var(--radius-lg);
+    }
+
+    .search-container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .search-label {
+      font-size: 0.8rem;
+      color: var(--gold-bright);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      background: var(--navy-dark);
+      border: 2px solid var(--navy-border);
+      border-radius: var(--radius-md);
+      padding: 10px 16px;
+      gap: 12px;
+      transition: border-color 0.2s;
+    }
+
+    .search-box:focus-within {
+      border-color: var(--gold-mid);
+    }
+
+    .search-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--text-primary);
+      direction: rtl;
+    }
+
+    .search-input::placeholder {
+      color: var(--text-muted);
+    }
+
+    /* ============================================
+       SEPARATOR
+    ============================================ */
+    .sep {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to left, transparent, var(--navy-border), transparent);
+      margin: 0;
+    }
+
+    /* ============================================
+       FOOTER
+    ============================================ */
+    footer {
+      background: var(--navy-deep);
+      border-top: 1px solid var(--navy-border);
+      padding: 50px 0 20px;
+      margin-top: 60px;
+    }
+
+    .footer-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-col h4 {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gold-bright);
+      margin-bottom: 16px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-col a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover {
+      color: var(--text-primary);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid var(--navy-border);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* ============================================
+       ANIMATIONS
+    ============================================ */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ============================================
+       RESPONSIVE
+    ============================================ */
+    @media (max-width: 1024px) {
+      .nav-links { display: none; }
+      .footer-content { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .islands-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero { min-height: 50vh; }
+      .footer-content { grid-template-columns: 1fr; }
+      .sea-header { flex-direction: column; text-align: center; }
+      .sea-header::before { display: none; }
+    }
+
+    @media (max-width: 480px) {
+      .islands-grid { grid-template-columns: 1fr; }
+      .filter-tabs { gap: 6px; }
+      .filter-btn { padding: 6px 12px; font-size: 0.75rem; }
+      .hero-title { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-icon">🗺️</div>
+      <div>
+        <div class="nav-logo-text">الجزر والبحار</div>
+        <div class="nav-logo-sub">دليل عالم ون بيس</div>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html">الرئيسية</a></li>
+      <li><a href="characters.html">الشخصيات</a></li>
+      <li><a href="islands.html" class="active">الجزر</a></li>
+      <li><a href="#">الفواكه</a></li>
+      <li><a href="manga.html">المانغا</a></li>
+      <li><a href="#">المقالات</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <a href="index.html" class="btn-back">← رجوع للرئيسية</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">
+      <span class="gold">خريطة عالم ون بيس</span>
+      <span class="white">جزيرة بجزيرة</span>
+    </h1>
+    <p class="hero-subtitle">
+      استكشف كل جزيرة وبحر في عالم ون بيس — من إيست بلو الهادئ إلى الباف الأسطوري
+    </p>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-number">٢٢+</span>
+        <div class="stat-label">جزيرة موثقة</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">٤</span>
+        <div class="stat-label">بحار رئيسية</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">∞</span>
+        <div class="stat-label">أحداث تاريخية</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- MAIN CONTENT -->
+<section>
+  <div class="section-inner">
+    <!-- SEARCH -->
+    <div class="search-section">
+      <div class="search-container">
+        <div class="search-label">🔍 ابحث عن جزيرة</div>
+        <div class="search-box">
+          <input type="text" id="searchInput" class="search-input" placeholder="ابحث عن جزيرة أو بحر...">
+        </div>
+      </div>
+    </div>
+
+    <!-- FILTER TABS -->
+    <div class="filter-tabs">
+      <button class="filter-btn active" onclick="filterSea('all')">الكل</button>
+      <button class="filter-btn" onclick="filterSea('east-blue')">إيست بلو</button>
+      <button class="filter-btn" onclick="filterSea('grand-line')">الغراند لاين</button>
+      <button class="filter-btn" onclick="filterSea('new-world')">البحر الجديد</button>
+      <button class="filter-btn" onclick="filterSea('other')">أماكن خاصة</button>
+    </div>
+
+    <!-- SEAS CONTAINER -->
+    <div id="seasContainer"></div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-content">
+      <div>
+        <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.8;">
+          دليل شامل لكل جزيرة في عالم ون بيس مع وصف تفصيلي والأحداث الكبرى التي وقعت فيها. استكشف كل مكان زاره لوفي وطاقمه.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>الموسوعة</h4>
+        <ul>
+          <li><a href="characters.html">الشخصيات</a></li>
+          <li><a href="#">الفواكه</a></li>
+          <li><a href="manga.html">المانغا</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>التصفح</h4>
+        <ul>
+          <li><a href="index.html">الرئيسية</a></li>
+          <li><a href="#">الأركات</a></li>
+          <li><a href="#">النظريات</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © 2025 عالم ون بيس — جميع الحقوق محفوظة
+    </div>
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script>
+  // Import data (نفس طريقة العمل في الملفات الأخرى)
+  const SEAS = [
+    {
+      id: "east-blue",
+      name: "إيست بلو",
+      nameEn: "East Blue",
+      color: "#3498DB",
+      desc: "أضعف بحار العالم — لكنه شهد ميلاد أقوى القراصنة",
+      islands: [
+        { id: "foosha", name: "قرية فوشا", nameEn: "Foosha Village", emoji: "🏘️", arc: "رومانس داون", type: "قرية", desc: "القرية التي نشأ فيها لوفي وأول لقاء له بشانكس.", events: ["طفولة لوفي", "لوفي يأكل فاكهة غوم غوم", "شانكس يعطي لوفي قبعته"], residents: ["مونكي دي لوفي", "شانكس"] },
+        { id: "loguetown", name: "لوغ تاون", nameEn: "Loguetown", emoji: "☠️", arc: "لوغ تاون", type: "مدينة", desc: "مدينة ميلاد وإعدام روجر ملك القراصنة — بوابة الغراند لاين.", events: ["إعدام روجر", "لوفي ينجو من الإعدام", "دخول الغراند لاين"], residents: ["سموكر", "تاشيجي"] },
+        { id: "cocoyasi", name: "قرية كوكوياسي", nameEn: "Cocoyasi Village", emoji: "🌊", arc: "حديقة أرلونج", type: "قرية", desc: "قرية نامي التي عانت تحت سيطرة أرلونج لسنوات.", events: ["ماضي نامي", "لوفي يهزم أرلونج"], residents: ["نامي", "نوجيكو", "أرلونج"] },
+        { id: "baratie", name: "مطعم الباراتيه", nameEn: "Baratie", emoji: "🍽️", arc: "الباراتيه", type: "مطعم بحري", desc: "مطعم يطفو على البحر — مكان انضمام سانجي للطاقم.", events: ["لقاء سانجي", "ظهور ميهوك", "زورو يخسر لميهوك"], residents: ["سانجي", "زيف"] }
+      ]
+    },
+    {
+      id: "grand-line",
+      name: "الغراند لاين",
+      nameEn: "Grand Line",
+      color: "#E67E22",
+      desc: "أخطر وأغرب بحر في العالم — قلب أحداث ون بيس",
+      islands: [
+        { id: "alabasta", name: "مملكة ألاباستا", nameEn: "Alabasta Kingdom", emoji: "🏜️", arc: "ألاباستا", type: "مملكة صحراوية", desc: "مملكة الصحراء التي أنقذها لوفي من مؤامرة كروكودايل.", events: ["مؤامرة كروكودايل", "لوفي يهزم كروكودايل", "انضمام روبن"], residents: ["فيفي", "كوبرا", "كروكودايل"] },
+        { id: "skypiea", name: "سكاي بييا", nameEn: "Skypiea", emoji: "☁️", arc: "سكاي بييا", type: "جزيرة سماوية", desc: "جزيرة في السماء حكمها إيني بظلم قبل أن يهزمه لوفي.", events: ["معركة إيني", "اكتشاف Poneglyph"], residents: ["إيني", "غان فول"] },
+        { id: "water-seven", name: "ووتر سيفن", nameEn: "Water Seven", emoji: "🌊", arc: "ووتر سيفن", type: "مدينة مائية", desc: "مدينة السفن الشهيرة — مكان بناء وإصلاح أفضل السفن.", events: ["ظهور CP9", "خيانة روبن الظاهرة"], residents: ["فرانكي", "CP9"] },
+        { id: "enies-lobby", name: "إينيس لوبي", nameEn: "Enies Lobby", emoji: "🏛️", arc: "إينيس لوبي", type: "جزيرة قضائية", desc: "معقل الحكومة العالمية — أعلن لوفي الحرب عليها لإنقاذ روبن.", events: ["إنقاذ روبن", "حرق علم الحكومة", "لوفي vs لوتشي"], residents: ["CP9", "لوتشي"] },
+        { id: "sabaody", name: "أرشيبيلاغو ساباودي", nameEn: "Sabaody Archipelago", emoji: "🫧", arc: "ساباودي", type: "أرشيبيلاغو", desc: "بوابة البحر الجديد — أول لقاء بالسوبر نوفا.", events: ["لقاء السوبر نوفا", "انفصال قبعات القش"], residents: ["السوبر نوفا"] },
+        { id: "fishman-island", name: "جزيرة الأسماك", nameEn: "Fish-Man Island", emoji: "🐟", arc: "جزيرة الأسماك", type: "جزيرة تحت الماء", desc: "جزيرة قاع البحر — بوابة البحر الجديد الحقيقية.", events: ["أول آرك في البحر الجديد", "هزيمة هودي جونز"], residents: ["نيبتون", "هودي جونز"] }
+      ]
+    },
+    {
+      id: "new-world",
+      name: "البحر الجديد",
+      nameEn: "New World",
+      color: "#C0392B",
+      desc: "النصف الثاني من الغراند لاين — مسرح النصف الثاني من القصة",
+      islands: [
+        { id: "dressrosa", name: "دريسروزا", nameEn: "Dressrosa", emoji: "🌹", arc: "دريسروزا", type: "مملكة", desc: "مملكة الزهور التي سيطر عليها دوفلامينغو سراً لسنوات.", events: ["هزيمة دوفلامينغو", "ظهور سابو", "Gear Fourth أول مرة"], residents: ["دوفلامينغو", "سابو", "ريبيكا"] },
+        { id: "zou", name: "زو", nameEn: "Zou", emoji: "🐘", arc: "زو", type: "جزيرة على ظهر فيل", desc: "جزيرة تعيش على ظهر فيل عملاق — مقر قبيلة مينك.", events: ["لقاء قبيلة مينك", "خطة إنقاذ سانجي"], residents: ["نيكو", "بيدرو"] },
+        { id: "whole-cake", name: "Whole Cake Island", nameEn: "Whole Cake Island", emoji: "🎂", arc: "Whole Cake Island", type: "جزيرة بيغ مام", desc: "مملكة بيغ مام — جزيرة الحلوى والأطعمة الغريبة.", events: ["إنقاذ سانجي", "مواجهة بيغ مام"], residents: ["بيغ مام", "شارلوت كاتاكوري"] },
+        { id: "wano", name: "وانو", nameEn: "Wano Country", emoji: "⛩️", arc: "وانو", type: "مملكة مغلقة", desc: "البلد المغلق الياباني الطابع — مقر كايدو وثورة الساموراي.", events: ["ثورة وانو", "Gear Fifth أول مرة", "موت كايدو", "تتويج لوفي يونكو"], residents: ["كايدو", "كينيمون", "يامامو"] },
+        { id: "egghead", name: "إيغهيد", nameEn: "Egghead", emoji: "🥚", arc: "إيغهيد", type: "جزيرة مستقبلية", desc: "جزيرة المستقبل لعبقري الدنيا فيغاربنك.", events: ["لقاء فيغاربنك", "كشف أسرار الـ Void Century"], residents: ["فيغاربنك", "يورك"] },
+        { id: "elbaph", name: "الباف", nameEn: "Elbaph", emoji: "🏔️", arc: "الباف", type: "جزيرة العمالقة", desc: "أقدم جزيرة في العالم — موطن العمالقة. أحداث جارية.", events: ["أحداث جارية — آخر فصل 1182"], residents: ["عمالقة الباف"] }
+      ]
+    },
+    {
+      id: "other",
+      name: "أماكن خاصة",
+      nameEn: "Special Locations",
+      color: "#9B59B6",
+      desc: "الأماكن الفوق عادية — السماء والأعماق والغامضة",
+      islands: [
+        { id: "marineford", name: "مارينفورد", nameEn: "Marineford", emoji: "⚓", arc: "مارينفورد", type: "مقر البحرية", desc: "المقر الرئيسي للبحرية — مسرح حرب القمة الكبرى.", events: ["حرب القمة", "موت إيس", "موت وايتبيرد"], residents: ["سينغوكو", "غارب", "الأدميرالات"] },
+        { id: "impel-down", name: "إمبيل داون", nameEn: "Impel Down", emoji: "🔒", arc: "إمبيل داون", type: "سجن عملاق", desc: "أكبر وأقوى سجن في العالم — لا يخرج منه أحد.", events: ["لوفي يقتحم السجن", "تحرير السجناء"], residents: ["مجيلان", "هانيابال"] },
+        { id: "laugh-tale", name: "Laugh Tale", nameEn: "Laugh Tale", emoji: "🏴‍☠️", arc: "فلاش باك روجر", type: "الجزيرة النهائية", desc: "الجزيرة التي وصل إليها روجر وحده — تحتوي على الـ One Piece.", events: ["وصول روجر", "اكتشاف الـ One Piece", "تسمية الجزيرة Laugh Tale"], residents: ["روجر وطاقمه (سابقاً)"] }
+      ]
+    }
+  ];
+
+  let currentFilter = 'all';
+  let searchTerm = '';
+
+  // Render function
+  function renderIslands() {
+    const container = document.getElementById('seasContainer');
+    container.innerHTML = '';
+
+    SEAS.forEach((sea, index) => {
+      if (currentFilter !== 'all' && sea.id !== currentFilter) return;
+
+      const seaDiv = document.createElement('div');
+      seaDiv.className = 'sea-section';
+      seaDiv.style.setProperty('--sea-color', sea.color);
+
+      // Sea header
+      const headerDiv = document.createElement('div');
+      headerDiv.className = 'sea-header';
+      headerDiv.style.setProperty('--sea-color', sea.color + '15');
+
+      const emoji = sea.name.includes('إيست') ? '🌅' : sea.name.includes('الغراند') ? '🗺️' : sea.name.includes('الجديد') ? '⚔️' : '✨';
+
+      headerDiv.innerHTML = `
+        <div class="sea-icon">${emoji}</div>
+        <div class="sea-info">
+          <div class="sea-name">${sea.name}</div>
+          <div class="sea-desc">${sea.desc}</div>
+          <div class="sea-count">🏝️ ${sea.islands.length} جزيرة</div>
+        </div>
+      `;
+
+      seaDiv.appendChild(headerDiv);
+
+      // Islands grid
+      const gridDiv = document.createElement('div');
+      gridDiv.className = 'islands-grid';
+
+      sea.islands.forEach(island => {
+        if (searchTerm && !island.name.includes(searchTerm) && !island.nameEn.includes(searchTerm)) return;
+
+        const cardDiv = document.createElement('a');
+        cardDiv.href = '#';
+        cardDiv.className = 'island-card';
+        cardDiv.style.setProperty('--card-color', sea.color);
+        cardDiv.addEventListener('click', (e) => e.preventDefault());
+
+        const eventsHTML = island.events.map(event => `<div class="island-event">${event}</div>`).join('');
+
+        cardDiv.innerHTML = `
+          <div class="island-header">
+            <span class="island-emoji">${island.emoji}</span>
+            <div class="island-name">${island.name}</div>
+            <div class="island-nameEn">${island.nameEn}</div>
+            <span class="island-type">${island.type}</span>
+          </div>
+          <div class="island-body">
+            <div class="island-desc">${island.desc}</div>
+            <div class="island-events">
+              <div class="island-event-title">🎭 أحداث رئيسية</div>
+              <div class="island-event-list">
+                ${eventsHTML}
+              </div>
+            </div>
+          </div>
+        `;
+
+        gridDiv.appendChild(cardDiv);
+      });
+
+      seaDiv.appendChild(gridDiv);
+      container.appendChild(seaDiv);
+    });
+
+    // Check if no results
+    if (container.innerHTML === '') {
+      container.innerHTML = `
+        <div class="empty-state">
+          <div class="empty-state-icon">🗺️</div>
+          <div class="empty-state-text">لم يتم العثور على جزر بحسب بحثك</div>
+          <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 8px;">حاول كلمة بحث أخرى أو اختر مرشحاً مختلفاً</div>
+        </div>
+      `;
+    }
+  }
+
+  function filterSea(seaId) {
+    currentFilter = seaId;
+    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+    renderIslands();
+  }
+
+  // Search functionality
+  document.getElementById('searchInput').addEventListener('input', (e) => {
+    searchTerm = e.target.value;
+    renderIslands();
+  });
+
+  // Initial render
+  renderIslands();
+
+  // Scroll animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  setTimeout(() => {
+    document.querySelectorAll('.island-card').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+      observer.observe(el);
+    });
+  }, 300);
+
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('navbar');
+    if (window.scrollY > 50) {
+      navbar.style.background = 'rgba(7, 11, 20, 0.98)';
+      navbar.style.boxShadow = '0 4px 30px rgba(0,0,0,0.5)';
+    } else {
+      navbar.style.background = 'rgba(7, 11, 20, 0.92)';
+      navbar.style.boxShadow = 'none';
+    }
+  });
+</script>
+</body>
+</html>
