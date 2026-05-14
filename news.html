@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الأخبار | عالم ون بيس</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070B14;--bg2:#0D1421;--bg3:#141E30;--bg4:#1C2A40;--border:#243050;--border2:#2E3A56;--gold:#D4A843;--gold2:#B8902C;--gold3:#8A6B1E;--gold-glow:rgba(212,168,67,0.12);--red:#C0392B;--teal:#1ABC9C;--text:#EDE3D0;--text2:#A09080;--text3:#605850;--font:'IBM Plex Sans Arabic',sans-serif;--font-d:'Scheherazade New',serif;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);direction:rtl;overflow-x:hidden;line-height:1.7;}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--gold3);border-radius:3px;}
+nav{position:fixed;top:0;width:100%;background:rgba(7,11,20,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(212,168,67,0.12);z-index:1000;}
+.nav-wrap{max-width:1400px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:68px;}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.logo-icon{width:44px;height:44px;background:linear-gradient(135deg,var(--gold),var(--gold3));border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 0 20px rgba(212,168,67,0.25);}
+.logo-text{font-family:var(--font-d);font-size:1.35rem;color:var(--gold);font-weight:700;line-height:1.1;}
+.logo-sub{font-size:0.62rem;color:var(--text3);}
+.nav-back{display:flex;align-items:center;gap:8px;color:var(--text2);text-decoration:none;font-size:0.88rem;padding:8px 14px;border-radius:8px;border:1px solid var(--border);transition:all 0.2s;}
+.nav-back:hover{border-color:var(--gold2);color:var(--gold);}
+
+.page-hero{min-height:32vh;display:flex;align-items:flex-end;position:relative;overflow:hidden;padding-top:68px;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(192,57,43,0.06) 0%,transparent 60%),linear-gradient(180deg,#080C18 0%,var(--bg) 100%);}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,var(--bg) 0%,transparent 60%);}
+.hero-content{position:relative;z-index:2;max-width:1400px;margin:0 auto;padding:60px 24px 40px;width:100%;}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:0.78rem;color:var(--text3);margin-bottom:20px;}
+.breadcrumb a{color:var(--gold);text-decoration:none;}
+.page-title{font-family:var(--font-d);font-size:clamp(2rem,4vw,3rem);color:var(--text);font-weight:700;margin-bottom:8px;}
+.page-title span{color:var(--gold);}
+.page-desc{color:var(--text2);font-size:0.95rem;max-width:600px;line-height:1.8;}
+.live-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(192,57,43,0.1);border:1px solid rgba(192,57,43,0.25);color:#E74C3C;padding:6px 14px;border-radius:8px;font-size:0.78rem;font-weight:700;margin-top:14px;}
+.live-dot{width:7px;height:7px;background:#E74C3C;border-radius:50%;animation:pulse 1.5s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+
+/* CATEGORIES */
+.cats-section{max-width:1400px;margin:0 auto;padding:28px 24px 0;}
+.cats-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px;}
+.cat-btn{padding:8px 18px;border-radius:100px;border:1px solid var(--border);background:transparent;color:var(--text2);font-family:var(--font);font-size:0.82rem;cursor:pointer;transition:all 0.2s;white-space:nowrap;}
+.cat-btn.active,.cat-btn:hover{font-weight:700;}
+
+/* FILTERS */
+.filters{max-width:1400px;margin:0 auto;padding:0 24px 20px;}
+.search-box{display:flex;align-items:center;gap:10px;background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:10px 16px;transition:border-color 0.2s;}
+.search-box:focus-within{border-color:var(--gold2);}
+.search-box input{background:none;border:none;outline:none;font-family:var(--font);font-size:0.9rem;color:var(--text);width:100%;direction:rtl;}
+.search-box input::placeholder{color:var(--text3);}
+
+/* MAIN */
+.main{max-width:1400px;margin:0 auto;padding:0 24px 80px;}
+.results-info{font-size:0.82rem;color:var(--text3);margin-bottom:20px;}
+.results-info span{color:var(--gold);font-weight:600;}
+
+/* BREAKING */
+.breaking-section{margin-bottom:36px;}
+.breaking-label{font-size:0.78rem;font-weight:700;color:#E74C3C;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.breaking-label::before{content:'';width:8px;height:8px;background:#E74C3C;border-radius:50%;animation:pulse 1.5s ease-in-out infinite;}
+.breaking-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;}
+
+.news-breaking{background:var(--bg3);border:1px solid rgba(192,57,43,0.25);border-radius:14px;padding:20px;transition:all 0.3s;cursor:pointer;position:relative;overflow:hidden;}
+.news-breaking::before{content:'';position:absolute;top:0;right:0;width:3px;height:100%;background:#E74C3C;}
+.news-breaking:hover{border-color:rgba(192,57,43,0.4);transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,0,0,0.4);}
+.breaking-tag{display:inline-flex;align-items:center;gap:5px;font-size:0.65rem;font-weight:800;color:#E74C3C;background:rgba(192,57,43,0.1);border:1px solid rgba(192,57,43,0.2);padding:2px 8px;border-radius:4px;margin-bottom:10px;}
+.news-emoji{font-size:1.6rem;margin-bottom:8px;display:block;}
+.news-cat{font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;}
+.news-title{font-family:var(--font-d);font-size:1rem;font-weight:700;color:var(--text);line-height:1.4;margin-bottom:8px;}
+.news-excerpt{font-size:0.82rem;color:var(--text2);line-height:1.65;margin-bottom:10px;}
+.news-meta{display:flex;align-items:center;gap:8px;font-size:0.7rem;color:var(--text3);}
+.news-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px;}
+.ntag{font-size:0.63rem;color:var(--text3);background:var(--bg2);border:1px solid var(--border);padding:2px 7px;border-radius:4px;}
+
+/* ALL NEWS */
+.all-news-section{margin-top:12px;}
+.all-news-label{font-size:0.78rem;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:14px;}
+.news-list{display:flex;flex-direction:column;gap:10px;}
+
+.news-row{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:16px 18px;display:flex;align-items:center;gap:14px;transition:all 0.2s;cursor:pointer;}
+.news-row:hover{border-color:var(--border2);background:var(--bg4);}
+.nr-emoji{font-size:1.8rem;width:48px;height:48px;background:var(--bg2);border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid var(--border);}
+.nr-content{flex:1;}
+.nr-cat{font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:3px;}
+.nr-title{font-size:0.9rem;font-weight:600;color:var(--text);margin-bottom:3px;line-height:1.4;}
+.nr-excerpt{font-size:0.76rem;color:var(--text2);display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;}
+.nr-date{font-size:0.7rem;color:var(--text3);white-space:nowrap;}
+
+.no-results{text-align:center;padding:60px 20px;color:var(--text3);display:none;}
+.no-results.show{display:block;}
+
+@media(max-width:768px){.breaking-grid{grid-template-columns:1fr;}.news-row{flex-direction:column;align-items:flex-start;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-wrap">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-icon">⚓</div>
+      <div><div class="logo-text">عالم ون بيس</div><div class="logo-sub">الموسوعة العربية الشاملة</div></div>
+    </a>
+    <a href="index.html" class="nav-back">← الرئيسية</a>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="breadcrumb"><a href="index.html">الرئيسية</a><span>›</span><span>الأخبار</span></div>
+    <h1 class="page-title">📢 <span>أخبار</span> ون بيس</h1>
+    <p class="page-desc">آخر أخبار المانغا والأنمي واللايف أكشن — محدّث باستمرار</p>
+    <div class="live-badge"><div class="live-dot"></div>مباشر — آخر تحديث: الفصل 1182</div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<div class="cats-section">
+  <div class="cats-row" id="catsRow">
+    <button class="cat-btn active" onclick="setCat('all',this,'#D4A843')">📰 الكل</button>
+  </div>
+</div>
+
+<!-- FILTERS -->
+<div class="filters">
+  <div class="search-box">
+    <span>🔍</span>
+    <input type="text" id="searchInput" placeholder="ابحث في الأخبار..." oninput="render()">
+  </div>
+</div>
+
+<div class="main">
+  <div class="results-info">عرض <span id="countSpan">٠</span> خبر</div>
+
+  <!-- BREAKING -->
+  <div class="breaking-section" id="breakingSection">
+    <div class="breaking-label">عاجل</div>
+    <div class="breaking-grid" id="breakingGrid"></div>
+  </div>
+
+  <!-- ALL NEWS -->
+  <div class="all-news-section" id="allSection">
+    <div class="all-news-label">📋 جميع الأخبار</div>
+    <div class="news-list" id="newsList"></div>
+  </div>
+
+  <div class="no-results" id="noResults">🔍 لا توجد نتائج</div>
+</div>
+
+<script src="content-data.js"></script>
+<script>
+let activeCategory = 'all';
+
+// بناء الكاتيغوري
+const catsRow = document.getElementById('catsRow');
+NEWS_CATEGORIES.forEach(c => {
+  const count = NEWS.filter(n=>n.category===c.id).length;
+  const btn = document.createElement('button');
+  btn.className = 'cat-btn';
+  btn.style.cssText = `border-color:${c.color}33`;
+  btn.innerHTML = `<span style="color:${c.color}">${c.label}</span> (${count})`;
+  btn.onclick = () => setCat(c.id, btn, c.color);
+  catsRow.appendChild(btn);
+});
+
+function setCat(cat, btn, color) {
+  activeCategory = cat;
+  document.querySelectorAll('.cat-btn').forEach(b => {
+    b.classList.remove('active');
+    b.style.background = 'transparent';
+    b.style.borderColor = '';
+  });
+  btn.classList.add('active');
+  btn.style.background = color + '15';
+  btn.style.borderColor = color + '55';
+  render();
+}
+
+function getCatColor(catId) {
+  return NEWS_CATEGORIES.find(c=>c.id===catId)?.color || '#D4A843';
+}
+
+function render() {
+  const s = document.getElementById('searchInput').value.toLowerCase();
+  const filtered = NEWS.filter(n => {
+    const ms = !s || n.title.toLowerCase().includes(s) || n.excerpt.toLowerCase().includes(s) || n.tags.some(t=>t.toLowerCase().includes(s));
+    const mc = activeCategory==='all' || n.category===activeCategory;
+    return ms&&mc;
+  });
+
+  document.getElementById('countSpan').textContent = filtered.length;
+  document.getElementById('noResults').classList.toggle('show', filtered.length===0);
+
+  const breaking = filtered.filter(n=>n.breaking);
+  const rest = filtered.filter(n=>!n.breaking);
+
+  // Breaking
+  const bg = document.getElementById('breakingGrid');
+  const bs = document.getElementById('breakingSection');
+  bg.innerHTML = '';
+  bs.style.display = breaking.length ? 'block' : 'none';
+
+  breaking.forEach((n,i) => {
+    const color = getCatColor(n.category);
+    const el = document.createElement('div');
+    el.className = 'news-breaking';
+    el.style.cssText = `opacity:0;transform:translateY(12px);transition:opacity 0.4s ease ${i*0.08}s,transform 0.4s ease ${i*0.08}s`;
+    el.innerHTML = `
+      <div class="breaking-tag">⚡ عاجل</div>
+      <span class="news-emoji">${n.emoji}</span>
+      <div class="news-cat" style="color:${color}">${n.categoryLabel}</div>
+      <div class="news-title">${n.title}</div>
+      <div class="news-excerpt">${n.excerpt}</div>
+      <div class="news-meta">
+        <span>${n.date}</span>
+      </div>
+      <div class="news-tags">${n.tags.map(t=>`<span class="ntag">${t}</span>`).join('')}</div>`;
+    bg.appendChild(el);
+    setTimeout(()=>{el.style.opacity='1';el.style.transform='translateY(0)';},50+i*80);
+  });
+
+  // All
+  const nl = document.getElementById('newsList');
+  const as = document.getElementById('allSection');
+  nl.innerHTML = '';
+  as.style.display = rest.length ? 'block' : 'none';
+
+  rest.forEach((n,i) => {
+    const color = getCatColor(n.category);
+    const el = document.createElement('div');
+    el.className = 'news-row';
+    el.style.cssText = `opacity:0;transform:translateY(10px);transition:opacity 0.3s ease ${i*0.05}s,transform 0.3s ease ${i*0.05}s`;
+    el.innerHTML = `
+      <div class="nr-emoji">${n.emoji}</div>
+      <div class="nr-content">
+        <div class="nr-cat" style="color:${color}">${n.categoryLabel}</div>
+        <div class="nr-title">${n.title}</div>
+        <div class="nr-excerpt">${n.excerpt}</div>
+      </div>
+      <div class="nr-date">${n.date}</div>`;
+    nl.appendChild(el);
+    setTimeout(()=>{el.style.opacity='1';el.style.transform='translateY(0)';},50+i*50);
+  });
+}
+
+render();
+</script>
+</body>
+</html>

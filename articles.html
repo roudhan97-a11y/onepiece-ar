@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المقالات | عالم ون بيس</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070B14;--bg2:#0D1421;--bg3:#141E30;--bg4:#1C2A40;--border:#243050;--border2:#2E3A56;--gold:#D4A843;--gold2:#B8902C;--gold3:#8A6B1E;--gold-glow:rgba(212,168,67,0.12);--red:#C0392B;--teal:#1ABC9C;--text:#EDE3D0;--text2:#A09080;--text3:#605850;--font:'IBM Plex Sans Arabic',sans-serif;--font-d:'Scheherazade New',serif;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);direction:rtl;overflow-x:hidden;line-height:1.7;}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--gold3);border-radius:3px;}
+nav{position:fixed;top:0;width:100%;background:rgba(7,11,20,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(212,168,67,0.12);z-index:1000;}
+.nav-wrap{max-width:1400px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:68px;}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.logo-icon{width:44px;height:44px;background:linear-gradient(135deg,var(--gold),var(--gold3));border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 0 20px rgba(212,168,67,0.25);}
+.logo-text{font-family:var(--font-d);font-size:1.35rem;color:var(--gold);font-weight:700;line-height:1.1;}
+.logo-sub{font-size:0.62rem;color:var(--text3);}
+.nav-back{display:flex;align-items:center;gap:8px;color:var(--text2);text-decoration:none;font-size:0.88rem;padding:8px 14px;border-radius:8px;border:1px solid var(--border);transition:all 0.2s;}
+.nav-back:hover{border-color:var(--gold2);color:var(--gold);}
+
+.page-hero{min-height:34vh;display:flex;align-items:flex-end;position:relative;overflow:hidden;padding-top:68px;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 60% 30%,rgba(155,89,182,0.05) 0%,transparent 60%),linear-gradient(180deg,#080C18 0%,var(--bg) 100%);}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,var(--bg) 0%,transparent 60%);}
+.hero-content{position:relative;z-index:2;max-width:1400px;margin:0 auto;padding:60px 24px 40px;width:100%;}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:0.78rem;color:var(--text3);margin-bottom:20px;}
+.breadcrumb a{color:var(--gold);text-decoration:none;}
+.page-title{font-family:var(--font-d);font-size:clamp(2rem,4vw,3rem);color:var(--text);font-weight:700;margin-bottom:8px;}
+.page-title span{color:var(--gold);}
+.page-desc{color:var(--text2);font-size:0.95rem;max-width:600px;line-height:1.8;}
+.stats-bar{display:flex;gap:20px;flex-wrap:wrap;margin-top:20px;padding-top:20px;border-top:1px solid var(--border);}
+.stat-n{font-family:var(--font-d);font-size:1.5rem;color:var(--gold);font-weight:700;display:block;}
+.stat-l{font-size:0.72rem;color:var(--text3);}
+
+/* CATEGORY CARDS */
+.cats-section{max-width:1400px;margin:0 auto;padding:32px 24px 0;}
+.cats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:28px;}
+.cat-card{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:14px;cursor:pointer;transition:all 0.2s;text-align:center;}
+.cat-card:hover,.cat-card.active{transform:translateY(-2px);}
+.cat-emoji{font-size:1.5rem;margin-bottom:6px;}
+.cat-name{font-size:0.8rem;font-weight:700;margin-bottom:3px;}
+.cat-count{font-size:0.68rem;color:var(--text3);}
+
+/* FILTERS */
+.filters{max-width:1400px;margin:0 auto;padding:0 24px 24px;}
+.search-box{display:flex;align-items:center;gap:10px;background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:10px 16px;transition:border-color 0.2s;}
+.search-box:focus-within{border-color:var(--gold2);}
+.search-box input{background:none;border:none;outline:none;font-family:var(--font);font-size:0.9rem;color:var(--text);width:100%;direction:rtl;}
+.search-box input::placeholder{color:var(--text3);}
+
+/* MAIN */
+.main{max-width:1400px;margin:0 auto;padding:0 24px 80px;}
+.results-info{font-size:0.82rem;color:var(--text3);margin-bottom:20px;}
+.results-info span{color:var(--gold);font-weight:600;}
+
+/* FEATURED */
+.featured-section{margin-bottom:40px;}
+.featured-title{font-size:0.8rem;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px;}
+.featured-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:18px;}
+
+.article-feat{background:var(--bg3);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all 0.3s;cursor:pointer;}
+.article-feat:hover{border-color:var(--gold2);transform:translateY(-4px);box-shadow:0 14px 38px rgba(0,0,0,0.4);}
+.feat-top{height:110px;display:flex;align-items:center;justify-content:center;font-size:3.5rem;position:relative;}
+.feat-top::after{content:'';position:absolute;bottom:0;right:0;left:0;height:40px;background:linear-gradient(to top,var(--bg3),transparent);}
+.feat-badge{position:absolute;top:10px;right:10px;font-size:0.62rem;font-weight:800;padding:3px 10px;border-radius:5px;}
+.feat-body{padding:18px;}
+.feat-cat{font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;}
+.feat-title{font-family:var(--font-d);font-size:1.1rem;color:var(--text);font-weight:700;line-height:1.4;margin-bottom:8px;}
+.feat-excerpt{font-size:0.82rem;color:var(--text2);line-height:1.65;margin-bottom:12px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.feat-meta{display:flex;align-items:center;gap:12px;font-size:0.72rem;color:var(--text3);}
+.feat-views{margin-right:auto;color:var(--gold);}
+
+/* ALL ARTICLES */
+.articles-list{display:flex;flex-direction:column;gap:12px;}
+.article-row{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:18px 20px;display:flex;align-items:center;gap:16px;transition:all 0.2s;cursor:pointer;}
+.article-row:hover{border-color:var(--gold2);background:var(--bg4);}
+.ar-emoji{font-size:2rem;width:52px;height:52px;background:var(--bg2);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid var(--border);}
+.ar-content{flex:1;}
+.ar-cat{font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;}
+.ar-title{font-size:0.92rem;font-weight:600;color:var(--text);margin-bottom:4px;line-height:1.4;}
+.ar-excerpt{font-size:0.78rem;color:var(--text2);line-height:1.5;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;}
+.ar-meta{display:flex;align-items:center;gap:10px;margin-top:6px;font-size:0.7rem;color:var(--text3);}
+.ar-views{color:var(--gold);}
+.ar-tags{display:none;}
+
+.sep{height:1px;background:linear-gradient(to left,transparent,var(--border),transparent);margin:28px 0;}
+
+.no-results{text-align:center;padding:60px 20px;color:var(--text3);display:none;}
+.no-results.show{display:block;}
+
+@media(max-width:768px){.featured-grid{grid-template-columns:1fr;}.cats-grid{grid-template-columns:repeat(3,1fr);}.article-row{flex-direction:column;align-items:flex-start;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-wrap">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-icon">⚓</div>
+      <div><div class="logo-text">عالم ون بيس</div><div class="logo-sub">الموسوعة العربية الشاملة</div></div>
+    </a>
+    <a href="index.html" class="nav-back">← الرئيسية</a>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="breadcrumb"><a href="index.html">الرئيسية</a><span>›</span><span>المقالات</span></div>
+    <h1 class="page-title">📝 <span>المقالات</span> والنظريات</h1>
+    <p class="page-desc">نظريات وتحليلات وتصنيفات ومراجعات عميقة — كل شيء عن عالم ون بيس بالعربية</p>
+    <div class="stats-bar">
+      <div><span class="stat-n" id="totalArticles">٠</span><div class="stat-l">مقال</div></div>
+      <div><span class="stat-n" id="featuredCount">٠</span><div class="stat-l">مقال مميز</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<div class="cats-section">
+  <div class="cats-grid" id="catsGrid"></div>
+</div>
+
+<!-- FILTERS -->
+<div class="filters">
+  <div class="search-box">
+    <span>🔍</span>
+    <input type="text" id="searchInput" placeholder="ابحث في المقالات..." oninput="render()">
+  </div>
+</div>
+
+<div class="main">
+  <div class="results-info">عرض <span id="countSpan">٠</span> مقال</div>
+
+  <!-- FEATURED -->
+  <div class="featured-section" id="featuredSection">
+    <div class="featured-title">⭐ المقالات المميزة</div>
+    <div class="featured-grid" id="featuredGrid"></div>
+  </div>
+
+  <div class="sep" id="sep"></div>
+
+  <!-- ALL -->
+  <div class="articles-list" id="articlesList"></div>
+  <div class="no-results" id="noResults">🔍 لا توجد نتائج</div>
+</div>
+
+<script src="content-data.js"></script>
+<script>
+let activeCategory = 'all';
+
+document.getElementById('totalArticles').textContent = ARTICLES.length;
+document.getElementById('featuredCount').textContent = ARTICLES.filter(a=>a.featured).length;
+
+// بناء الكاتيغوري
+const catsGrid = document.getElementById('catsGrid');
+const allCat = document.createElement('div');
+allCat.className = 'cat-card active';
+allCat.style.cssText = `border-color:var(--gold);background:rgba(212,168,67,0.06)`;
+allCat.innerHTML = `<div class="cat-emoji">📝</div><div class="cat-name" style="color:var(--gold)">الكل</div><div class="cat-count">${ARTICLES.length} مقال</div>`;
+allCat.onclick = () => setCat('all', allCat, '#D4A843');
+catsGrid.appendChild(allCat);
+
+ARTICLE_CATEGORIES.forEach(c => {
+  const count = ARTICLES.filter(a=>a.category===c.id).length;
+  const card = document.createElement('div');
+  card.className = 'cat-card';
+  card.style.cssText = `border-color:${c.color}33`;
+  card.innerHTML = `<div class="cat-emoji">${c.emoji}</div><div class="cat-name" style="color:${c.color}">${c.label}</div><div class="cat-count">${count} مقال</div>`;
+  card.onclick = () => setCat(c.id, card, c.color);
+  catsGrid.appendChild(card);
+});
+
+function setCat(cat, card, color) {
+  activeCategory = cat;
+  document.querySelectorAll('.cat-card').forEach(c => { c.classList.remove('active'); c.style.background='var(--bg3)'; });
+  card.classList.add('active');
+  card.style.background = color + '11';
+  render();
+}
+
+function getCatColor(catId) {
+  return ARTICLE_CATEGORIES.find(c=>c.id===catId)?.color || '#D4A843';
+}
+
+function render() {
+  const s = document.getElementById('searchInput').value.toLowerCase();
+  const filtered = ARTICLES.filter(a => {
+    const ms = !s || a.title.toLowerCase().includes(s) || a.excerpt.toLowerCase().includes(s) || a.tags.some(t=>t.toLowerCase().includes(s));
+    const mc = activeCategory==='all' || a.category===activeCategory;
+    return ms && mc;
+  });
+
+  document.getElementById('countSpan').textContent = filtered.length;
+  document.getElementById('noResults').classList.toggle('show', filtered.length===0);
+
+  const featured = filtered.filter(a=>a.featured);
+  const rest = filtered.filter(a=>!a.featured);
+
+  // Featured
+  const fg = document.getElementById('featuredGrid');
+  const fs = document.getElementById('featuredSection');
+  const sep = document.getElementById('sep');
+  fg.innerHTML = '';
+  fs.style.display = featured.length ? 'block' : 'none';
+  sep.style.display = featured.length && rest.length ? 'block' : 'none';
+
+  featured.forEach((a,i) => {
+    const color = getCatColor(a.category);
+    const el = document.createElement('div');
+    el.className = 'article-feat';
+    el.style.cssText = `opacity:0;transform:translateY(14px);transition:opacity 0.4s ease ${i*0.08}s,transform 0.4s ease ${i*0.08}s`;
+    el.innerHTML = `
+      <div class="feat-top" style="background:linear-gradient(135deg,${color}15,${color}05)">
+        ${a.emoji}
+        <span class="feat-badge" style="background:${color}22;color:${color};border:1px solid ${color}44">${a.categoryLabel}</span>
+      </div>
+      <div class="feat-body">
+        <div class="feat-cat" style="color:${color}">${a.categoryLabel}</div>
+        <div class="feat-title">${a.title}</div>
+        <div class="feat-excerpt">${a.excerpt}</div>
+        <div class="feat-meta">
+          <span>${a.author}</span>
+          <span>•</span>
+          <span>${a.readTime}</span>
+          <span class="feat-views">👁️ ${a.views}</span>
+        </div>
+      </div>`;
+    fg.appendChild(el);
+    setTimeout(()=>{el.style.opacity='1';el.style.transform='translateY(0)';},50+i*80);
+  });
+
+  // Rest
+  const al = document.getElementById('articlesList');
+  al.innerHTML = '';
+  rest.forEach((a,i) => {
+    const color = getCatColor(a.category);
+    const el = document.createElement('div');
+    el.className = 'article-row';
+    el.style.cssText = `opacity:0;transform:translateY(10px);transition:opacity 0.3s ease ${i*0.05}s,transform 0.3s ease ${i*0.05}s`;
+    el.innerHTML = `
+      <div class="ar-emoji">${a.emoji}</div>
+      <div class="ar-content">
+        <div class="ar-cat" style="color:${color}">${a.categoryLabel}</div>
+        <div class="ar-title">${a.title}</div>
+        <div class="ar-excerpt">${a.excerpt}</div>
+        <div class="ar-meta">
+          <span>${a.author}</span>
+          <span>•</span>
+          <span>${a.readTime}</span>
+          <span>•</span>
+          <span>${a.date}</span>
+          <span class="ar-views">👁️ ${a.views}</span>
+        </div>
+      </div>`;
+    al.appendChild(el);
+    setTimeout(()=>{el.style.opacity='1';el.style.transform='translateY(0)';},50+i*50);
+  });
+}
+
+render();
+</script>
+</body>
+</html>
