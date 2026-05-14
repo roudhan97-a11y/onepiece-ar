@@ -294,6 +294,7 @@ const FRUIT_TYPES = [
   { id: "zoan", name: "زون", color: "#2ECC71" },
   { id: "mythical", name: "زون خرافية", color: "#9B59B6" }
 ];
+
 ,{
   id: "test-test",
   name: "تجربة",
