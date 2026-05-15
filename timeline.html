@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الخط الزمني | عالم ون بيس</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#070B14;--bg2:#0D1421;--bg3:#141E30;--bg4:#1C2A40;
+  --border:#243050;--border2:#2E3A56;
+  --gold:#D4A843;--gold2:#B8902C;--gold3:#8A6B1E;
+  --gold-glow:rgba(212,168,67,0.12);
+  --red:#C0392B;--teal:#1ABC9C;
+  --text:#EDE3D0;--text2:#A09080;--text3:#605850;
+  --font:'IBM Plex Sans Arabic',sans-serif;
+  --font-d:'Scheherazade New',serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);direction:rtl;overflow-x:hidden;line-height:1.7;}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--gold3);border-radius:3px;}
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;background:rgba(7,11,20,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(212,168,67,0.12);z-index:1000;}
+.nav-wrap{max-width:1400px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:68px;}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.logo-icon{width:44px;height:44px;background:linear-gradient(135deg,var(--gold),var(--gold3));border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 0 20px rgba(212,168,67,0.25);}
+.logo-text{font-family:var(--font-d);font-size:1.35rem;color:var(--gold);font-weight:700;line-height:1.1;}
+.logo-sub{font-size:0.62rem;color:var(--text3);}
+.nav-back{display:flex;align-items:center;gap:8px;color:var(--text2);text-decoration:none;font-size:0.88rem;padding:8px 14px;border-radius:8px;border:1px solid var(--border);transition:all 0.2s;}
+.nav-back:hover{border-color:var(--gold2);color:var(--gold);}
+
+/* HERO */
+.page-hero{min-height:40vh;display:flex;align-items:flex-end;position:relative;overflow:hidden;padding-top:68px;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 20%,rgba(212,168,67,0.07) 0%,transparent 60%),linear-gradient(180deg,#060910 0%,var(--bg) 100%);}
+.hero-bg::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 59px,rgba(212,168,67,0.025) 59px,rgba(212,168,67,0.025) 60px),repeating-linear-gradient(90deg,transparent,transparent 59px,rgba(212,168,67,0.025) 59px,rgba(212,168,67,0.025) 60px);}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,var(--bg) 0%,transparent 60%);}
+.hero-content{position:relative;z-index:2;max-width:1400px;margin:0 auto;padding:60px 24px 40px;width:100%;}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:0.78rem;color:var(--text3);margin-bottom:20px;}
+.breadcrumb a{color:var(--gold);text-decoration:none;}
+.page-title{font-family:var(--font-d);font-size:clamp(2.2rem,4vw,3.5rem);color:var(--text);font-weight:700;margin-bottom:8px;}
+.page-title span{color:var(--gold);}
+.page-desc{color:var(--text2);font-size:0.95rem;max-width:700px;line-height:1.8;}
+.credit{font-size:0.75rem;color:var(--text3);margin-top:10px;}
+.credit a{color:var(--gold3);}
+
+.stats-bar{display:flex;gap:20px;flex-wrap:wrap;margin-top:22px;padding-top:20px;border-top:1px solid var(--border);}
+.stat-n{font-family:var(--font-d);font-size:1.5rem;color:var(--gold);font-weight:700;display:block;}
+.stat-l{font-size:0.72rem;color:var(--text3);}
+
+/* FILTERS */
+.filters{max-width:1400px;margin:0 auto;padding:28px 24px 20px;}
+.filter-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;}
+.search-box{display:flex;align-items:center;gap:10px;background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:10px 16px;flex:1;min-width:240px;transition:border-color 0.2s;}
+.search-box:focus-within{border-color:var(--gold2);}
+.search-box input{background:none;border:none;outline:none;font-family:var(--font);font-size:0.9rem;color:var(--text);width:100%;direction:rtl;}
+.search-box input::placeholder{color:var(--text3);}
+.filter-select{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:10px 14px;color:var(--text2);font-family:var(--font);font-size:0.85rem;cursor:pointer;outline:none;direction:rtl;}
+.tabs-row{display:flex;gap:8px;flex-wrap:wrap;}
+.tab{padding:6px 14px;border-radius:100px;border:1px solid var(--border);background:transparent;color:var(--text2);font-family:var(--font);font-size:0.8rem;cursor:pointer;transition:all 0.2s;white-space:nowrap;}
+.tab.active,.tab:hover{background:var(--gold);border-color:var(--gold);color:var(--bg);font-weight:700;}
+
+/* MAIN */
+.main{max-width:1200px;margin:0 auto;padding:0 24px 80px;}
+.results-info{font-size:0.82rem;color:var(--text3);margin-bottom:28px;}
+.results-info span{color:var(--gold);font-weight:600;}
+
+/* ERA SECTION */
+.era-section{margin-bottom:60px;}
+.era-header{display:flex;align-items:center;gap:16px;margin-bottom:28px;position:sticky;top:68px;z-index:10;background:var(--bg);padding:12px 0;border-bottom:2px solid var(--border);}
+.era-icon{font-size:1.8rem;width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.era-name{font-family:var(--font-d);font-size:1.3rem;font-weight:700;color:var(--text);}
+.era-range{font-size:0.75rem;color:var(--text3);margin-top:2px;}
+.era-count{margin-right:auto;font-size:0.72rem;color:var(--text3);background:var(--bg3);border:1px solid var(--border);padding:3px 10px;border-radius:6px;white-space:nowrap;}
+
+/* TIMELINE */
+.timeline{position:relative;padding-right: 28px;}
+.timeline::before{content:'';position:absolute;right:10px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--era-color,var(--gold3)),transparent);}
+
+/* EVENT CARD */
+.event-item{position:relative;margin-bottom:20px;padding-right:30px;}
+.event-item::before{content:'';position:absolute;right:-18px;top:20px;width:12px;height:12px;border-radius:50%;background:var(--era-color,var(--gold3));border:2px solid var(--bg);box-shadow:0 0 0 3px var(--era-color,var(--gold3))20;}
+.event-item.critical::before{width:16px;height:16px;right:-20px;top:18px;box-shadow:0 0 12px var(--era-color,var(--gold));}
+
+.event-card{background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:18px 20px;transition:all 0.3s;position:relative;overflow:hidden;}
+.event-card:hover{border-color:var(--era-color,var(--gold2));transform:translateX(-4px);box-shadow:0 8px 30px rgba(0,0,0,0.4);}
+.event-card.critical{border-right:3px solid var(--era-color,var(--gold));}
+.event-card::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;background:var(--era-color,var(--gold3));opacity:0;transition:opacity 0.3s;}
+.event-card:hover::before{opacity:1;}
+
+.event-top{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;}
+.event-year{font-size:0.7rem;font-weight:700;color:var(--era-color,var(--gold));background:rgba(212,168,67,0.08);border:1px solid rgba(212,168,67,0.15);padding:3px 10px;border-radius:5px;white-space:nowrap;flex-shrink:0;margin-top:2px;}
+.event-type-badge{font-size:0.62rem;font-weight:700;padding:3px 8px;border-radius:4px;flex-shrink:0;margin-top:2px;}
+.critical-badge{position:absolute;top:12px;left:12px;font-size:0.62rem;font-weight:800;color:var(--era-color,var(--gold));background:var(--era-color-bg,rgba(212,168,67,0.08));border:1px solid var(--era-color-border,rgba(212,168,67,0.2));padding:2px 8px;border-radius:4px;}
+
+.event-title{font-family:var(--font-d);font-size:1.05rem;font-weight:700;color:var(--text);line-height:1.4;margin-bottom:8px;}
+.event-desc{font-size:0.85rem;color:var(--text2);line-height:1.75;}
+
+.event-footer{display:flex;align-items:center;gap:8px;margin-top:12px;flex-wrap:wrap;}
+.event-source{font-size:0.68rem;color:var(--text3);background:var(--bg2);border:1px solid var(--border);padding:2px 8px;border-radius:4px;}
+.event-chars{display:flex;gap:5px;flex-wrap:wrap;margin-right:auto;}
+.char-tag{font-size:0.65rem;color:var(--text2);background:var(--bg2);border:1px solid var(--border);padding:2px 8px;border-radius:4px;}
+
+/* TYPE BADGES */
+.type-world{background:rgba(52,152,219,0.12);color:#5DADE2;border:1px solid rgba(52,152,219,0.25);}
+.type-character{background:rgba(230,126,34,0.12);color:#E67E22;border:1px solid rgba(230,126,34,0.25);}
+.type-war{background:rgba(192,57,43,0.12);color:#E74C3C;border:1px solid rgba(192,57,43,0.25);}
+.type-fruit{background:rgba(155,89,182,0.12);color:#9B59B6;border:1px solid rgba(155,89,182,0.25);}
+
+.no-results{text-align:center;padding:60px 20px;color:var(--text3);display:none;}
+.no-results.show{display:block;}
+
+/* ERA JUMP BUTTONS */
+.era-nav{position:fixed;left:20px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:8px;z-index:100;}
+.era-jump{width:10px;height:10px;border-radius:50%;cursor:pointer;transition:all 0.2s;border:none;outline:none;}
+.era-jump:hover,.era-jump.active{transform:scale(1.5);}
+.era-jump-label{position:absolute;left:20px;white-space:nowrap;font-size:0.72rem;background:var(--bg3);border:1px solid var(--border);padding:3px 10px;border-radius:6px;color:var(--text2);opacity:0;transition:opacity 0.2s;pointer-events:none;}
+.era-jump:hover .era-jump-label{opacity:1;}
+
+@media(max-width:768px){
+  .era-nav{display:none;}
+  .timeline{padding-right:20px;}
+  .event-item{padding-right:20px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-wrap">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-icon">⚓</div>
+      <div><div class="logo-text">عالم ون بيس</div><div class="logo-sub">الموسوعة العربية الشاملة</div></div>
+    </a>
+    <a href="index.html" class="nav-back">← الرئيسية</a>
+  </div>
+</nav>
+
+<!-- ERA NAVIGATION -->
+<div class="era-nav" id="eraNave"></div>
+
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="breadcrumb"><a href="index.html">الرئيسية</a><span>›</span><span>الخط الزمني</span></div>
+    <h1 class="page-title">⏳ الخط <span>الزمني</span></h1>
+    <p class="page-desc">التسلسل الزمني الكامل لتاريخ عالم ون بيس — من عصر الديناصورات حتى الأحداث الجارية في آرك الباف. مبني بالاعتماد على المانغا والمصادر الرسمية.</p>
+    <div class="credit">مستند إلى: <a href="https://thelibraryofohara.com/the-one-piece-timeline/" target="_blank">Library of Ohara Timeline v5.0</a> — مترجم ومُوسَّع بالعربية</div>
+    <div class="stats-bar">
+      <div><span class="stat-n" id="totalEvents">٠</span><div class="stat-l">حدث موثق</div></div>
+      <div><span class="stat-n" id="totalEras">٠</span><div class="stat-l">حقبة زمنية</div></div>
+      <div><span class="stat-n">+100M</span><div class="stat-l">سنة من التاريخ</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="filters">
+  <div class="filter-row">
+    <div class="search-box">
+      <span>🔍</span>
+      <input type="text" id="searchInput" placeholder="ابحث في الأحداث أو الشخصيات..." oninput="render()">
+    </div>
+    <select class="filter-select" id="eraFilter" onchange="render()">
+      <option value="all">جميع الحقب</option>
+    </select>
+    <select class="filter-select" id="typeFilter" onchange="render()">
+      <option value="all">جميع الأنواع</option>
+      <option value="world">أحداث العالم</option>
+      <option value="character">الشخصيات</option>
+      <option value="war">الحروب</option>
+      <option value="fruit">فواكه الشيطان</option>
+    </select>
+    <select class="filter-select" id="importanceFilter" onchange="render()">
+      <option value="all">الكل</option>
+      <option value="critical">مصيرية فقط</option>
+      <option value="important">مهمة فقط</option>
+    </select>
+  </div>
+  <div class="tabs-row" id="tabsRow">
+    <button class="tab active" onclick="setEra('all',this)">الكل</button>
+  </div>
+</div>
+
+<div class="main">
+  <div class="results-info">عرض <span id="countSpan">٠</span> حدث</div>
+  <div id="container"></div>
+  <div class="no-results" id="noResults">🔍 لا توجد نتائج</div>
+</div>
+
+<script src="timeline-data.js"></script>
+<script>
+let activeEra = 'all';
+
+// إحصاءات
+let totalEvents = 0;
+TIMELINE_ERAS.forEach(e => totalEvents += e.events.length);
+document.getElementById('totalEvents').textContent = totalEvents;
+document.getElementById('totalEras').textContent = TIMELINE_ERAS.length;
+
+// بناء الفلاتر والتابات
+const eraFilter = document.getElementById('eraFilter');
+const tabsRow = document.getElementById('tabsRow');
+const eraNave = document.getElementById('eraNave');
+
+TIMELINE_ERAS.forEach(era => {
+  // Select option
+  const opt = document.createElement('option');
+  opt.value = era.id; opt.textContent = era.name;
+  eraFilter.appendChild(opt);
+
+  // Tab
+  const tab = document.createElement('button');
+  tab.className = 'tab';
+  tab.textContent = era.name;
+  tab.onclick = () => setEra(era.id, tab);
+  tabsRow.appendChild(tab);
+
+  // Era nav dot
+  const dot = document.createElement('div');
+  dot.style.cssText = `position:relative;display:flex;align-items:center;`;
+  dot.innerHTML = `
+    <button class="era-jump" style="background:${era.color}" onclick="scrollToEra('${era.id}')" title="${era.name}">
+      <span class="era-jump-label">${era.name}</span>
+    </button>`;
+  eraNave.appendChild(dot);
+});
+
+function scrollToEra(eraId) {
+  const el = document.getElementById('era-' + eraId);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function setEra(era, btn) {
+  activeEra = era;
+  document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('eraFilter').value = era;
+  render();
+}
+
+const typeLabels = { world:'🌍 أحداث العالم', character:'👤 شخصية', war:'⚔️ حرب', fruit:'🍎 فاكهة' };
+const typeClasses = { world:'type-world', character:'type-character', war:'type-war', fruit:'type-fruit' };
+
+function render() {
+  const s = document.getElementById('searchInput').value.toLowerCase();
+  const eraId = document.getElementById('eraFilter').value;
+  const type = document.getElementById('typeFilter').value;
+  const imp = document.getElementById('importanceFilter').value;
+  activeEra = eraId;
+
+  const container = document.getElementById('container');
+  const nr = document.getElementById('noResults');
+  container.innerHTML = '';
+  let total = 0;
+
+  TIMELINE_ERAS.forEach(era => {
+    if (eraId !== 'all' && era.id !== eraId) return;
+
+    const filtered = era.events.filter(ev => {
+      const ms = !s || ev.title.toLowerCase().includes(s) || ev.desc.toLowerCase().includes(s) || (ev.chars && ev.chars.some(c=>c.toLowerCase().includes(s)));
+      const mt = type === 'all' || ev.type === type;
+      const mi = imp === 'all' || ev.importance === imp;
+      return ms && mt && mi;
+    });
+
+    if (filtered.length === 0) return;
+    total += filtered.length;
+
+    // Era section
+    const section = document.createElement('div');
+    section.className = 'era-section';
+    section.id = 'era-' + era.id;
+    section.innerHTML = `
+      <div class="era-header">
+        <div class="era-icon" style="background:${era.color}22;border:1px solid ${era.color}44">${era.icon}</div>
+        <div>
+          <div class="era-name" style="color:${era.color}">${era.name}</div>
+          <div class="era-range">${era.timeRange}</div>
+        </div>
+        <div class="era-count">${filtered.length} حدث</div>
+      </div>
+      <div class="timeline" style="--era-color:${era.color}" id="timeline-${era.id}"></div>`;
+    container.appendChild(section);
+
+    const timeline = section.querySelector(`#timeline-${era.id}`);
+
+    filtered.forEach((ev, i) => {
+      const item = document.createElement('div');
+      item.className = `event-item ${ev.importance === 'critical' ? 'critical' : ''}`;
+      item.style.cssText = `opacity:0;transform:translateX(20px);transition:opacity 0.4s ease ${i*0.06}s,transform 0.4s ease ${i*0.06}s`;
+
+      const charsHTML = ev.chars ? ev.chars.map(c=>`<span class="char-tag">👤 ${c}</span>`).join('') : '';
+
+      item.innerHTML = `
+        <div class="event-card ${ev.importance === 'critical' ? 'critical' : ''}" style="--era-color:${era.color};--era-color-bg:${era.color}11;--era-color-border:${era.color}33">
+          ${ev.importance === 'critical' ? `<div class="critical-badge">⭐ مصيري</div>` : ''}
+          <div class="event-top">
+            <span class="event-year" style="color:${era.color};background:${era.color}11;border-color:${era.color}33">${ev.yearShort}</span>
+            <span class="event-type-badge ${typeClasses[ev.type]||''}">${typeLabels[ev.type]||ev.type}</span>
+          </div>
+          <div class="event-title">${ev.title}</div>
+          <div class="event-desc">${ev.desc}</div>
+          <div class="event-footer">
+            <span class="event-source">📚 ${ev.source}</span>
+            ${charsHTML ? `<div class="event-chars">${charsHTML}</div>` : ''}
+          </div>
+        </div>`;
+
+      timeline.appendChild(item);
+      setTimeout(() => { item.style.opacity='1'; item.style.transform='translateX(0)'; }, 50 + i*60);
+    });
+  });
+
+  document.getElementById('countSpan').textContent = total;
+  nr.classList.toggle('show', total === 0);
+}
+
+render();
+
+// Intersection Observer for era nav
+const eraObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const eraId = e.target.id.replace('era-','');
+      document.querySelectorAll('.era-jump').forEach((btn,i) => {
+        btn.classList.toggle('active', TIMELINE_ERAS[i]?.id === eraId);
+      });
+    }
+  });
+}, { threshold: 0.2 });
+
+document.querySelectorAll('.era-section').forEach(el => eraObserver.observe(el));
+</script>
+</body>
+</html>
