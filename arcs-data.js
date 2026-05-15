@@ -346,7 +346,7 @@ const SAGAS = [
       {
         id: "fishman-island",
         name: "جزيرة الأسماك",
-        nameEn: Fish-Man Island Arc",
+        nameEn: "Fish-Man Island Arc",
         chapters: "603 – 653",
         episodes: "523 – 574",
         status: "مكتمل",
