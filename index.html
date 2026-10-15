@@ -716,89 +716,101 @@ section {
 }
 
 .qa-card {
-  background: var(--navy-mid);
+  --qa-art: none;
+  min-height: 230px;
+  padding: 28px 22px;
   border: 1px solid var(--navy-border);
   border-radius: var(--radius-lg);
-  padding: 28px 24px;
+  background: var(--navy-mid);
   text-decoration: none;
-  display: block;
-  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   position: relative;
   overflow: hidden;
+  isolation: isolate;
   cursor: pointer;
+  transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
 }
 
 .qa-card::before {
   content: '';
   position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  height: 3px;
-  background: var(--card-accent, var(--gold-bright));
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.3s ease;
+  inset: -3px;
+  background-image: var(--qa-art);
+  background-position: center;
+  background-size: cover;
+  transform: scale(1);
+  transition: transform .55s ease, filter .55s ease;
+  z-index: 0;
 }
 
-.qa-card:hover::before { transform: scaleX(1); }
+.qa-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(7,11,20,.22), rgba(7,11,20,.86)),
+    radial-gradient(circle at 50% 42%, transparent 0 18%, rgba(7,11,20,.2) 72%);
+  transition: background .4s ease;
+  z-index: 1;
+}
 
 .qa-card:hover {
   border-color: var(--card-accent, var(--gold-mid));
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-card);
-  background: var(--navy-light);
+  transform: translateY(-5px);
+  box-shadow: 0 18px 42px rgba(0,0,0,.38);
 }
 
-.qa-icon {
-  width: 54px;
-  height: 54px;
-  margin-bottom: 18px;
-  display: grid;
-  place-items: center;
-  color: var(--card-accent, var(--gold-bright));
-  background: color-mix(in srgb, var(--card-accent, var(--gold-bright)) 12%, transparent);
-  border: 1px solid color-mix(in srgb, var(--card-accent, var(--gold-bright)) 34%, transparent);
-  border-radius: 15px;
-  box-shadow: inset 0 0 20px color-mix(in srgb, var(--card-accent, var(--gold-bright)) 8%, transparent);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.qa-card:hover::before {
+  transform: scale(1.07);
+  filter: saturate(1.08) contrast(1.04);
 }
 
-.qa-icon svg {
-  width: 30px;
-  height: 30px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.8;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+.qa-card:hover::after {
+  background:
+    linear-gradient(180deg, rgba(7,11,20,.1), rgba(7,11,20,.74)),
+    radial-gradient(circle at 50% 42%, transparent 0 26%, rgba(7,11,20,.14) 76%);
 }
 
-.qa-card:hover .qa-icon {
-  transform: translateY(-2px) rotate(-3deg);
-  box-shadow: 0 8px 24px color-mix(in srgb, var(--card-accent, var(--gold-bright)) 20%, transparent);
+.qa-title,
+.qa-count {
+  position: relative;
+  z-index: 2;
+  transition: transform .3s ease;
+}
+
+.qa-card:hover .qa-title,
+.qa-card:hover .qa-count {
+  transform: translateY(-5px);
 }
 
 .qa-title {
   font-family: var(--font-display);
-  font-size: 1.2rem;
+  font-size: 1.45rem;
   color: var(--white-warm);
   font-weight: 700;
-  margin-bottom: 8px;
-}
-
-.qa-desc {
-  font-size: 0.82rem;
-  color: var(--text-muted);
-  line-height: 1.6;
+  text-shadow: 0 3px 16px rgba(0,0,0,.92);
 }
 
 .qa-count {
-  margin-top: 14px;
-  font-size: 0.75rem;
+  margin-top: 10px;
+  font-size: .78rem;
   color: var(--card-accent, var(--gold-bright));
-  font-weight: 600;
+  font-weight: 700;
+  text-shadow: 0 2px 12px rgba(0,0,0,.9);
 }
+
+.qa-characters { --qa-art: url('assets/qa-characters.jpg'); }
+.qa-islands { --qa-art: url('assets/qa-islands.jpg'); }
+.qa-fruits { --qa-art: url('assets/qa-fruits.jpg'); }
+.qa-arcs { --qa-art: url('assets/qa-arcs.jpg'); }
+.qa-crews { --qa-art: url('assets/qa-crews.jpg'); }
+.qa-manga { --qa-art: url('assets/qa-manga.jpg'); }
+.qa-theories { --qa-art: url('assets/qa-theories.jpg'); }
+.qa-timeline { --qa-art: url('assets/qa-timeline.jpg'); }
 
 /* ============================================
    FEATURED CHARACTERS
@@ -1908,52 +1920,36 @@ footer {
 <section class="quick-access" id="encyclopedia">
   <div class="section-inner">
      <div class="qa-grid">
-      <a href="characters.html" class="qa-card" style="--card-accent: #E74C3C;">
-        <span class="qa-icon" aria-hidden="true"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M10 25c1.3-4.2 3.3-6 6-6s4.7 1.8 6 6"/><circle cx="16" cy="12" r="4"/><path d="M7 27h18M8.5 8.5 6 6m17.5 2.5L26 6"/><path d="M11 5h10l-1.5 3h-7z"/></svg></span>
+      <a href="characters.html" class="qa-card qa-characters" style="--card-accent: #E74C3C;">
         <div class="qa-title">الشخصيات</div>
-        <div class="qa-desc">صفحات تفصيلية لكل شخصية مع المكافآت والقدرات والعلاقات</div>
         <div class="qa-count">٥٠٠+ شخصية موثقة</div>
       </a>
-      <a href="islands.html" class="qa-card" style="--card-accent: #3498DB;">
-        <span class="qa-icon" aria-hidden="true"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 25c5-3 8-3 12 0 4-3 7-3 12 0M8 28c4-2 12-2 16 0"/><path d="M16 23c.5-7 2.5-11 7-14"/><path d="M22 9c-4-1-7 0-8 3m8-3c2-3 5-3 7-1m-7 1c3 1 4 3 4 5"/><path d="M13 16c-3-1-5 0-7 2"/></svg></span>
+      <a href="islands.html" class="qa-card qa-islands" style="--card-accent: #3498DB;">
         <div class="qa-title">الجزر والمناطق</div>
-        <div class="qa-desc">خريطة كاملة لعالم ون بيس مع كل جزيرة وأحداثها</div>
         <div class="qa-count">١٠٠+ جزيرة ومنطقة</div>
       </a>
-      <a href="fruits.html" class="qa-card" style="--card-accent: #9B59B6;">
-        <span class="qa-icon" aria-hidden="true"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 11c-5-4-11 0-10 7 1 7 5 10 10 7 5 3 9 0 10-7 1-7-5-11-10-7Z"/><path d="M16 11c0-4 2-6 5-7M18 7c3-2 6-1 7 1"/><path d="M12 16c2-2 6-2 8 0m-9 4c3 2 7 2 10 0"/></svg></span>
+      <a href="fruits.html" class="qa-card qa-fruits" style="--card-accent: #9B59B6;">
         <div class="qa-title">فواكه الشيطان</div>
-        <div class="qa-desc">قاعدة بيانات كاملة لفواكه الشيطان وأصحابها وقدراتها</div>
         <div class="qa-count">٩٢ فاكهة موثقة</div>
       </a>
-      <a href="arcs.html" class="qa-card" style="--card-accent: #F39C12;">
-        <span class="qa-icon" aria-hidden="true"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="m6 5 8 8-3 3-8-8zM3 8l3-3m4 12-5 5m1-3 3 3"/><path d="m26 5-8 8 3 3 8-8zM29 8l-3-3m-4 12 5 5m-1-3-3 3"/></svg></span>
+      <a href="arcs.html" class="qa-card qa-arcs" style="--card-accent: #F39C12;">
         <div class="qa-title">الأركات والأحداث</div>
-        <div class="qa-desc">ترتيب زمني كامل لأركات ون بيس والأحداث الكبرى</div>
         <div class="qa-count">٣٣ آرك حتى الآن</div>
       </a>
-      <a href="#" class="qa-card" style="--card-accent: #1ABC9C;">
-        <span class="qa-icon" aria-hidden="true"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 25c6 3 16 3 22 0M8 24l2-9h12l2 9"/><path d="M12 15v-4h8v4M16 11V5"/><path d="m16 5 7 3-7 3"/><path d="M11 20c3 2 7 2 10 0"/></svg></span>
+      <a href="#" class="qa-card qa-crews" style="--card-accent: #1ABC9C;">
         <div class="qa-title">الطواقم والتحالفات</div>
-        <div class="qa-desc">البحرية، اليونكو، الثوار، CP وكل المنظمات</div>
         <div class="qa-count">٢٠+ منظمة</div>
       </a>
-      <a href="manga.html" class="qa-card" style="--card-accent: #E67E22;">
-        <span class="qa-icon" aria-hidden="true"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 7c5-1 9 0 12 3v17c-3-3-7-4-12-3zM28 7c-5-1-9 0-12 3v17c3-3 7-4 12-3z"/><path d="M8 12h4m-4 4h4m8-4h4m-4 4h4"/></svg></span>
+      <a href="manga.html" class="qa-card qa-manga" style="--card-accent: #E67E22;">
         <div class="qa-title">المانغا والأنمي</div>
-        <div class="qa-desc">ملخصات وتحليلات لكل فصل وحلقة بشكل منظم</div>
         <div class="qa-count">١١٠٠+ فصل ● ١١٢٠+ حلقة</div>
       </a>
-      <a href="articles.html" class="qa-card" style="--card-accent: #E74C3C;">
-        <span class="qa-icon" aria-hidden="true"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="10"/><path d="M16 3v3m0 20v3M3 16h3m20 0h3"/><path d="m16 16 6-5-3 7-7 3z"/><circle cx="16" cy="16" r="2"/></svg></span>
+      <a href="articles.html" class="qa-card qa-theories" style="--card-accent: #E74C3C;">
         <div class="qa-title">نظريات وتحليلات</div>
-        <div class="qa-desc">أعمق النظريات والمقالات التحليلية بالعربية</div>
         <div class="qa-count">٢٠٠+ نظرية ومقالة</div>
       </a>
-      <a href="timeline.html" class="qa-card" style="--card-accent: #2980B9;">
-        <span class="qa-icon" aria-hidden="true"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M9 4h14M9 28h14M11 5c0 6 2 7 5 10-3 3-5 4-5 11m10-21c0 6-2 7-5 10 3 3 5 4 5 11"/><path d="M13 10h6m-6 12h6"/></svg></span>
+      <a href="timeline.html" class="qa-card qa-timeline" style="--card-accent: #2980B9;">
         <div class="qa-title">الخط الزمني</div>
-        <div class="qa-desc">تسلسل كامل لتاريخ عالم ون بيس من العصر الفراغي</div>
         <div class="qa-count">٨٠٠+ سنة من التاريخ</div>
       </a>
     </div>
