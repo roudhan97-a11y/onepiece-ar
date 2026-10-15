@@ -1253,9 +1253,117 @@ section {
 }
 
 .manga-link-card p {
-  color: var(--text-muted);
+  color: var(--text-secondary);
   font-size: .78rem;
   line-height: 1.6;
+}
+
+.quick-access {
+  scroll-margin-top: 88px;
+}
+
+.manga-latest,
+.manga-link-card {
+  isolation: isolate;
+}
+
+.manga-latest > *,
+.manga-link-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+.manga-latest::before {
+  content: '';
+  position: absolute;
+  width: 210px;
+  height: 280px;
+  left: 8%;
+  top: 50%;
+  transform: translateY(-50%) rotate(-8deg);
+  border: 1px solid rgba(240,230,211,.16);
+  border-radius: 8px;
+  background:
+    linear-gradient(rgba(212,168,67,.16), rgba(212,168,67,.16)) 22px 34px / 68% 3px no-repeat,
+    repeating-linear-gradient(180deg, transparent 0 18px, rgba(240,230,211,.08) 19px 20px),
+    linear-gradient(145deg, rgba(240,230,211,.07), rgba(240,230,211,.015));
+  box-shadow: 22px 18px 0 rgba(7,11,20,.42), 0 24px 55px rgba(0,0,0,.3);
+  opacity: .72;
+  z-index: 0;
+}
+
+.manga-latest::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 18% 30%, rgba(212,168,67,.2), transparent 26%),
+    repeating-conic-gradient(from 205deg at 13% 42%, rgba(212,168,67,.05) 0deg 2deg, transparent 2deg 11deg);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.manga-link-card {
+  --manga-accent: 212,168,67;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 12% 12%, rgba(var(--manga-accent),.18), transparent 42%),
+    linear-gradient(145deg, rgba(28,42,64,.98), rgba(13,20,33,.98));
+}
+
+.manga-link-card::before {
+  content: '';
+  position: absolute;
+  width: 118px;
+  height: 150px;
+  left: -20px;
+  bottom: -34px;
+  transform: rotate(12deg);
+  border: 1px solid rgba(var(--manga-accent),.22);
+  border-radius: 7px;
+  background:
+    repeating-linear-gradient(180deg, transparent 0 15px, rgba(var(--manga-accent),.08) 16px 17px),
+    rgba(255,255,255,.018);
+  transition: transform .35s ease, opacity .35s ease;
+  opacity: .75;
+  z-index: 0;
+}
+
+.manga-link-card::after {
+  content: '';
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  left: -52px;
+  top: -64px;
+  border: 1px solid rgba(var(--manga-accent),.18);
+  border-radius: 50%;
+  box-shadow: 0 0 0 18px rgba(var(--manga-accent),.025), 0 0 0 38px rgba(var(--manga-accent),.018);
+  z-index: 0;
+}
+
+.manga-link-card:hover::before {
+  transform: rotate(7deg) translateY(-6px);
+  opacity: 1;
+}
+
+.manga-card-guide { --manga-accent: 230,126,34; }
+.manga-card-sbs { --manga-accent: 52,152,219; }
+.manga-card-oda { --manga-accent: 212,168,67; }
+.manga-card-covers { --manga-accent: 192,57,43; }
+
+.manga-link-icon {
+  box-shadow: 0 8px 24px rgba(var(--manga-accent),.14);
+  border-color: rgba(var(--manga-accent),.42);
+  background: rgba(var(--manga-accent),.12);
+  color: rgb(var(--manga-accent));
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.manga-link-card:hover .manga-link-icon {
+  transform: translateY(-3px) rotate(-4deg) scale(1.05);
+  box-shadow: 0 12px 28px rgba(var(--manga-accent),.24);
 }
 
 @media (max-width: 1024px) {
@@ -1745,7 +1853,7 @@ footer {
       </h1>
 
       <div class="hero-cta-group">
-        <a href="#" class="btn-primary">⚓ استكشف الموسوعة</a>
+        <a href="#encyclopedia" class="btn-primary">⚓ استكشف الموسوعة</a>
         <a href="characters.html" class="btn-secondary">📖 تصفح الشخصيات</a>
       </div>
 
@@ -1826,7 +1934,7 @@ footer {
 </section>
 
 <!-- QUICK ACCESS -->
-<section class="quick-access">
+<section class="quick-access" id="encyclopedia">
   <div class="section-inner">
      <div class="qa-grid">
       <a href="characters.html" class="qa-card" style="--card-accent: #E74C3C;">
@@ -1898,19 +2006,19 @@ footer {
       </a>
 
       <div class="manga-links">
-        <a href="manga.html" class="manga-link-card">
+        <a href="manga.html" class="manga-link-card manga-card-guide">
           <span class="manga-link-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 7c5-1 9 0 12 3v17c-3-3-7-4-12-3zM28 7c-5-1-9 0-12 3v17c3-3 7-4 12-3z"/><path d="M8 12h4m8 0h4"/></svg></span>
           <div><h4>دليل المانغا</h4><p>الأركات والفصول وكل ما يتعلق بالمانغا.</p></div>
         </a>
-        <a href="sbs.html" class="manga-link-card">
+        <a href="sbs.html" class="manga-link-card manga-card-sbs">
           <span class="manga-link-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M6 6h20v15H14l-6 5v-5H6z"/><path d="M11 12h10m-10 4h6"/></svg></span>
           <div><h4>أسئلة SBS</h4><p>إجابات أودا وكواليس عالم ون بيس.</p></div>
         </a>
-        <a href="oda-statements.html" class="manga-link-card">
+        <a href="oda-statements.html" class="manga-link-card manga-card-oda">
           <span class="manga-link-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 25h16M10 22l3-12 9-5 4 4-5 9z"/><path d="m13 10 8 8M10 22l6-2"/></svg></span>
           <div><h4>تصريحات أودا</h4><p>التصريحات والمعلومات الموثقة من المؤلف.</p></div>
         </a>
-        <a href="cover-stories.html" class="manga-link-card">
+        <a href="cover-stories.html" class="manga-link-card manga-card-covers">
           <span class="manga-link-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="6" y="4" width="20" height="24" rx="2"/><path d="M10 9h12v8H10zm0 12h8"/></svg></span>
           <div><h4>قصص الأغلفة</h4><p>القصص الجانبية المتسلسلة على أغلفة الفصول.</p></div>
         </a>
