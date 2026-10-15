@@ -1128,6 +1128,11 @@ section {
     var(--navy-dark);
 }
 
+.manga-hub-title {
+  color: var(--gold-bright);
+  text-shadow: 0 0 28px rgba(212,168,67,.18);
+}
+
 .manga-hub-layout {
   display: grid;
   grid-template-columns: minmax(0, 1.45fr) minmax(320px, .85fr);
@@ -1147,18 +1152,6 @@ section {
   justify-content: flex-end;
   text-decoration: none;
   transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
-}
-
-.manga-latest::before {
-  content: '1180';
-  position: absolute;
-  top: -32px;
-  left: 20px;
-  font-family: var(--font-display);
-  font-size: clamp(8rem, 18vw, 15rem);
-  line-height: 1;
-  color: rgba(212,168,67,.07);
-  font-weight: 700;
 }
 
 .manga-latest:hover {
@@ -1803,8 +1796,8 @@ footer {
         <div class="card-tags">
           <span class="tag tag-red">قبعة القش</span>
           <span class="tag tag-gold">يونكو</span>
-          <span class="tag tag-teal">لوجيا خرافية</span>
-          <span class="tag tag-blue">الملك البحري القادم</span>
+          <span class="tag tag-teal">زون خرافية</span>
+          <span class="tag tag-blue">ملك القراصنة القادم</span>
         </div>
 
         <div class="card-stats-row">
@@ -1825,7 +1818,7 @@ footer {
         <div class="card-divider"></div>
 
         <div class="card-quote">
-          "سأصبح ملك البحار!" — أكثر الجمل شهرةً في تاريخ المانغا العالمية
+          "سأصبح ملك القراصنة!" — حلم لوفي منذ بداية رحلته
         </div>
       </div>
     </div>
@@ -1835,11 +1828,7 @@ footer {
 <!-- QUICK ACCESS -->
 <section class="quick-access">
   <div class="section-inner">
-    <div class="section-header">
-      <h2 class="section-title">استكشف الأقسام الشاملة للموسوعة العربية الأكبر عن عالم ون بيس</h2>
-    </div>
-
-    <div class="qa-grid">
+     <div class="qa-grid">
       <a href="characters.html" class="qa-card" style="--card-accent: #E74C3C;">
         <span class="qa-icon" aria-hidden="true"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M10 25c1.3-4.2 3.3-6 6-6s4.7 1.8 6 6"/><circle cx="16" cy="12" r="4"/><path d="M7 27h18M8.5 8.5 6 6m17.5 2.5L26 6"/><path d="M11 5h10l-1.5 3h-7z"/></svg></span>
         <div class="qa-title">الشخصيات</div>
@@ -1898,15 +1887,15 @@ footer {
 <section class="manga-hub">
   <div class="section-inner">
     <div class="section-header">
-      <h2 class="section-title">دليل المانغا</h2>
+      <h2 class="section-title manga-hub-title">دليل المانغا</h2>
     </div>
 
     <div class="manga-hub-layout">
       <a href="chapters.html" class="manga-latest">
-        <span class="manga-latest-label">الفصل الأحدث في الموسوعة</span>
-        <h3>الفصل 1180 من مانغا ون بيس</h3>
-        <p>انتقل إلى دليل الفصول لمتابعة أحدث فصل، بيانات النشر، والأحداث المرتبطة به.</p>
-        <span class="manga-latest-action">استعرض أحدث الفصول ←</span>
+        <span class="manga-latest-label">الأحدث في الموسوعة</span>
+        <h3>أحدث فصل من مانغا ون بيس</h3>
+        <p>تابع أحدث فصول المانغا ومعلومات النشر من خلال دليل الفصول.</p>
+        <span class="manga-latest-action">الانتقال إلى دليل الفصول ←</span>
       </a>
 
       <div class="manga-links">
