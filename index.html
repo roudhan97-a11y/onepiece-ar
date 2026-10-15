@@ -1223,7 +1223,6 @@ section {
 .manga-link-card:hover {
   transform: translateY(-3px);
   border-color: var(--gold-mid);
-  background: var(--navy-light);
 }
 
 .manga-link-icon {
@@ -1247,8 +1246,16 @@ section {
   stroke-linejoin: round;
 }
 
+.manga-link-card > div {
+  transition: transform .3s ease;
+}
+
+.manga-link-card:hover > div {
+  transform: translateY(-6px);
+}
+
 .manga-link-card h4 {
-  margin: 16px 0 6px;
+  margin: 0 0 6px;
   font-family: var(--font-display);
   color: var(--white-warm);
   font-size: 1.2rem;
@@ -2010,19 +2017,15 @@ footer {
 
       <div class="manga-links">
         <a href="manga.html" class="manga-link-card manga-card-guide">
-          <span class="manga-link-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 7c5-1 9 0 12 3v17c-3-3-7-4-12-3zM28 7c-5-1-9 0-12 3v17c3-3 7-4 12-3z"/><path d="M8 12h4m8 0h4"/></svg></span>
           <div><h4>دليل المانغا</h4><p>الأركات والفصول وكل ما يتعلق بالمانغا.</p></div>
         </a>
         <a href="sbs.html" class="manga-link-card manga-card-sbs">
-          <span class="manga-link-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M6 6h20v15H14l-6 5v-5H6z"/><path d="M11 12h10m-10 4h6"/></svg></span>
           <div><h4>أسئلة SBS</h4><p>إجابات أودا وكواليس عالم ون بيس.</p></div>
         </a>
         <a href="oda-statements.html" class="manga-link-card manga-card-oda">
-          <span class="manga-link-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 25h16M10 22l3-12 9-5 4 4-5 9z"/><path d="m13 10 8 8M10 22l6-2"/></svg></span>
           <div><h4>تصريحات أودا</h4><p>التصريحات والمعلومات الموثقة من المؤلف.</p></div>
         </a>
         <a href="cover-stories.html" class="manga-link-card manga-card-covers">
-          <span class="manga-link-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="6" y="4" width="20" height="24" rx="2"/><path d="M10 9h12v8H10zm0 12h8"/></svg></span>
           <div><h4>قصص الأغلفة</h4><p>القصص الجانبية المتسلسلة على أغلفة الفصول.</p></div>
         </a>
       </div>
