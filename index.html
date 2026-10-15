@@ -1331,10 +1331,30 @@ section {
   opacity: 1;
 }
 
-.manga-card-guide { --manga-accent: 230,126,34; }
-.manga-card-sbs { --manga-accent: 52,152,219; }
-.manga-card-oda { --manga-accent: 212,168,67; }
-.manga-card-covers { --manga-accent: 192,57,43; }
+.manga-card-guide {
+  --manga-accent: 230,126,34;
+  background:
+    linear-gradient(180deg, rgba(7,11,20,.2), rgba(7,11,20,.94)),
+    url('assets/manga-guide.jpg') center / cover no-repeat;
+}
+.manga-card-sbs {
+  --manga-accent: 52,152,219;
+  background:
+    linear-gradient(180deg, rgba(7,11,20,.18), rgba(7,11,20,.94)),
+    url('assets/manga-sbs.jpg') center / cover no-repeat;
+}
+.manga-card-oda {
+  --manga-accent: 212,168,67;
+  background:
+    linear-gradient(180deg, rgba(7,11,20,.18), rgba(7,11,20,.95)),
+    url('assets/manga-oda.jpg') center / cover no-repeat;
+}
+.manga-card-covers {
+  --manga-accent: 192,57,43;
+  background:
+    linear-gradient(180deg, rgba(7,11,20,.16), rgba(7,11,20,.94)),
+    url('assets/manga-covers.jpg') center / cover no-repeat;
+}
 
 .manga-link-icon {
   box-shadow: 0 8px 24px rgba(var(--manga-accent),.14);
