@@ -1144,7 +1144,9 @@ section {
   padding: 42px;
   border: 1px solid rgba(212,168,67,.28);
   border-radius: var(--radius-xl);
-  background: linear-gradient(145deg, rgba(28,42,64,.96), rgba(13,20,33,.98));
+  background:
+    linear-gradient(90deg, rgba(7,11,20,.34) 0%, rgba(7,11,20,.7) 52%, rgba(7,11,20,.94) 100%),
+    url('assets/manga-collage.jpg') center / cover no-repeat;
   position: relative;
   overflow: hidden;
   display: flex;
@@ -1273,32 +1275,13 @@ section {
   z-index: 2;
 }
 
-.manga-latest::before {
-  content: '';
-  position: absolute;
-  width: 210px;
-  height: 280px;
-  left: 8%;
-  top: 50%;
-  transform: translateY(-50%) rotate(-8deg);
-  border: 1px solid rgba(240,230,211,.16);
-  border-radius: 8px;
-  background:
-    linear-gradient(rgba(212,168,67,.16), rgba(212,168,67,.16)) 22px 34px / 68% 3px no-repeat,
-    repeating-linear-gradient(180deg, transparent 0 18px, rgba(240,230,211,.08) 19px 20px),
-    linear-gradient(145deg, rgba(240,230,211,.07), rgba(240,230,211,.015));
-  box-shadow: 22px 18px 0 rgba(7,11,20,.42), 0 24px 55px rgba(0,0,0,.3);
-  opacity: .72;
-  z-index: 0;
-}
-
 .manga-latest::after {
   content: '';
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 18% 30%, rgba(212,168,67,.2), transparent 26%),
-    repeating-conic-gradient(from 205deg at 13% 42%, rgba(212,168,67,.05) 0deg 2deg, transparent 2deg 11deg);
+    linear-gradient(180deg, rgba(7,11,20,.08), rgba(7,11,20,.42)),
+    radial-gradient(circle at 78% 50%, rgba(212,168,67,.16), transparent 38%);
   pointer-events: none;
   z-index: 1;
 }
